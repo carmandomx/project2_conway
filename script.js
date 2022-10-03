@@ -11,6 +11,8 @@ function clearBoard() {}
 
 function randomizer() {}
 
+//generate divs with an array that has cells 50x50
+
 function generateGrid() {}
 
 function pause() {
