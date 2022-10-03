@@ -1,0 +1,27 @@
+h2 {
+
+}
+
+h3 {
+
+}
+
+.cell {
+    height: 2%;
+    width: 2%;
+    border: solid black;
+   /* background-color: aqua;*/
+}
+
+.dead {
+    background-color: rgb(252, 106, 106);
+}
+
+.alive {
+    background-color: green;
+}
+
+.matrix {
+    height: 1000px;
+    width: 1000px;
+}
