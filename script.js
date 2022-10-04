@@ -1,6 +1,8 @@
+//We relate the container 
+const container = document.querySelector("#container");
 //si ij, si i-1j
 let countgen = 0;
-let cells = new Array(5).fill(0).map(() => new Array(5).fill(0));
+let cells = new Array(50).fill(0).map(() => new Array(50).fill(0));
 
 
 function checkNeighbors() {
@@ -87,6 +89,18 @@ function checkNeighbors() {
     }
 }
 
+//Function that creates the grid
+function makeRows(rows, cols) {
+  //Connect the rows and cols variables with the CSS variables
+  container.style.setProperty('--grid-rows', rows);
+  container.style.setProperty('--grid-cols', cols);
+  for (c = 0; c < (rows * cols); c++) {
+    //Every div is a cell
+    let cell = document.createElement("div");
+    //Every cell is a grid-item
+    container.appendChild(cell).className = "grid-item";
+  };
+};
 
 function clearBoard() {}
 
@@ -108,5 +122,7 @@ function pause() {
 }
 
 function play() {
-    onclick
+    makeRows(50, 50);
 }
+
+play();
