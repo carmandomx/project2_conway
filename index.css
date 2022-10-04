@@ -4,6 +4,7 @@
   --grid-rows: 1;
 }
 
+/* MAIN CONTAINER */
 #container {
   margin: 50px 50px 50px 50px;
   display: grid;
