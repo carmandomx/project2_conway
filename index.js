@@ -18,6 +18,7 @@ class GameOfLife {
 
     this.playBtn = document.querySelector('.play-btn');
     this.randomizerBtn = document.querySelector('.random-generate-btn');
+    this.clearBtn = document.querySelector('.clear-btn');
     this.canvas = document.querySelector(element);
     this.context = this.canvas.getContext('2d');
     this.canvas.width = this.widthCanvas;
@@ -68,6 +69,13 @@ class GameOfLife {
       //  check if game is paused
       if (this.pause) {
         this.randomize();
+      }
+    });
+    // Clear board configuration values
+    this.clearBtn.addEventListener('click', () => {
+      //  check if game is paused
+      if (this.pause) {
+        this.clear();
       }
     });
   }
@@ -143,6 +151,20 @@ class GameOfLife {
         this.currentGeneration[row][col] = value;
       }
     }
+  }
+
+  clearData() {
+    for (let row = 0; row < this.canvasRow; row++) {
+      this.currentGeneration[row] = [];
+      for (let col = 0; col < this.canvasCol; col++) {
+        this.currentGeneration[row][col] = 0;
+      }
+    }
+  }
+
+  clear() {
+    this.clearData();
+    this.paintCells();
   }
 }
 // Make sure that all resources are fully loaded
