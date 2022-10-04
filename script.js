@@ -1,5 +1,5 @@
 
-const container = document.getElementById("container");
+const container = document.querySelector("#container");
 
 function makeRows(rows, cols) {
   container.style.setProperty('--grid-rows', rows);
