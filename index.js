@@ -17,6 +17,7 @@ class GameOfLife {
     this.strokeColor = strokeColor;
 
     this.playBtn = document.querySelector('.play-btn');
+    this.randomizerBtn = document.querySelector('.random-generate-btn');
     this.canvas = document.querySelector(element);
     this.context = this.canvas.getContext('2d');
     this.canvas.width = this.widthCanvas;
@@ -25,7 +26,9 @@ class GameOfLife {
     this.canvasCol = this.widthCanvas / this.cellSize;
     // Calculate the number of rows
     this.canvasRow = this.heightCanvas / this.cellSize;
+    // Store the current generation
     this.currentGeneration = [];
+    // Store the next generation (when rules are applied
     this.nextGeneration = [];
     // Store all grid cells
     this.cells = [];
@@ -60,6 +63,18 @@ class GameOfLife {
       // paint cells
       this.paintCells();
     });
+    // Generate random configuration values
+    this.randomizerBtn.addEventListener('click', () => {
+      //  check if game is paused
+      if (this.pause) {
+        this.randomize();
+      }
+    });
+  }
+  // Method to generate random cells and paint them
+  randomize() {
+    this.generateRandomData();
+    this.paintCells();
   }
   // Method to generate the grid (without colors)
   generateGrid() {
@@ -116,6 +131,16 @@ class GameOfLife {
           // Draw cell without fill
           cell.drawRect(this.context);
         }
+      }
+    }
+  }
+  // Method to generate random data
+  generateRandomData() {
+    for (let row = 0; row < this.canvasRow; row++) {
+      this.currentGeneration[row] = [];
+      for (let col = 0; col < this.canvasCol; col++) {
+        let value = Math.random() > 0.5 ? 1 : 0;
+        this.currentGeneration[row][col] = value;
       }
     }
   }
