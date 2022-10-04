@@ -1,3 +1,8 @@
+const state = {
+  stop: 0,
+  play: 1,
+}
+
 // Class to represent the game
 class GameOfLife {
   constructor(element, options) {
@@ -15,6 +20,9 @@ class GameOfLife {
     this.aliveColor = aliveColor;
     this.deadColor = deadColor;
     this.strokeColor = strokeColor;
+
+    // Prop that store the current state on the game
+    this.currentState = state.stop; // The initial state
 
     this.playBtn = document.querySelector('.play-btn');
     this.randomizerBtn = document.querySelector('.random-generate-btn');
@@ -78,6 +86,12 @@ class GameOfLife {
         this.clear();
       }
     });
+
+    this.playBtn.addEventListener("click", function () {
+      this.currentState = Number(!this.currentState);
+      this.textContent = this.currentState > 0 ? "Play" : "Stop"; 
+    })
+
   }
   // Method to generate random cells and paint them
   randomize() {
@@ -188,4 +202,19 @@ window.onload = () => {
   });
   // init the game
   game.init();
+
+  // For async loop to run the code every 100ms
+  setInterval( () => {
+    switch (game.currentState) {
+      case state.stop:
+        console.log("You are stopping");
+        break;
+      case state.play:
+        //Logic for a game started//
+        console.log("You are playing");
+        break;
+    }
+  }, 100);
 };
+
+
