@@ -1,9 +1,6 @@
 const canvas = document.querySelector("#board");
 const ctx = canvas.getContext("2d"); 
 const show = document.querySelector("#show");
-const posx = document.querySelector("#Pos_X");
-const posy = document.querySelector("#Pos_Y");
-const click = document.querySelector("#click");
 
 
 
@@ -45,13 +42,14 @@ function drawGrid(grid) {
       //draw the cubes
       ctx.fillRect(i * reslution, j * reslution, reslution, reslution);
       //draw my cells
-      if(j == 0){
-        console.log('add line');
-        ctx.fillRect((i+1) * reslution, (j+1) * reslution, 1000, 1200);
-      }
+      ctx.fillStyle ="#000000";
+      ctx.fillRect((i * 50) , (j * 5), 2, 500);
+      ctx.fillStyle ="#000000";
+      ctx.fillRect((i * 5) , (j * 50), 500, 2);
     }
-  }
+  } 
 };
+drawGrid(grid);
 
 
 show.addEventListener('click', () =>{
@@ -75,10 +73,8 @@ let mouseGrid = {
 
 window.addEventListener('mousemove', function (e) {
   var rect = canvas.getBoundingClientRect();
-  posx.textContent = e.x - rect.left;
+  //here I get the position of my click
   mouseGrid.x = e.x - rect.left;
-
-  posy.textContent = e.y - rect.top;
   mouseGrid.y = e.y - rect.top;
 
 });
@@ -89,10 +85,8 @@ canvas.addEventListener('click', function(){
   let Pos_X = Math.trunc(Math.trunc(mouseGrid.x)/RES) ;
   let Pos_Y = Math.trunc(Math.trunc(mouseGrid.y)/RES) ;
 
-  click.textContent = "NewPos X: " + Pos_X + "NewPos Y: " + Pos_Y;
 
   grid[Pos_X][Pos_Y] = grid[Pos_X][Pos_Y] ? 0 : 1;
   drawGrid(grid);
-
   
 });
