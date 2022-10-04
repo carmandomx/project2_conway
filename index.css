@@ -1,58 +1,24 @@
-h2 {
 
+
+:root {
+  --grid-cols: 1;
+  --grid-rows: 1;
 }
 
-h3 {
-
+#container {
+  margin: 50px 50px 50px 50px;
+  display: grid;
+  border: 1px solid black;
+  grid-gap: 0;
+  grid-template-rows: repeat(var(--grid-rows), 1fr);
+  grid-template-columns: repeat(var(--grid-cols), 1fr);
+}
+/* DEAD CELL */
+.grid-item {
+  padding: 5px 1px 20px 1px;
+  border: 1px solid black;
+  text-align: center;
+  background-color: cornsilk;
 }
 
-.matrix {
-   display: flex;
-   flex-flow: column;
-   margin: 0px 0px 0px 0px;
-   padding: 0px 0px 0px 0px;
-  /* justify-content: flex-start;*/
-
-}
-
-.cell {
-    height: 20px;
-    width: 20px;
-    border: solid black;
-   /* background-color: aqua;*/
-   margin: 0px 0px 0px 0px;
-   padding: 0px 0px 0px 0px;
-}
-
-.position1 {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-flow: row wrap;
-    margin: 0px 0px 0px 0px;
-   padding: 0px 0px 0px 0px;
-}
-
-
-
-
-
-.dead {
-    background-color: rgb(252, 106, 106);
-    margin: 0px 0px 0px 0px;
-   padding: 0px 0px 0px 0px;
-}
-
-.alive {
-    background-color: green;
-    margin: 0px 0px 0px 0px;
-   padding: 0px 0px 0px 0px;
-}
-
-.matrix {
-    height: 200px;
-    width: 240px;
-    margin: 0px 0px 0px 0px;
-   padding: 0px 0px 0px 0px;
-    
-}
+/* ALIVE CELL */

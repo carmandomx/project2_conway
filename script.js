@@ -1,24 +1,14 @@
-//si ij, si i-1j  
-let countgen = 0;
 
-function checkNeighbors() {}
+const container = document.getElementById("container");
 
-function alive() {}
+function makeRows(rows, cols) {
+  container.style.setProperty('--grid-rows', rows);
+  container.style.setProperty('--grid-cols', cols);
+  for (c = 0; c < (rows * cols); c++) {
+    let cell = document.createElement("div");
+    //cell.innerText = (c + 1);
+    container.appendChild(cell).className = "grid-item";
+  };
+};
 
-function dead() {}
-
-function clearBoard() {}
-
-function randomizer() {}
-
-//generate divs with an array that has cells 50x50
-
-function generateGrid() {}
-
-function pause() {
-    onclick
-}
-
-function play() {
-    onclick
-}
+makeRows(50, 50);
