@@ -1,0 +1,18 @@
+body{
+    background-color: blue;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0px;
+}
+
+main{
+    background-color: red;
+
+}
+
+td{
+    border: black solid 1px;
+}
+
