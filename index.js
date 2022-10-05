@@ -110,13 +110,13 @@ const updateView = () => {
 const playButtonHandler = () => {
   if (!playing) {
     playing = true;
-    playButton.innerHTML = "Pause";
+    playButton.innerText = "Pause";
     play();
   }
   /* Adding logic for pause */
   else {
     playing = false;
-    playButton.innerHTML = "Resume";
+    playButton.innerText = "Resume";
     clearTimeout(timer);
   }
 };
