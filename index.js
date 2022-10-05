@@ -75,7 +75,7 @@ const createTable = () => {
 
 /* function to handles when user clicks a cell if game is not started */
 function cellClickHandler() {
-  if (!playing) {
+  if (playButton.innerText === 'Play') {
     let rowcol = this.id.split('_');
     let row = rowcol[0];
     let col = rowcol[1];
@@ -110,6 +110,10 @@ const updateView = () => {
 
 /* function that handles when Play button is pressed */
 const playButtonHandler = () => {
+  if (playButton.innerText === 'Play') {
+    randomizeButton.className = 'hidden';
+  }
+
   if (!playing) {
     playing = true;
     playButton.innerText = 'Pause';
