@@ -1,6 +1,6 @@
 /* Initial configuration */
-let rows = 30;
-let cols = 50;
+const rows = 30;
+const cols = 50;
 
 let playing = false;
 
@@ -8,10 +8,10 @@ let grid = new Array(rows);
 let nextGrid = new Array(rows);
 
 let timer;
-let reproductionTime = 100;
+const reproductionTime = 100;
 
 /* Control buttons */
-let playButton = document.querySelector('.play');
+const playButton = document.querySelector('.play');
 
 /* function that sets the grids */
 const initializeGrids = () => {
