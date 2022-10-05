@@ -1,25 +1,16 @@
 let row = 30;
 let column = 30;
-let sizePx = 10;
+let sizePx = 13;
 let map = [];
 let generation = 0;
+let playing = false;
 
-let slider = document.querySelector('.slider')
-let gridSize = document.querySelector('.columns')
+const slider = document.querySelector('.slider')
+const gridSize = document.querySelector('.columns')
+const startButton = document.querySelector(".start")
+const clearButton = document.querySelector(".clear")
 
 gridSize.innerHTML = slider.value;
-
-document.addEventListener("keydown",(e) => {
-    e.preventDefault()
-    switch (e.keyCode) {
-        case 39:
-            updateStatus()
-            break;
-    
-        default:
-            break;
-    }
-})
 
 /* Slider event to modify the slider representation
 and grid size in a N x N grid.*/
@@ -132,3 +123,26 @@ function updateStatus() {
         }      
     }
 }
+
+//Function that keeps calling itself to keep executing the game every number of milliseconds.
+function start() {
+    updateStatus(); //Call the function that changes the state of the cells.
+    
+    if (playing) { //If it is playing, I wait X amount of milliseconds and call me back.
+        setTimeout(start, 200); 
+    }
+}
+
+//Function that when pressing the start button, evaluates if the game was running or not, in order to start, pause and resume it.//
+function startGameButton() {
+    if (playing) { //If you are playing when you press the button, the game is paused.
+      playing = false;
+      startButton.textContent = "Resume";
+    } else { //In case you press the button and you are not playing, the game is resumed.
+      playing = true;
+      startButton.textContent = "Pause";
+      start(); //Call the function that keeps the game running.
+    }
+}
+
+startButton.addEventListener("click", startGameButton); //Start Button Event Listener.
