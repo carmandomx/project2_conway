@@ -63,3 +63,7 @@ button:hover{
     cursor: pointer;
     background-color: rgb(83, 128, 131);
 }
+
+.unclickable {
+    pointer-events: none;
+}
