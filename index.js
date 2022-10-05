@@ -22,9 +22,9 @@ const ctx = canvas.getContext("2d"); //to acces the drawing context
 /* ==============================  BUILDING THE CANVAS GRID  ============================== */
 
 // Defining the canvas size, we can modify this values if we want to resize the grid
-const resolution = 10;
-const w = canvas.width = 500;
-const h = canvas.height = 400;
+const resolution = 50;
+const h = canvas.width = 500;
+const w = canvas.height = 500;
 
 const cols = w / resolution;
 const rows = h / resolution;
@@ -40,7 +40,7 @@ function render(grid) {
     for (let col = 0; col < grid.length; col++) {
         for (let row = 0; row < grid[col].length; row++) {
             // we define a cell as a section in grid with the current coordinates of row and column
-            const cell = grid[row][col];
+            const cell = grid[col][row];
             
             ctx.beginPath();
             // Adds a rectangle or cell to the current path, takes in (x position, y position, cell width, cell height)
@@ -66,31 +66,38 @@ render(emptyGrid);
 
 /* ==============================  DRAWING INITIAL CONFIGURATION  ============================== */
 
-// To allow the user to draw an initial configuration pattern by clicking the canvas cells
-canvas.addEventListener("click", function (event){
 
-    // the cell filling color once we click
-    ctx.fillStyle = "black";
-    
+// Allow the user to draw an initial configuration pattern by clicking the canvas cells
+canvas.addEventListener("click", function (event){
     // we can log the event of every click and if we look into the offset attributes, we get the coordinates (in pixels) of the click
     // console.log(event.offsetX, event.offsetY);
 
-    // we can do some math with the grid resolution to detect the coordinates (in pixels) of the click, relative to the canvas size
+    // We do some math with the grid resolution to detect the coordinates (in pixels) of the click, relative to the canvas size
     let x_position = Math.floor(event.offsetX/resolution)*resolution;
     let y_position = Math.floor(event.offsetY/resolution)*resolution;
     // console.log(x_position,y_position);
 
     // to get the exact coordinates of the cell where the click occured
-    let cell_x_coord = x_position / resolution;
-    let cell_y_coord = y_position / resolution;
-    console.log(cell_x_coord,cell_y_coord);
-    
+    let cell_x_coord = x_position / resolution; // indicates the col
+    let cell_y_coord = y_position / resolution; // indicates the row
+    // We can log the coordinates of the clicked cells into the terminal
+    // console.log(cell_y_coord,cell_x_coord);
+    let clickedCell = emptyGrid[cell_x_coord][cell_y_coord];
     // The new pattern is updated in the array value that corresponds to the clicked cell coordinates
-    emptyGrid[cell_y_coord][cell_x_coord] = 1;
+    // when the clicked cell is dead, we make it alive and viceversa
+    if (clickedCell === 0) {
+        emptyGrid[cell_x_coord][cell_y_coord] = 1;
+        ctx.fillStyle = "black" // change cell color
+    } else {
+        emptyGrid[cell_x_coord][cell_y_coord] = 0;
+        ctx.fillStyle = "white"; // change cell color
+    }
 
-    // That way we choose which "rectangle" or cell to fill
-    ctx.fillRect(x_position, y_position, resolution, resolution);
+    // Now we choose which "rectangle" or cell to fill
+    ctx.fillRect(x_position+1 , y_position+1, resolution-2, resolution-2);
+    // the +1 and -2 are to adjust the filling positioning, so we don't "erase" the cell borders
 })
+
 
 
 
@@ -123,7 +130,7 @@ function nextGeneration(grid) {
     // looping through all of the grid
     for (let col = 0; col < grid.length; col++) {
         for (let row = 0; row < grid[col].length; row++) {
-            const cell = grid[row][col]; // coordinates in x and y 
+            const cell = grid[col][row]; // coordinates in x and y 
             // Starting the neighbor counter at 0
             let numNeighbors = 0;
             /* Looping around the nearest neighbors around the cell
@@ -156,11 +163,11 @@ function nextGeneration(grid) {
                         continue;
                     }
                     // Solving the borders/corners issue
-                    const x_cell = row + i;
-                    const y_cell = col + j;
+                    const x_cell = col + i;
+                    const y_cell = row + j;
 
                     if (x_cell >= 0 && y_cell >= 0 && x_cell < cols && y_cell < rows){
-                        const currentNeighbor = grid[row + i][col +j];
+                        const currentNeighbor = grid[col + i][row +j];
                         numNeighbors += currentNeighbor;
                     }
                 }
@@ -169,19 +176,19 @@ function nextGeneration(grid) {
             // 1. Any live cell with fewer than two live neighbours
             if (cell === 1 && numNeighbors < 2) {
                 // dies in next gen by underpopulation
-                nextGeneration[row][col] = 0;
+                nextGeneration[col][row] = 0;
             } // 2. Any live cell with two or three live neighbours 
             else if (cell === 1 && (numNeighbors === 3 || numNeighbors === 2)){
                 // lives on to the next generation
-                nextGeneration[row][col] = 1;
+                nextGeneration[col][row] = 1;
             } // 3. Any live cell with more than three live neighbours
             else if (cell === 1 && numNeighbors > 3){
                 // dies, as if by overpopulation
-                nextGeneration[row][col] = 0;
+                nextGeneration[col][row] = 0;
             } // 4. Any dead cell with exactly three live neighbours 
             else if(cell === 0 && numNeighbors === 3){
                 // becomes a live cell, as if by reproduction.
-                nextGeneration[row][col] = 1;
+                nextGeneration[col][row] = 1;
             }
         }
     }
