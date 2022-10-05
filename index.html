@@ -1,28 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
-    <header>
-
+    <head>
+        <script defer src="script.js"></script>
+        <script defer src="https://cdn.jsdelivr.net/npm/p5@1.4.2/lib/p5.js"></script>
+        
         <meta charset="UTF-8">
         <meta name="description" content=""> 
         <meta name="keywords" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" type="text/css" href="index.css">
+    </head>
+    <header>
+
+        
 
             <title>Conway - The Game of Life</title>
       
     </header>
 
     <body>
+        <h1>The Game of Life</h1>
+        
+        <div class="buttons">
 
-        <button><a href="#">Play</a></button>
+        <button>Play</button>
         <button>Clear</button>
         <button>Randomize</button>
         <button>Custom Mode</button>
         <button>Custom Patterns</button>
-                
-        <div id="container"></div>
+            
+        </div>
 
-     <script src="script.js"></script>
+       <canvas></canvas> 
+        <!-- <div id="container"></div> -->
+
+     
 
     </body>
 

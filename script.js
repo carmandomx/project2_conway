@@ -2,7 +2,7 @@
 const container = document.querySelector("#container");
 //si ij, si i-1j
 let countgen = 0;
-let cells = new Array(50).fill(0).map(() => new Array(50).fill(0));
+let cells = new Array(52).fill(0).map(() => new Array(52).fill(0));
 
 
 function checkNeighbors() {
@@ -125,4 +125,4 @@ function play() {
     makeRows(50, 50);
 }
 
-play();
+//play();
