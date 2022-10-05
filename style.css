@@ -45,13 +45,13 @@ td{
 
 .buttonContainer{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     flex-wrap: wrap;
     justify-content: space-between;
     align-content: space-between;
 }
 
-.btn{
+button{
     font-weight: bold;
     width: 120px;
     padding: .75em;
@@ -59,7 +59,11 @@ td{
     border-radius: 5px;
 }
 
-.btn:hover{
+button:hover{
     cursor: pointer;
     background-color: rgb(83, 128, 131);
+}
+
+.unclickable {
+    pointer-events: none;
 }

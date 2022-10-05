@@ -4,11 +4,13 @@ let sizePx = 13;
 let map = [];
 let generation = 0;
 let playing = false;
+let statusClick = true;
 
 const slider = document.querySelector('.slider')
 const gridSize = document.querySelector('.columns')
 const startButton = document.querySelector(".start")
 const clearButton = document.querySelector(".clear")
+const randomButton = document.querySelector(".random")
 
 gridSize.innerHTML = slider.value;
 
@@ -124,6 +126,22 @@ function updateStatus() {
     }
 }
 
+//Function that makes the grid and buttons clickable or not.
+function noClick() {
+    let container = document.querySelector('.tableContainer')
+    
+    //Depending on the status whether it is clickable or not, I make the elements clickable or not.
+    if (statusClick) {
+        container.classList.remove('unclickable')
+        randomButton.classList.remove('unclickable')
+        slider.classList.remove('unclickable')
+    } else {
+        container.classList.add('unclickable')
+        randomButton.classList.add('unclickable')
+        slider.classList.add('unclickable')
+    }
+}
+
 //Function that keeps calling itself to keep executing the game every number of milliseconds.
 function start() {
     updateStatus(); //Call the function that changes the state of the cells.
@@ -135,6 +153,7 @@ function start() {
 
 //Function that when pressing the start button, evaluates if the game was running or not, in order to start, pause and resume it.//
 function startGameButton() {
+    statusClick = false;
     if (playing) { //If you are playing when you press the button, the game is paused.
       playing = false;
       startButton.textContent = "Resume";
@@ -142,7 +161,20 @@ function startGameButton() {
       playing = true;
       startButton.textContent = "Pause";
       start(); //Call the function that keeps the game running.
+      noClick(); //Call the function that makes the grid unclickable or clickable.
     }
 }
 
+//Function that iterates over all elements of the table and kills all cells.
+function clearGameButton() {
+
+    for (let x = 0; x < column; x++) { //Iterate at position x.
+        for(let y = 0; y < column; y++){ //Iterate at position y.
+            let cell = document.querySelector(`#cell-${x + "-" + y}`) //Select the cell.
+            cell.style.background = "" //No background property, which means that it is dead.
+        }
+    }    
+}
+
 startButton.addEventListener("click", startGameButton); //Start Button Event Listener.
+clearButton.addEventListener("click", clearGameButton); //Clear Button Event Listener.
