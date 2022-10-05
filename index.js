@@ -88,10 +88,13 @@ class GameOfLife {
     });
     // Clear board configuration values
     this.resetBtn.addEventListener('click', () => {
-        this.clear();
-        this.count = 0;
-        this.countGeneration.innerHTML = "";
-        this.currentState = state.hold;
+        //Reset Logic only happens when users has alrready started the game, it will be checked with the iterations.
+        if (this.count>0) {
+          this.clear();
+          this.count = 0;
+          this.countGeneration.innerHTML = "";
+          this.currentState = state.hold;
+        }
     });
     // Clear board configuration values
     this.clearBtn.addEventListener('click', () => {
@@ -305,10 +308,13 @@ window.onload = () => {
       case state.play:
         //Logic for a game started//
         game.gameLoop();
+        //reset button color change to on when the users start playing
+        game.resetBtn.className = "reset-btn-on";
         console.log('You are playing');
         break;
       case state.hold:
         // Due to user paint a live cell the buttons change its color
+        game.playBtn.textContent = "Play";
         if (!game.isCurrentGenerationEmpty()) {
           game.playBtn.classList.remove("play-btn");
           game.playBtn.classList.add("play-btn-start");
@@ -316,6 +322,8 @@ window.onload = () => {
           game.playBtn.classList.remove("play-btn-start");
           game.playBtn.classList.add("play-btn");
         }
+        //reset button color gets a gray color to mimic not available content
+        game.resetBtn.className = "reset-btn";
         console.log('Game on hold. it is not started yet');
         break;
     }

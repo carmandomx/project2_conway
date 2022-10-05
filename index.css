@@ -44,6 +44,14 @@ button {
   background-color: rgb(67, 67, 173);
   color: white;
 }
+.reset-btn {
+  background-color: rgb(162, 155, 145);
+  color: white;
+}
+.reset-btn-on {
+  background-color: rgb(187, 50, 50);
+  color: white;
+}
 .counter{
   font-size: 50px;
 }
