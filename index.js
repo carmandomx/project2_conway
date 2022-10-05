@@ -193,14 +193,15 @@ class GameOfLife {
   applyGameRules(row, col) {
     // count the alive neighbours of every cell (8 neighbours by cell)
     let totalNeighbours = 0;
-    totalNeighbours += this.relativeCellPosition(row, col, -1, -1);
-    totalNeighbours += this.relativeCellPosition(row, col, -1, 0);
-    totalNeighbours += this.relativeCellPosition(row, col, -1, 1);
-    totalNeighbours += this.relativeCellPosition(row, col, 0, 1);
-    totalNeighbours += this.relativeCellPosition(row, col, 1, 1);
-    totalNeighbours += this.relativeCellPosition(row, col, 1, 0);
-    totalNeighbours += this.relativeCellPosition(row, col, 1, -1);
-    totalNeighbours += this.relativeCellPosition(row, col, 0, -1);
+    // Loop to evaluate the cell's neighbours, ommiting itself
+    for (let i = -1; i <= 1; i++) {
+      for (let j = -1; j <= 1; j++) {
+        if (i == 0 && j == 0) {
+          continue;
+        }
+        totalNeighbours += this.relativeCellPosition(row, col, i, j);
+      }
+    }
     // Use totalNeighbours to apply the game of life rules
     if (this.currentGeneration[row][col] && totalNeighbours < 2) {
       return 0;
