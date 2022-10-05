@@ -5,8 +5,6 @@ let countgen = 0;
 let cells = new Array(52).fill(0).map(() => new Array(52).fill(0));
 let loopFlag = true;
 
-
-
 function checkNeighbors() {
     //Variable that counts the amount of alive neighbors
     let aliveneigh = 0;
@@ -101,6 +99,8 @@ function play() {
     
 }
 
+play();
+
 function draw() {
     const resolution = 10;
     randomizer();
@@ -122,3 +122,12 @@ function draw() {
     }
     noLoop();
 }
+
+//Button clicks attached to functions
+_resume.addEventListener('click', );
+_play.addEventListener('click', );
+_pause.addEventListener('click', ); 
+_clear.addEventListener('click', ); 
+_randomize.addEventListener("click", );
+_customMode.addEventListener('click', ); 
+_customPttrns.addEventListener('click', );
