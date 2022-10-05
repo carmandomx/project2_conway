@@ -86,7 +86,7 @@ class GameOfLife {
       }
     });
     // Clear board configuration values
-    this.clearBtn.addEventListener('click', () => {paused
+    this.clearBtn.addEventListener('click', () => {
         this.clear();
     });
 
