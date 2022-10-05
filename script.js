@@ -2,7 +2,9 @@
 const container = document.querySelector("#container");
 //si ij, si i-1j
 let countgen = 0;
-let cells = new Array(50).fill(0).map(() => new Array(50).fill(0));
+let cells = new Array(52).fill(0).map(() => new Array(52).fill(0));
+
+
 
 
 function checkNeighbors() {
@@ -94,7 +96,7 @@ function makeRows(rows, cols) {
   //Connect the rows and cols variables with the CSS variables
   container.style.setProperty('--grid-rows', rows);
   container.style.setProperty('--grid-cols', cols);
-  for (c = 0; c < (rows * cols); c++) {
+  for (i = 0; i < (rows * cols); i++) {
     //Every div is a cell
     let cell = document.createElement("div");
     //Every cell is a grid-item
@@ -110,6 +112,7 @@ function randomizer() {
         for(let j = 1; j < cells[i].length-1; j++){
             //We just assign true or false at random with this little funtion
             cells[i][j] = Math.random() < 0.5;
+
         }
     }
 }
@@ -125,4 +128,34 @@ function play() {
     makeRows(50, 50);
 }
 
-play();
+//play();
+
+
+let cols;
+let rows;
+let resolution = 10;
+
+function draw() {
+    const resolution = 10;
+    randomizer();
+    createCanvas(500, 500);
+    cols = width / resolution;
+    rows = height / resolution;
+    background(0);
+    for (let i = 1; i < cells.length-1; i++){
+        console.log(cells[i]);
+        for (let j = 1; j < cells[i].length-1; j++){
+            let x = (i-1) * resolution;
+            let y = (j-1) * resolution;
+            if (cells[i][j] === true){
+                fill(255);
+                stroke(0);
+                rect(y, x, resolution, resolution);
+            }
+        }
+    }
+    noLoop();
+}
+
+randomizer();
+
