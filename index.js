@@ -144,6 +144,9 @@ const clearButtonHandler = () => {
   for (let i=0; i<cells.length; i++) {
     cells[i].setAttribute("class", "dead");
   }
+
+  /* Reset the grid */
+  resetGrids();
 };
 clearButton.onclick = clearButtonHandler;
 
