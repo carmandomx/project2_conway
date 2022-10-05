@@ -28,7 +28,7 @@ class GameOfLife {
     this.playBtn = document.querySelector('.play-btn');
     this.randomizerBtn = document.querySelector('.random-generate-btn');
     this.clearBtn = document.querySelector('.clear-btn');
-    this.resetBtn = document.querySelector('.reset-btn'); 
+    this.resetBtn = document.querySelector('.reset-btn');
     this.canvas = document.querySelector(element);
     this.countGeneration = document.querySelector('.counter');
     this.context = this.canvas.getContext('2d');
@@ -41,7 +41,7 @@ class GameOfLife {
     // Store the current generation
     this.currentGeneration = [];
     this.count = 0; //The number of the current generation e.g. generation 10th!
-    this.msVelocity = 100 // 100 ms to repeat each iteration on loop!
+    this.msVelocity = 100; // 100 ms to repeat each iteration on loop!
     // Store the next generation (when rules are applied
     this.nextGeneration = [];
     // Store all grid cells
@@ -58,40 +58,43 @@ class GameOfLife {
   // Method to init events
   initEvents() {
     this.canvas.addEventListener('click', (event) => {
-      const { pageX, pageY } = event;
-      // Number of pixels to the left of the actual canvas element
-      const elemLeft = this.canvas.offsetLeft + this.canvas.clientLeft;
-      // Number of pixels to the top of the actual canvas element
-      const elemTop = this.canvas.offsetTop + this.canvas.clientTop;
-      // Finds the cell that corresponds to the the click event coordinates
-      const cellClicked = this.cells.find(
-        (cell) =>
-          pageX - elemLeft >= cell.positionX &&
-          pageX - elemLeft <= cell.positionX + cell.width &&
-          pageY - elemTop >= cell.positionY &&
-          pageY - elemTop <= cell.positionY + cell.height
-      );
-      // Store the value of selected cell
-      const selectedCell =
-        this.currentGeneration[cellClicked.row][cellClicked.col];
-      // change the "state" of the clicked cell
-      this.currentGeneration[cellClicked.row][cellClicked.col] = !selectedCell;
-      // paint cells
-      this.paintCells();
+      if (this.currentState != state.play && this.currentState == state.hold) {
+        const { pageX, pageY } = event;
+        // Number of pixels to the left of the actual canvas element
+        const elemLeft = this.canvas.offsetLeft + this.canvas.clientLeft;
+        // Number of pixels to the top of the actual canvas element
+        const elemTop = this.canvas.offsetTop + this.canvas.clientTop;
+        // Finds the cell that corresponds to the the click event coordinates
+        const cellClicked = this.cells.find(
+          (cell) =>
+            pageX - elemLeft >= cell.positionX &&
+            pageX - elemLeft <= cell.positionX + cell.width &&
+            pageY - elemTop >= cell.positionY &&
+            pageY - elemTop <= cell.positionY + cell.height
+        );
+        // Store the value of selected cell
+        const selectedCell =
+          this.currentGeneration[cellClicked.row][cellClicked.col];
+        // change the "state" of the clicked cell
+        this.currentGeneration[cellClicked.row][cellClicked.col] =
+          !selectedCell;
+        // paint cells
+        this.paintCells();
+      }
     });
     // Generate random configuration values
     this.randomizerBtn.addEventListener('click', () => {
       //  check if game is stopped
-      if (this.currentState == state.stop || this.currentState == state.hold) {
+      if (this.currentState == state.hold) {
         this.randomize();
       }
     });
     // Clear board configuration values
     this.resetBtn.addEventListener('click', () => {
-        this.clear();
-        this.count = 0;
-        this.countGeneration.innerHTML = "";
-        this.currentState = state.hold;
+      this.clear();
+      this.count = 0;
+      this.countGeneration.innerHTML = '';
+      this.currentState = state.hold;
     });
     // Clear board configuration values
     this.clearBtn.addEventListener('click', () => {
@@ -100,7 +103,7 @@ class GameOfLife {
     this.playBtn.addEventListener('click', () => {
       if (!this.isCurrentGenerationEmpty() && this.currentState == state.hold) {
         //Active the color blue in case that user put at least one cell live
-        this.playBtn.className = "play-btn-start";
+        this.playBtn.className = 'play-btn-start';
         this.updatePlayBtnState();
       } else if (this.currentState != state.hold) {
         this.updatePlayBtnState();
@@ -260,7 +263,7 @@ class GameOfLife {
 
   isCurrentGenerationEmpty() {
     for (let row of this.currentGeneration) {
-      const rowContainsCellLives = row.some((col) => col === true || col === 1 );
+      const rowContainsCellLives = row.some((col) => col === true || col === 1);
       if (rowContainsCellLives === true) {
         return false;
       }
@@ -268,7 +271,7 @@ class GameOfLife {
     return true;
   }
 
-  updatePlayBtnState(){
+  updatePlayBtnState() {
     this.currentState = Number(!this.currentState);
     this.playBtn.textContent = this.currentState > 0 ? 'Play' : 'Stop';
   }
@@ -297,7 +300,6 @@ window.onload = () => {
 
   // For async loop to run the code every 100ms
   setInterval(() => {
-
     switch (game.currentState) {
       case state.stop:
         console.log('You are stopping');
@@ -310,11 +312,11 @@ window.onload = () => {
       case state.hold:
         // Due to user paint a live cell the buttons change its color
         if (!game.isCurrentGenerationEmpty()) {
-          game.playBtn.classList.remove("play-btn");
-          game.playBtn.classList.add("play-btn-start");
+          game.playBtn.classList.remove('play-btn');
+          game.playBtn.classList.add('play-btn-start');
         } else {
-          game.playBtn.classList.remove("play-btn-start");
-          game.playBtn.classList.add("play-btn");
+          game.playBtn.classList.remove('play-btn-start');
+          game.playBtn.classList.add('play-btn');
         }
         console.log('Game on hold. it is not started yet');
         break;
