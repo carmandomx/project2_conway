@@ -1,8 +1,8 @@
 
-:root {
+/* :root {
   --grid-cols: 1;
   --grid-rows: 1;
-}
+} */
 html
 {
   background: linear-gradient(0.25turn, #24975e, #4df32c, #18d641);

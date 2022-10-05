@@ -4,6 +4,13 @@ const container = document.querySelector("#container");
 let countgen = 0;
 let cells = new Array(52).fill(0).map(() => new Array(52).fill(0));
 
+let _resume = document.querySelector('.resume');
+let _play = document.querySelector('.play');
+let _pause = document.querySelector('.pause');
+let _clear = document.querySelector('.clear');
+let _randomize = document.querySelector('.randomize');
+let _customMode = document.querySelector('.customMode');
+let _customPttrns = document.querySelector('.customPttrns');
 
 
 
@@ -135,6 +142,7 @@ let cols;
 let rows;
 let resolution = 10;
 
+//This function draws a canvas for the cells
 function draw() {
     const resolution = 10;
     randomizer();
@@ -159,3 +167,12 @@ function draw() {
 
 randomizer();
 
+
+//Button clicks attached to functions
+_resume.addEventListener('click', );
+_play.addEventListener('click', );
+_pause.addEventListener('click', ); 
+_clear.addEventListener('click', ); 
+_randomize.addEventListener("click", );
+_customMode.addEventListener('click', ); 
+_customPttrns.addEventListener('click', );
