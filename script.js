@@ -5,6 +5,8 @@ let countgen = 0;
 let cells = new Array(52).fill(0).map(() => new Array(52).fill(0));
 
 
+
+
 function checkNeighbors() {
     //Funtion call to fill the array with random booleans
     randomizer();
@@ -110,6 +112,7 @@ function randomizer() {
         for(let j = 1; j < cells[i].length-1; j++){
             //We just assign true or false at random with this little funtion
             cells[i][j] = Math.random() < 0.5;
+
         }
     }
 }
@@ -133,21 +136,25 @@ let rows;
 let resolution = 10;
 
 function draw() {
-    createCanvas(520, 520);
+    const resolution = 10;
+    randomizer();
+    createCanvas(500, 500);
     cols = width / resolution;
     rows = height / resolution;
     background(0);
-    for (let i = 0; i < cells.length - 1; i++){
-        for (let j = 0; j < cells[i].length - 1; j++){
-            let x = i * resolution;
-            let y = j * resolution;
-            if (cells[i][j] == true){
-                fill(255);
+    for (let i = 1; i < cells.length-1; i++){
+        console.log(cells[i]);
+        for (let j = 1; j < cells[i].length-1; j++){
+            let x = (i-1) * resolution;
+            let y = (j-1) * resolution;
+            if (cells[i][j] === true){
+                fill(100);
                 stroke(0);
-                rect(x, y, resolution, resolution);
+                rect(y, x, resolution, resolution);
             }
         }
     }
+    noLoop();
 }
 
 randomizer();
