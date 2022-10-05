@@ -22,7 +22,7 @@ const ctx = canvas.getContext("2d"); //to acces the drawing context
 /* ==============================  BUILDING THE CANVAS GRID  ============================== */
 
 // Defining the canvas size, we can modify this values if we want to resize the grid
-const resolution = 50;
+const resolution = 10;
 const h = canvas.width = 500;
 const w = canvas.height = 500;
 
@@ -68,8 +68,10 @@ render(emptyGrid);
 
 
 // Allow the user to draw an initial configuration pattern by clicking the canvas cells
-canvas.addEventListener("click", function (event){
-    // we can log the event of every click and if we look into the offset attributes, we get the coordinates (in pixels) of the click
+canvas.addEventListener("click", colorCell);
+
+function colorCell(event){
+        // we can log the event of every click and if we look into the offset attributes, we get the coordinates (in pixels) of the click
     // console.log(event.offsetX, event.offsetY);
 
     // We do some math with the grid resolution to detect the coordinates (in pixels) of the click, relative to the canvas size
@@ -96,9 +98,7 @@ canvas.addEventListener("click", function (event){
     // Now we choose which "rectangle" or cell to fill
     ctx.fillRect(x_position+1 , y_position+1, resolution-2, resolution-2);
     // the +1 and -2 are to adjust the filling positioning, so we don't "erase" the cell borders
-})
-
-
+}
 
 
 
@@ -115,6 +115,8 @@ function update(){
 play.addEventListener("click", function(){
     // Give life to the game animation, to see the generations pass
     requestAnimationFrame(update);
+    // Once the game has started, we remove the user's ability to interact with the canvas
+    canvas.removeEventListener("click", colorCell);
 })
 
 
