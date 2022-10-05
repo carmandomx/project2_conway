@@ -37,10 +37,13 @@ button {
   margin-top: 30px;
 }
 .play-btn {
+  background-color: rgb(162, 155, 145);
+  color: white;
+}
+.play-btn-start {
   background-color: rgb(67, 67, 173);
   color: white;
 }
-
 .counter{
   font-size: 50px;
 }
