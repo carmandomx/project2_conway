@@ -148,7 +148,7 @@ function draw() {
             let x = (i-1) * resolution;
             let y = (j-1) * resolution;
             if (cells[i][j] === true){
-                fill(100);
+                fill(255);
                 stroke(0);
                 rect(y, x, resolution, resolution);
             }
