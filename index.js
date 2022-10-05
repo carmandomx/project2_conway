@@ -264,7 +264,7 @@ class GameOfLife {
     return true;
   }
 
-  updatePlayBtn(){
+  updatePlayBtnState(){
     this.currentState = Number(!this.currentState);
     this.playBtn.textContent = this.currentState > 0 ? 'Play' : 'Stop';
   }
@@ -305,7 +305,6 @@ window.onload = () => {
         break;
       case state.hold:
         // Due to user paint a live cell the buttons change its color
-        
         if (!game.isCurrentGenerationEmpty()) {
           game.playBtn.classList.remove("play-btn");
           game.playBtn.classList.add("play-btn-start");
