@@ -126,7 +126,7 @@ playButton.onclick = playButtonHandler;
 /*function that handles when Clear button is pressed */
 const clearButtonHandler = () => {
   playing = false;
-  playButton.innerText = "Play";
+  playButton.innerText = "Resume";
   clearTimeout(timer);
 
   /* Grab all live cells */
@@ -144,9 +144,6 @@ const clearButtonHandler = () => {
   for (let i=0; i<cells.length; i++) {
     cells[i].setAttribute("class", "dead");
   }
-
-  /* Reset the grid */
-  resetGrids();
 };
 clearButton.onclick = clearButtonHandler;
 
