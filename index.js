@@ -43,6 +43,8 @@ class GameOfLife {
     // Store all grid cells
     this.cells = [];
     this.pause = true;
+    // Store generation count
+    this.count = 0;
   }
   // Method to init game sequence
   init() {
@@ -100,6 +102,9 @@ class GameOfLife {
       this.nextGeneration = await this.generateNextGeneration();
 
       this.currentGeneration = this.nextGeneration;
+      console.log(this.currentGeneration)
+      this.count++;
+      document.querySelector('.counter').innerHTML = this.count;
       this.paintCells();
     }
   }
@@ -233,6 +238,9 @@ class GameOfLife {
         this.currentGeneration[row][col] = 0;
       }
     }
+    this.count = 0;
+    document.querySelector('.counter').innerHTML = "";
+
   }
 
   clear() {
@@ -276,5 +284,5 @@ window.onload = () => {
       case state.hold:
         console.log('Game on hold. it is not started yet');
     }
-  }, 100);
+  }, 200);
 };
