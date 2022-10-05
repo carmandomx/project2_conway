@@ -4,7 +4,7 @@ let sizePx = 10;
 let map = [];
 let generation = 0;
 
-let slider = document.querySelector('#sliderColumns')
+let slider = document.querySelector('.slider')
 let gridSize = document.querySelector('.columns')
 
 gridSize.innerHTML = slider.value;
