@@ -103,7 +103,7 @@ function makeRows(rows, cols) {
 };
 
 function clearBoard() {}
--
+
 //Function that will initiate the cells values when called
 function randomizer() {
     for(let i = 1; i < cells.length-1; i ++){
@@ -126,3 +126,29 @@ function play() {
 }
 
 //play();
+
+
+let cols;
+let rows;
+let resolution = 10;
+
+function draw() {
+    createCanvas(520, 520);
+    cols = width / resolution;
+    rows = height / resolution;
+    background(0);
+    for (let i = 0; i < cells.length - 1; i++){
+        for (let j = 0; j < cells[i].length - 1; j++){
+            let x = i * resolution;
+            let y = j * resolution;
+            if (cells[i][j] == true){
+                fill(255);
+                stroke(0);
+                rect(x, y, resolution, resolution);
+            }
+        }
+    }
+}
+
+randomizer();
+

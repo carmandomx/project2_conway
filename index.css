@@ -10,10 +10,16 @@ html
 
 /* ELEMENTS */
 
+canvas {
+  align-self: center;
+}
+
 body {
   display: flex;
   flex-flow: column;
-  
+  justify-content: center;
+  align-items: center;
+
 }
 
 h1 {
@@ -21,16 +27,6 @@ h1 {
   align-self: center;
 }
 
-
-/* MAIN CONTAINER */
-#container {
-  margin: 50px 50px 50px 50px;
-  display: grid;
-  border: 1px solid black;
-  grid-gap: 0;
-  grid-template-rows: repeat(var(--grid-rows), 1fr);
-  grid-template-columns: repeat(var(--grid-cols), 1fr);
-}
 /* BUTTONS */
 
 .buttons {
