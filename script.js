@@ -3,21 +3,9 @@ const container = document.querySelector("#container");
 //si ij, si i-1j
 let countgen = 0;
 let cells = new Array(52).fill(0).map(() => new Array(52).fill(0));
-
-let _resume = document.querySelector('.resume');
-let _play = document.querySelector('.play');
-let _pause = document.querySelector('.pause');
-let _clear = document.querySelector('.clear');
-let _randomize = document.querySelector('.randomize');
-let _customMode = document.querySelector('.customMode');
-let _customPttrns = document.querySelector('.customPttrns');
-
-
+let loopFlag = true;
 
 function checkNeighbors() {
-    //Funtion call to fill the array with random booleans
-    randomizer();
-
     //Variable that counts the amount of alive neighbors
     let aliveneigh = 0;
 
@@ -71,45 +59,24 @@ function checkNeighbors() {
     counter by 1*/
     function countneighbors(i, j){
         if(cells[i][j+1]){
-            console.log("1°")
             aliveneigh++;
         }if(cells[i][j-1]){
-            console.log("2°")
             aliveneigh++;
         }if(cells[i-1][j]){
-            console.log("3°")
             aliveneigh++;
         }if(cells[i+1][j]){
-            console.log("4°")
             aliveneigh++;
         }if(cells[i-1][j+1]){
-            console.log("5°")
             aliveneigh++;
         }if(cells[i-1][j-1]){
-            console.log("6°")
             aliveneigh++;
         }if(cells[i+1][j+1]){
-            console.log("7°")
             aliveneigh++;
         }if(cells[i+1][j-1]){
-            console.log("8°")
             aliveneigh++;
         }
     }
 }
-
-//Function that creates the grid
-function makeRows(rows, cols) {
-  //Connect the rows and cols variables with the CSS variables
-  container.style.setProperty('--grid-rows', rows);
-  container.style.setProperty('--grid-cols', cols);
-  for (i = 0; i < (rows * cols); i++) {
-    //Every div is a cell
-    let cell = document.createElement("div");
-    //Every cell is a grid-item
-    container.appendChild(cell).className = "grid-item";
-  };
-};
 
 function clearBoard() {}
 
@@ -124,25 +91,16 @@ function randomizer() {
     }
 }
 
-//generate divs with an array that has cells 50x50
-function generateGrid() {}
-
 function pause() {
     onclick
 }
 
 function play() {
-    makeRows(50, 50);
+    
 }
 
-//play();
+play();
 
-
-let cols;
-let rows;
-let resolution = 10;
-
-//This function draws a canvas for the cells
 function draw() {
     const resolution = 10;
     randomizer();
@@ -164,9 +122,6 @@ function draw() {
     }
     noLoop();
 }
-
-randomizer();
-
 
 //Button clicks attached to functions
 _resume.addEventListener('click', );
