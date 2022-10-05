@@ -57,13 +57,70 @@ function drawGrid(grid) {
 };
 drawGrid(grid);
 
+function check(x,y){
+  if(x < 0 || x >= COL|| y < 0 || y >= ROW){
+      return 0;
+  }
+  return (grid[x][y]==1)?1:0;
+}
+
+function checkAlive(){
+  let gridAlive=[[0,0,0,0,0,0,0,0,0,0],
+                [0,0,0,0,0,0,0,0,0,0],
+                [0,0,0,0,0,0,0,0,0,0],
+                [0,0,0,0,0,0,0,0,0,0],
+                [0,0,0,0,0,0,0,0,0,0],
+                [0,0,0,0,0,0,0,0,0,0],
+                [0,0,0,0,0,0,0,0,0,0],
+                [0,0,0,0,0,0,0,0,0,0],
+                [0,0,0,0,0,0,0,0,0,0],
+                [0,0,0,0,0,0,0,0,0,0]];
+  for (let x = 0; x < COL; x++) {
+      for (let y = 0; y < ROW; y++) {
+          // Count ofpopulation
+          let numAlive = check(x - 1, y - 1) + check(x, y - 1) + check(x + 1, y - 1) + check(x - 1, y) + check(x + 1, y) + check(x - 1, y + 1) + check(x, y + 1) + check(x + 1, y + 1);
+          gridAlive[x][y] = numAlive;
+      }
+  }
+  return gridAlive;
+}
+
+
+
 function game(grid) {
-  let newGrid = [];
+  let newGrid = [[0,0,0,0,0,0,0,0,0,0],
+                [0,0,0,0,0,0,0,0,0,0],
+                [0,0,0,0,0,0,0,0,0,0],
+                [0,0,0,0,0,0,0,0,0,0],
+                [0,0,0,0,0,0,0,0,0,0],
+                [0,0,0,0,0,0,0,0,0,0],
+                [0,0,0,0,0,0,0,0,0,0],
+                [0,0,0,0,0,0,0,0,0,0],
+                [0,0,0,0,0,0,0,0,0,0],
+                [0,0,0,0,0,0,0,0,0,0]];
   if (stop) {
-    clearInterval(gameId);
+      clearInterval(gameId);
   }
   // Game Logic
-  console.log("is working")
+  let gridPopullation = checkAlive();
+
+  //Here the rules...
+   for(let i = 0;i<COL;i++){
+     for(let j = 0;j<COL;j++){
+
+       let cellPopulation = gridPopullation[i][j];
+       let cellStatus = grid[i][j]; 
+       console.log(cellPopulation)
+       //Rule #1
+       if(cellStatus == 1){
+         newGrid[i][j] = (cellPopulation<=2)?0:1;
+       }else{
+         newGrid[i][j] = 0;
+       }
+     }
+   }
+
+  //console.log("is working", count);
 
 
   drawGrid(newGrid);
@@ -115,3 +172,4 @@ canvas.addEventListener('click', function(){
   drawGrid(grid);
   
 });
+
