@@ -86,20 +86,17 @@ class GameOfLife {
       }
     });
     // Clear board configuration values
-    this.clearBtn.addEventListener('click', () => {
-      //  check if game is paused
-      if (this.pause) {
+    this.clearBtn.addEventListener('click', () => {paused
         this.clear();
-      }
     });
 
     this.playBtn.addEventListener('click', () => {
       if (!this.isCurrentGenerationEmpty() && this.currentState == state.hold) {
         //Active the color blue in case that user put at least one cell live
         this.playBtn.className = "play-btn-start";
-        this.updatePlayBtn();
+        this.updatePlayBtnState();
       } else if (this.currentState != state.hold) {
-        this.updatePlayBtn();
+        this.updatePlayBtnState();
       }
     });
   }
