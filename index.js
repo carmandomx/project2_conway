@@ -1,6 +1,7 @@
 const state = {
   stop: 0,
   play: 1,
+  hold: 2,
 }
 
 // Class to represent the game
@@ -87,9 +88,9 @@ class GameOfLife {
       }
     });
 
-    this.playBtn.addEventListener("click", function () {
+    this.playBtn.addEventListener("click", () => {
       this.currentState = Number(!this.currentState);
-      this.textContent = this.currentState > 0 ? "Play" : "Stop"; 
+      this.playBtn.textContent = this.currentState > 0 ? "Stop" : "Play";
     })
 
   }
@@ -213,6 +214,8 @@ window.onload = () => {
         //Logic for a game started//
         console.log("You are playing");
         break;
+      case state.hold:
+        console.log("Game on hold. it is not started yet")
     }
   }, 100);
 };
