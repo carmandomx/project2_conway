@@ -13,6 +13,7 @@ const reproductionTime = 100;
 /* Control buttons */
 const playButton = document.querySelector('.play');
 const clearButton = document.querySelector('.clear');
+const randomizeButton = document.querySelector('.randomize');
 
 /* function that sets the grids */
 const initializeGrids = () => {
@@ -98,7 +99,7 @@ const updateView = () => {
     for (let j = 0; j < cols; j++) {
       let cell = document.getElementById(i + '_' + j);
 
-      if (grid[i][j] == 0) {
+      if (grid[i][j] === 0) {
         cell.setAttribute('class', 'dead');
       } else {
         cell.setAttribute('class', 'live');
@@ -111,21 +112,19 @@ const updateView = () => {
 const playButtonHandler = () => {
   if (!playing) {
     playing = true;
-    playButton.innerText = "Pause";
+    playButton.innerText = 'Pause';
     play();
-  }
-  /* Adding logic for pause */
-  else {
+  } else {
+    /* Adding logic for pause */
     playing = false;
-    playButton.innerText = "Resume";
     clearTimeout(timer);
+    playButton.innerText = 'Resume';
   }
 };
 playButton.onclick = playButtonHandler;
 
-/*function that handles when Clear button is pressed */
+/* function that handles when Clear button is pressed */
 const clearButtonHandler = () => {
-
   clearTimeout(timer);
 
   /* Grab all live cells */
@@ -135,24 +134,48 @@ const clearButtonHandler = () => {
   let cells = [];
 
   /* Fill the newly created array with the live cells */
-  for(let i = 0; i<liveCells.length; i++) {
+  for (let i = 0; i < liveCells.length; i++) {
     cells.push(liveCells[i]);
   }
 
   /* Kill the live cells */
-  for (let i=0; i<cells.length; i++) {
-    cells[i].setAttribute("class", "dead");
+  for (let i = 0; i < cells.length; i++) {
+    cells[i].setAttribute('class', 'dead');
   }
 
   /* Reset the grid */
   resetGrids();
 
-  /* If the game was playing, resume it*/
-  if(playing) {
+  /* If the game was playing, resume it */
+  if (playing) {
     play();
   }
 };
 clearButton.onclick = clearButtonHandler;
+
+/* function that first clear the current board and make each cell dead or alive state randomly */
+const randomizeButtonHandler = () => {
+  if (!playing) {
+    /* Clearing the current board */
+    clearButtonHandler();
+
+    for (let i = 0; i < rows; i++) {
+      for (let j = 0; j < cols; j++) {
+        /* Getting the new random state */
+        const isLive = Math.round(Math.random());
+
+        /* if the cell new-random-state is 1(alive), the class is changed to live */
+        if (isLive === 1) {
+          const cell = document.getElementById(i + '_' + j);
+
+          cell.setAttribute('class', 'live');
+          grid[i][j] = 1;
+        }
+      }
+    }
+  }
+};
+randomizeButton.onclick = randomizeButtonHandler;
 
 /* function that runs the game */
 const play = () => {
@@ -177,21 +200,20 @@ const computeNextGen = () => {
   updateView();
 };
 
-
 /* function that checks which of Conway's condition is met */
 const applyRules = (row, col) => {
   let numNeighbors = countNeighbors(row, col);
 
-  if (grid[row][col] == 1) {
+  if (grid[row][col] === 1) {
     if (numNeighbors < 2) {
       nextGrid[row][col] = 0;
-    } else if (numNeighbors == 2 || numNeighbors == 3) {
+    } else if (numNeighbors === 2 || numNeighbors === 3) {
       nextGrid[row][col] = 1;
     } else if (numNeighbors > 3) {
       nextGrid[row][col] = 0;
     }
-  } else if (grid[row][col] == 0) {
-    if (numNeighbors == 3) {
+  } else if (grid[row][col] === 0) {
+    if (numNeighbors === 3) {
       nextGrid[row][col] = 1;
     }
   }
@@ -202,28 +224,28 @@ const countNeighbors = (row, col) => {
   let count = 0;
 
   if (row - 1 >= 0) {
-    if (grid[row - 1][col] == 1) count++;
+    if (grid[row - 1][col] === 1) count++;
   }
   if (row - 1 >= 0 && col - 1 >= 0) {
-    if (grid[row - 1][col - 1] == 1) count++;
+    if (grid[row - 1][col - 1] === 1) count++;
   }
   if (row - 1 >= 0 && col + 1 < cols) {
-    if (grid[row - 1][col + 1] == 1) count++;
+    if (grid[row - 1][col + 1] === 1) count++;
   }
   if (col - 1 >= 0) {
-    if (grid[row][col - 1] == 1) count++;
+    if (grid[row][col - 1] === 1) count++;
   }
   if (col + 1 < cols) {
-    if (grid[row][col + 1] == 1) count++;
+    if (grid[row][col + 1] === 1) count++;
   }
   if (row + 1 < rows) {
-    if (grid[row + 1][col] == 1) count++;
+    if (grid[row + 1][col] === 1) count++;
   }
   if (row + 1 < rows && col - 1 >= 0) {
-    if (grid[row + 1][col - 1] == 1) count++;
+    if (grid[row + 1][col - 1] === 1) count++;
   }
   if (row + 1 < rows && col + 1 < cols) {
-    if (grid[row + 1][col + 1] == 1) count++;
+    if (grid[row + 1][col + 1] === 1) count++;
   }
 
   return count;
