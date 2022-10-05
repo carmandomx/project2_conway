@@ -1,5 +1,3 @@
-
-
 let row = 30;
 let column = 30;
 let sizePx = 10;
@@ -23,10 +21,13 @@ document.addEventListener("keydown",(e) => {
     }
 })
 
+/* Slider event to modify the slider representation
+and grid size in a N x N grid.*/
+
 slider.oninput = function() {
     gridSize.innerHTML = this.value;
-    column = this.value
-    row = this.value
+    column = this.value //Update column size
+    row = this.value    //Updtate row size
     generateTable()
 }
 
@@ -113,12 +114,14 @@ function aliveCells(x,y){
     return alive
 }
 
+//Will check the "map" generated of the actual cell grid and using the
+//aliveCells() function will gather the amount of living cells around the neighborhood.
+
 function updateStatus() {
     mapping()
-    console.log(map);
     for (let x = 0; x < column; x++) {
         for(let y = 0; y < column; y++){
-            let alive = aliveCells(x,y)
+            let alive = aliveCells(x,y) //Amount of living cells
             let cell = document.querySelector(`#cell-${x + "-" + y}`)
             if(map[x][y]){ //Its alive at this point
                 if(alive < 2 || alive > 3){ cell.style.background = "" }//Dies from overpopulation
