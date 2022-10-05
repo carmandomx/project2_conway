@@ -29,6 +29,7 @@ class GameOfLife {
     this.randomizerBtn = document.querySelector('.random-generate-btn');
     this.clearBtn = document.querySelector('.clear-btn');
     this.canvas = document.querySelector(element);
+    this.countGeneration = document.querySelector('.counter');
     this.context = this.canvas.getContext('2d');
     this.canvas.width = this.widthCanvas;
     this.canvas.height = this.heightCanvas;
@@ -100,11 +101,11 @@ class GameOfLife {
       // rules
       this.nextGeneration = new Array(this.canvasRow);
       this.nextGeneration = await this.generateNextGeneration();
-
       this.currentGeneration = this.nextGeneration;
-      console.log(this.currentGeneration)
+      // count generation
       this.count++;
-      document.querySelector('.counter').innerHTML = this.count;
+      // show the generation count
+      this.countGeneration.innerHTML = this.count;
       this.paintCells();
     }
   }
@@ -239,7 +240,7 @@ class GameOfLife {
       }
     }
     this.count = 0;
-    document.querySelector('.counter').innerHTML = "";
+    this.countGeneration.innerHTML = "";
 
   }
 
