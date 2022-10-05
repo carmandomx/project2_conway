@@ -2,7 +2,7 @@ const state = {
   stop: 0,
   play: 1,
   hold: 2,
-}
+};
 
 // Class to represent the game
 class GameOfLife {
@@ -75,8 +75,8 @@ class GameOfLife {
     });
     // Generate random configuration values
     this.randomizerBtn.addEventListener('click', () => {
-      //  check if game is paused
-      if (this.pause) {
+      //  check if game is stoped
+      if (this.currentState == state.stop) {
         this.randomize();
       }
     });
@@ -88,11 +88,20 @@ class GameOfLife {
       }
     });
 
-    this.playBtn.addEventListener("click", () => {
+    this.playBtn.addEventListener('click', () => {
       this.currentState = Number(!this.currentState);
-      this.playBtn.textContent = this.currentState > 0 ? "Stop" : "Play";
-    })
+      this.playBtn.textContent = this.currentState > 0 ? 'Stop' : 'Play';
+    });
+  }
+  async gameLoop() {
+    if (this.currentState == state.play) {
+      // rules
+      this.nextGeneration = new Array(this.canvasRow);
+      this.nextGeneration = await this.generateNextGeneration();
 
+      this.currentGeneration = this.nextGeneration;
+      this.paintCells();
+    }
   }
   // Method to generate random cells and paint them
   randomize() {
@@ -167,7 +176,56 @@ class GameOfLife {
       }
     }
   }
-
+  // Method to generate the new generation
+  generateNextGeneration() {
+    return new Promise((resolve, reject) => {
+      for (let row = 0; row < this.canvasRow; row++) {
+        this.nextGeneration[row] = new Array(this.canvasCol);
+        for (let col = 0; col < this.canvasCol; col++) {
+          // next generation will be the result of applying the game rules to every element of current generation
+          this.nextGeneration[row][col] = this.applyGameRules(row, col);
+        }
+      }
+      resolve(this.nextGeneration);
+    });
+  }
+  // Method to count neighbours and apply game rules
+  applyGameRules(row, col) {
+    // count the alive neighbours of every cell (8 neighbours by cell)
+    let totalNeighbours = 0;
+    totalNeighbours += this.relativeCellPosition(row, col, -1, -1);
+    totalNeighbours += this.relativeCellPosition(row, col, -1, 0);
+    totalNeighbours += this.relativeCellPosition(row, col, -1, 1);
+    totalNeighbours += this.relativeCellPosition(row, col, 0, 1);
+    totalNeighbours += this.relativeCellPosition(row, col, 1, 1);
+    totalNeighbours += this.relativeCellPosition(row, col, 1, 0);
+    totalNeighbours += this.relativeCellPosition(row, col, 1, -1);
+    totalNeighbours += this.relativeCellPosition(row, col, 0, -1);
+    // Use totalNeighbours to apply the game of life rules
+    if (this.currentGeneration[row][col] && totalNeighbours < 2) {
+      return 0;
+    } else if (
+      (totalNeighbours == 2 || totalNeighbours == 3) &&
+      this.currentGeneration[row][col]
+    ) {
+      return 1;
+    } else if (this.currentGeneration[row][col] && totalNeighbours > 3) {
+      return 0;
+    } else if (!this.currentGeneration[row][col] && totalNeighbours == 3) {
+      return 1;
+    } else {
+      return this.currentGeneration[row][col];
+    }
+  }
+  relativeCellPosition(element1, element2, pos1, pos2) {
+    // equations to get the "indexes" of a neighbour
+    // including the elements in the edges (first and last columns and rows)
+    const row = (this.canvasRow + element1 + pos1) % this.canvasRow;
+    const col = (this.canvasCol + element2 + pos2) % this.canvasCol;
+    // Element storing the neighbour with the gotten indexes
+    const valueElement = this.currentGeneration[row][col];
+    return valueElement;
+  }
   clearData() {
     for (let row = 0; row < this.canvasRow; row++) {
       this.currentGeneration[row] = [];
@@ -205,19 +263,18 @@ window.onload = () => {
   game.init();
 
   // For async loop to run the code every 100ms
-  setInterval( () => {
+  setInterval(() => {
     switch (game.currentState) {
       case state.stop:
-        console.log("You are stopping");
+        console.log('You are stopping');
         break;
       case state.play:
         //Logic for a game started//
-        console.log("You are playing");
+        game.gameLoop();
+        console.log('You are playing');
         break;
       case state.hold:
-        console.log("Game on hold. it is not started yet")
+        console.log('Game on hold. it is not started yet');
     }
   }, 100);
 };
-
-
