@@ -88,7 +88,7 @@ class GameOfLife {
     });
     // Clear board configuration values
     this.resetBtn.addEventListener('click', () => {
-        //Reset Logic only happens when users has alrready started the game, it will be checked with the iterations.
+        //Reset Logic only happens when users have already started the game, it will be checked with the iterations.
         if (this.count>0) {
           this.clear();
           this.count = 0;
