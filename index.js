@@ -1,5 +1,6 @@
-let rows = 30;
-let cols = 50;
+/* Initial configuration */
+const rows = 30;
+const cols = 50;
 
 let playing = false;
 
@@ -7,9 +8,10 @@ let grid = new Array(rows);
 let nextGrid = new Array(rows);
 
 let timer;
-let reproductionTime = 100;
+const reproductionTime = 100;
 
-let playButton = document.querySelector('.play');
+/* Control buttons */
+const playButton = document.querySelector('.play');
 
 /* function that sets the grids */
 const initializeGrids = () => {
@@ -108,7 +110,14 @@ const updateView = () => {
 const playButtonHandler = () => {
   if (!playing) {
     playing = true;
+    playButton.innerText = "Pause";
     play();
+  }
+  /* Adding logic for pause */
+  else {
+    playing = false;
+    playButton.innerText = "Resume";
+    clearTimeout(timer);
   }
 };
 playButton.onclick = playButtonHandler;
