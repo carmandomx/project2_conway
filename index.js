@@ -29,6 +29,7 @@ class GameOfLife {
     this.randomizerBtn = document.querySelector('.random-generate-btn');
     this.clearBtn = document.querySelector('.clear-btn');
     this.canvas = document.querySelector(element);
+    this.countGeneration = document.querySelector('.counter');
     this.context = this.canvas.getContext('2d');
     this.canvas.width = this.widthCanvas;
     this.canvas.height = this.heightCanvas;
@@ -43,6 +44,8 @@ class GameOfLife {
     // Store all grid cells
     this.cells = [];
     this.pause = true;
+    // Store generation count
+    this.count = 0;
   }
   // Method to init game sequence
   init() {
@@ -98,8 +101,11 @@ class GameOfLife {
       // rules
       this.nextGeneration = new Array(this.canvasRow);
       this.nextGeneration = await this.generateNextGeneration();
-
       this.currentGeneration = this.nextGeneration;
+      // count generation
+      this.count++;
+      // show the generation count
+      this.countGeneration.innerHTML = this.count;
       this.paintCells();
     }
   }
@@ -234,6 +240,8 @@ class GameOfLife {
         this.currentGeneration[row][col] = 0;
       }
     }
+    this.count = 0;
+    this.countGeneration.innerHTML = "";
   }
 
   clear() {
@@ -277,5 +285,5 @@ window.onload = () => {
       case state.hold:
         console.log('Game on hold. it is not started yet');
     }
-  }, 100);
+  }, 200);
 };
