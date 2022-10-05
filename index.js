@@ -12,6 +12,7 @@ const reproductionTime = 100;
 
 /* Control buttons */
 const playButton = document.querySelector('.play');
+const clearButton = document.querySelector('.clear');
 
 /* function that sets the grids */
 const initializeGrids = () => {
@@ -122,6 +123,33 @@ const playButtonHandler = () => {
 };
 playButton.onclick = playButtonHandler;
 
+/*function that handles when Clear button is pressed */
+const clearButtonHandler = () => {
+  playing = false;
+  playButton.innerText = "Play";
+  clearTimeout(timer);
+
+  /* Grab all live cells */
+  let liveCells = document.querySelectorAll('.live');
+
+  /* Make an array to store the live cells */
+  let cells = [];
+
+  /* Fill the newly created array with the live cells */
+  for(let i = 0; i<liveCells.length; i++) {
+    cells.push(liveCells[i]);
+  }
+
+  /* Kill the live cells */
+  for (let i=0; i<cells.length; i++) {
+    cells[i].setAttribute("class", "dead");
+  }
+
+  /* Reset the grid */
+  resetGrids();
+};
+clearButton.onclick = clearButtonHandler;
+
 /* function that runs the game */
 const play = () => {
   computeNextGen();
@@ -144,6 +172,7 @@ const computeNextGen = () => {
   /* Copy all 1 values to 'live' state in the table */
   updateView();
 };
+
 
 /* function that checks which of Conway's condition is met */
 const applyRules = (row, col) => {
