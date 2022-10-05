@@ -75,7 +75,7 @@ class GameOfLife {
     });
     // Generate random configuration values
     this.randomizerBtn.addEventListener('click', () => {
-      //  check if game is stoped
+      //  check if game is stopped
       if (this.currentState == state.stop) {
         this.randomize();
       }
