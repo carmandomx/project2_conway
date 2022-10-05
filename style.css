@@ -6,6 +6,7 @@ body{
     gap: 15px;
     height: 100vh;
     margin: 0px;
+    background-color: rgb(241, 230, 222);
 }
 
 td{
@@ -40,4 +41,25 @@ td{
     -webkit-transition: 0.2s;
     transition: opacity 0.2s;
     border-radius: 12px;
+}
+
+.buttonContainer{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-content: space-between;
+}
+
+button{
+    font-weight: bold;
+    width: 120px;
+    padding: .75em;
+    border: 1px solid lightgray;
+    border-radius: 5px;
+}
+
+button:hover{
+    cursor: pointer;
+    background-color: rgb(83, 128, 131);
 }
