@@ -28,6 +28,7 @@ class GameOfLife {
     this.playBtn = document.querySelector('.play-btn');
     this.randomizerBtn = document.querySelector('.random-generate-btn');
     this.clearBtn = document.querySelector('.clear-btn');
+    this.resetBtn = document.querySelector('.reset-btn'); 
     this.canvas = document.querySelector(element);
     this.countGeneration = document.querySelector('.counter');
     this.context = this.canvas.getContext('2d');
@@ -86,10 +87,16 @@ class GameOfLife {
       }
     });
     // Clear board configuration values
-    this.clearBtn.addEventListener('click', () => {
+    this.resetBtn.addEventListener('click', () => {
         this.clear();
+        this.count = 0;
+        this.countGeneration.innerHTML = "";
+        this.currentState = state.hold;
     });
-
+    // Clear board configuration values
+    this.clearBtn.addEventListener('click', () => {
+      this.clear();
+    });
     this.playBtn.addEventListener('click', () => {
       if (!this.isCurrentGenerationEmpty() && this.currentState == state.hold) {
         //Active the color blue in case that user put at least one cell live
