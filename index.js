@@ -241,7 +241,6 @@ class GameOfLife {
     }
     this.count = 0;
     this.countGeneration.innerHTML = "";
-
   }
 
   clear() {
