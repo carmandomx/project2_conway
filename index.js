@@ -125,8 +125,11 @@ playButton.onclick = playButtonHandler;
 
 /*function that handles when Clear button is pressed */
 const clearButtonHandler = () => {
+
+  /* Save current playing status in a different variable */
+  let currentStatus = playing;
+
   playing = false;
-  playButton.innerText = "Resume";
   clearTimeout(timer);
 
   /* Grab all live cells */
@@ -147,6 +150,15 @@ const clearButtonHandler = () => {
 
   /* Reset the grid */
   resetGrids();
+
+  /* If the game was playing, resume it*/
+  if(currentStatus) {
+    playButton.innerText = "Pause";
+    play();
+  }
+  else {
+    playButton.innerText = "Play";
+  }
 };
 clearButton.onclick = clearButtonHandler;
 
