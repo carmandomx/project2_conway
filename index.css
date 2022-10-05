@@ -1,8 +1,7 @@
 body {
     display: flex;
     flex-direction: column;
-    width: 100vw;
-    height: 100vh;
+    height: 97vh;
     justify-content: center;
     align-items: center;
     row-gap: 10px;
@@ -17,12 +16,27 @@ header {
     align-items: center;
 }
 
-.hidden {
-    display: none;
-}
-
-.btn{
+.btn {
+    border: 1px solid chartreuse;
     font-family: 'Courier';
     color: chartreuse;
     background-color: black;
+}
+.btn:hover {
+    background-color: chartreuse;
+    color: black;
+}
+
+td {
+    border: 1px solid white;
+    width: 10px;
+    height: 10px;
+}
+
+td.dead {
+    background-color: transparent;
+}
+
+td.live {
+    background-color:chartreuse;
 }
