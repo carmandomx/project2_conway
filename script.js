@@ -94,7 +94,7 @@ function makeRows(rows, cols) {
   //Connect the rows and cols variables with the CSS variables
   container.style.setProperty('--grid-rows', rows);
   container.style.setProperty('--grid-cols', cols);
-  for (c = 0; c < (rows * cols); c++) {
+  for (i = 0; i < (rows * cols); i++) {
     //Every div is a cell
     let cell = document.createElement("div");
     //Every cell is a grid-item
@@ -103,7 +103,7 @@ function makeRows(rows, cols) {
 };
 
 function clearBoard() {}
-
+-
 //Function that will initiate the cells values when called
 function randomizer() {
     for(let i = 1; i < cells.length-1; i ++){
