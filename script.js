@@ -99,8 +99,6 @@ function play() {
     
 }
 
-play();
-
 function draw() {
     const resolution = 10;
     randomizer();
@@ -109,7 +107,6 @@ function draw() {
     rows = height / resolution;
     background(0);
     for (let i = 1; i < cells.length-1; i++){
-        console.log(cells[i]);
         for (let j = 1; j < cells[i].length-1; j++){
             let x = (i-1) * resolution;
             let y = (j-1) * resolution;
