@@ -11,7 +11,36 @@
     </head>
 
     <body>
-        <main class="tableContainer"></main>
+        
+
+        <section class="controlContainer">
+
+            <div class="buttonContainer">
+                <button class="reproduce">Reproduce</button>
+                <button class="clear">Clear</button>
+                <button class="random">Random</button>
+            </div>
+    
+            <div class="sliderContainer">
+                <div class="sliderContainer_columns">
+                    <p>
+                        <p>Grid size: <span class="columns">30</span> blocks tall and large </p>
+                    </p>
+                    <input type="range" min="5" max="64" value="30" id="sliderColumns" class="slider">
+                </div>
+            </div>
+            
+            <div class="instructions">
+                <h1>Instructions</h1>
+                <p>Please give an initial status by clicking the desired grid.
+                    Once the game starts there's no way to add more grids.
+                </p>
+            </div>  
+
+        </section>
+
+        <section class="tableContainer"></section>
+
     </body>
 
     <script src="index.js"></script>
