@@ -26,6 +26,9 @@ header {
     background-color: chartreuse;
     color: black;
 }
+.hidden {
+    display: none;
+}
 
 td {
     border: 1px solid white;
