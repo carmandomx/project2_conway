@@ -169,7 +169,7 @@ const randomizeButtonHandler = () => {
         const isLive = Math.round(Math.random());
 
         /* if the cell new-random-state is 1(alive), the class is changed to live */
-        const cell = document.querySelector(`c${i}_${j}`);
+        let cell = document.querySelector(`#c${i}_${j}`);
         if (isLive === 1) {
           cell.className = 'live pointer';
           grid[i][j] = 1;
