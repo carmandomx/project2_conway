@@ -62,7 +62,7 @@ const createTable = () => {
       let cell = document.createElement('td');
 
       cell.setAttribute('id', i + '_' + j);
-      cell.setAttribute('class', 'dead');
+      cell.className = 'dead pointer';
       cell.onclick = cellClickHandler;
       tr.appendChild(cell);
     }
@@ -84,10 +84,10 @@ function cellClickHandler() {
 
     /* Changing 'state' of cell */
     if (classes.indexOf('live') > -1) {
-      this.setAttribute('class', 'dead');
+      this.className = 'dead pointer';
       grid[row][col] = 0;
     } else {
-      this.setAttribute('class', 'live');
+      this.className = 'live pointer';
       grid[row][col] = 1;
     }
   }
@@ -100,9 +100,11 @@ const updateView = () => {
       let cell = document.getElementById(i + '_' + j);
 
       if (grid[i][j] === 0) {
-        cell.setAttribute('class', 'dead');
+        if (playButton.innerText === 'Play') cell.className = 'dead pointer';
+        else cell.className = 'dead';
       } else {
-        cell.setAttribute('class', 'live');
+        if (playButton.innerText === 'Play') cell.className = 'dead pointer';
+        else cell.className = 'live';
       }
     }
   }
@@ -144,7 +146,7 @@ const clearButtonHandler = () => {
 
   /* Kill the live cells */
   for (let i = 0; i < cells.length; i++) {
-    cells[i].setAttribute('class', 'dead');
+    cells[i].className = 'dead';
   }
 
   /* Reset the grid */
@@ -160,20 +162,19 @@ clearButton.onclick = clearButtonHandler;
 /* function that first clear the current board and make each cell dead or alive state randomly */
 const randomizeButtonHandler = () => {
   if (!playing) {
-    /* Clearing the current board */
-    clearButtonHandler();
-
     for (let i = 0; i < rows; i++) {
       for (let j = 0; j < cols; j++) {
         /* Getting the new random state */
         const isLive = Math.round(Math.random());
 
         /* if the cell new-random-state is 1(alive), the class is changed to live */
+        const cell = document.getElementById(i + '_' + j);
         if (isLive === 1) {
-          const cell = document.getElementById(i + '_' + j);
-
-          cell.setAttribute('class', 'live');
+          cell.className = 'live pointer';
           grid[i][j] = 1;
+        } else {
+          cell.className = 'dead pointer';
+          grid[i][j] = 0;
         }
       }
     }
