@@ -3,7 +3,7 @@ let row = 30;
 let column = 30;
 let sizePx = 13;
 let map = [];
-let generation = 0;
+let currentGeneration = 0;
 let playing = false;
 let statusClick = true;
 
@@ -13,6 +13,7 @@ const gridSize = document.querySelector(".columns");
 const startButton = document.querySelector(".start");
 const clearButton = document.querySelector(".clear");
 const randomButton = document.querySelector(".random");
+const generation = document.querySelector(".generation")
 
 gridSize.innerHTML = slider.value;
 
@@ -27,8 +28,8 @@ slider.oninput = function () {
 };
 
 slider.addEventListener("input", function () {
-  var x = ((slider.value - slider.min) / (slider.max - slider.min)) * 100;
-  var color = `linear-gradient(90deg, rgb(117,252,117) ${x}%, rgb(214,214,214) ${x}%)`;
+  let x = ((slider.value - slider.min) / (slider.max - slider.min)) * 100;
+  let color = `linear-gradient(90deg, rgb(117,252,117) ${x}%, rgb(214,214,214) ${x}%)`;
   slider.style.background = color;
 });
 
@@ -132,6 +133,9 @@ function updateStatus() {
       }
     }
   }
+  currentGeneration += 1;
+  generation.innerHTML = currentGeneration;
+  console.log(generation);
 }
 
 //Function that makes the grid and buttons clickable or not.

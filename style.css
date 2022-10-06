@@ -33,7 +33,7 @@ td{
 
 .slider{
     -webkit-appearance: none;
-    background: linear-gradient(90deg, rgb(117,272,117) 40%, rgb(214,214,214) 40%);
+    background: linear-gradient(90deg, rgb(117,272,117) 45%, rgb(214,214,214) 45%);
     width: 60%;
     height: 10px;
     outline: none;
@@ -67,3 +67,6 @@ button:hover{
 .unclickable {
     pointer-events: none;
 }
+
+.infoStyle{font-weight: bolder;}
+.generation, .columns{font-weight: 100;}
