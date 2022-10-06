@@ -110,16 +110,15 @@ play.addEventListener("click", function () {
   clear.addEventListener("clear", clearAll);
 });
 
-stop.addEventListener("click", stopAll);
-function stopAll() {
+stop.addEventListener("click", function () {
   //Pause the life animation
   cancelAnimationFrame(reqAnimation);
   console.log("the btn STOP was pressed");
-}
+});
 
 clear.addEventListener("click", clearAll);
 async function clearAll() {
-  stopAll();
+  cancelAnimationFrame(reqAnimation);
   await render(buildEmptyGrid());
   console.log("the btn CLEAR was pressed");
   //render(colorCell());
