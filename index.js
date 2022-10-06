@@ -117,9 +117,9 @@ stop.addEventListener("click", function () {
 });
 
 clear.addEventListener("click", clearAll);
-async function clearAll() {
+function clearAll() {
   cancelAnimationFrame(reqAnimation);
-  await render(buildEmptyGrid());
+  render(buildEmptyGrid());
   console.log("the btn CLEAR was pressed");
   //render(colorCell());
 }
