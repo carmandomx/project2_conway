@@ -174,12 +174,14 @@ canvas.addEventListener('click', function(){
   
 });
 
+
+//adding the interaction with the randomize button
 randomize.addEventListener('click', () =>{
-  if (stop == true) {
+  if (stop == true) { //confirms that the game is stopped before changing it
       let grid = seedGen(COL, ROW);
       drawGrid(grid);
   }
-  else{
+  else{ //sends a warning message if the game is running and does not allow the change to push through
       window.alert("Can only randomize when the game is not playing!");
   }
 
