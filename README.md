@@ -19,11 +19,11 @@ Email: roberto.tello@itksquare.edu.mx
 
 ### User Stories:
 1. As a user, whenever I navigate to the website and see an empty grid with the option to let the user set up the initial configuration.
-2. If the game is paused I can resume it
-3. I can clear the board
-4. I can click a 'Randomize' button that will generate an initial configuration for the game to play and this can only be done when the games has not started or is paused.
-5. I can see the amount of generation has passed since the start of the game
-6. I can click a button that would set the game back to the initial state (how the website initially loads in)
+2. If the game is paused I can resume it.
+3. I can clear the board.
+4. I can click a 'Randomize' button that will generate an initial configuration for the game to play and this can only be done when the games has not yet started.
+5. I can see the amount of generation has passed since the start of the game.
+6. I can click a button that would set the game back to the initial state (how the website initially loads in).
 7. (Optional) Research know patterns that occurs in the Game Of Life and allow the  user to see those patterns.
 
 
@@ -40,4 +40,4 @@ Email: roberto.tello@itksquare.edu.mx
 
 # Live demo
 
-Here is a link to our [live demo](https://axcelespinal-ksquare.github.io/project2_conway/)
+Here is a link to our [live demo](https://axcelespinal-ksquare.github.io/project2_conway/)!
