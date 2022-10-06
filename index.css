@@ -18,6 +18,7 @@ header {
 
 .btn {
     border: 1px solid chartreuse;
+    cursor: pointer;
     font-family: 'Courier';
     color: chartreuse;
     background-color: black;
@@ -35,11 +36,12 @@ td {
     width: 10px;
     height: 10px;
 }
-
 td.dead {
     background-color: transparent;
 }
-
 td.live {
     background-color:chartreuse;
+}
+.pointer {
+    cursor: pointer;
 }
