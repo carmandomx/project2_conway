@@ -9,7 +9,7 @@
 
 // DOM button selectors
 const play = document.querySelector(".play");
-
+const stop = document.querySelector(".stop")
 
 // To draw and handle the grid canvas
 const canvas = document.querySelector("canvas");
@@ -109,16 +109,23 @@ function colorCell(event){
 function update(){
     emptyGrid = nextGeneration(emptyGrid);
     render(emptyGrid);
-    requestAnimationFrame(update);
+    reqAnimation = requestAnimationFrame(update);
 }
+
+
 
 play.addEventListener("click", function(){
     // Give life to the game animation, to see the generations pass
-    requestAnimationFrame(update);
+    reqAnimation = requestAnimationFrame(update);
     // Once the game has started, we remove the user's ability to interact with the canvas
     canvas.removeEventListener("click", colorCell);
 })
 
+stop.addEventListener("click", function(){
+    //Pause the life animation
+    cancelAnimationFrame(reqAnimation);
+    console.log("the btn was pressed");
+})
 
 
 
