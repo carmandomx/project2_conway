@@ -6,7 +6,7 @@ body {
 }
 
 header * {
-  margin: 0.35rem;
+  margin: 0.2rem;
 }
 
 header {
@@ -39,4 +39,12 @@ button {
 
 section {
   font-weight: bold;
+}
+
+.info-general {
+  text-align: center;
+}
+
+.info-grid {
+  font-style: italic;
 }

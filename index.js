@@ -144,7 +144,6 @@ stop.addEventListener("click", function () {
 });
 
 clear.addEventListener("click", clearAll);
-
 // Clears the grid fot both game mode cases
 clickCount = 0; //
 function clearAll() {
@@ -158,10 +157,16 @@ function clearAll() {
       return cell * 0;
     });
   });
-  clickCount++;
   reqAnimation = requestAnimationFrame(update);
   random.removeEventListener("click", renderRandomGrid);
   console.log(`the btn CLEAR was pressed ${clickCount} times`);
+  clickCount++;
+  if (clickCount >= 1) {
+    document.querySelector(".info-grid").textContent =
+      "You have dropped a nuclear bomb!";
+    document.querySelector(".info-grid").style.color = "red";
+    return (clickCount = 0);
+  }
 }
 
 // To choose a random initial game configuration by clicking a button
@@ -251,13 +256,8 @@ function nextGeneration(grid) {
 
 /* ===============================   text section   =============================== */
 function genText() {
-  if (clickCount >= 1) {
-    document.querySelector(".info-gen").textContent = "You kill everyones!";
-    return (clickCount = 0);
-  } else {
-    document.querySelector(
-      ".info-gen"
-    ).textContent = `Have passed ${acountGen} generations`;
-    return (clickCount = 0);
-  }
+  document.querySelector(
+    ".info-gen"
+  ).textContent = `Have passed ${acountGen} generations`;
+  return (clickCount = 0);
 }
