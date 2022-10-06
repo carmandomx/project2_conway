@@ -9,11 +9,16 @@
 // DOM button selectors
 const play = document.querySelector(".play");
 const stop = document.querySelector(".stop");
+const random = document.querySelector(".random");
 const clear = document.querySelector(".clr");
 
 // To draw and handle the grid canvas
 const canvas = document.querySelector("canvas");
 const ctx = canvas.getContext("2d"); //to acces the drawing context
+
+// To choose random mode of game
+let randomMode = false;
+let reqAnimation;
 
 /* ==============================  BUILDING THE CANVAS GRID  ============================== */
 
@@ -28,6 +33,12 @@ const rows = h / resolution;
 // Creating an empty canvas
 function buildEmptyGrid() {
   return new Array(cols).fill(0).map(() => new Array(rows).fill(0));
+}
+
+// Creating a NEW random canvas
+function buildRandomGrid(){
+    return new Array(cols).fill(null)
+    .map(() => new Array(rows).fill(0).map(() => Math.round(Math.random())));
 }
 
 // Function to actually draw the grid
@@ -56,6 +67,7 @@ function render(grid) {
 
 // To visualize the inital empty grid
 let emptyGrid = buildEmptyGrid();
+let randGrid = buildRandomGrid();
 render(emptyGrid);
 
 /* ==============================  DRAWING INITIAL CONFIGURATION  ============================== */
@@ -97,35 +109,60 @@ function colorCell(event) {
 
 // Each frame update, rewrites the grid with the values of the grid's next generation
 function update() {
-  emptyGrid = nextGeneration(emptyGrid);
-  render(emptyGrid);
-  reqAnimation = requestAnimationFrame(update);
+    if (randomMode === true) {
+        randGrid = nextGeneration(randGrid);
+        render(randGrid);
+    } else {
+        emptyGrid = nextGeneration(emptyGrid);
+        render(emptyGrid);
+    }
+    reqAnimation = requestAnimationFrame(update);   
 }
 
 play.addEventListener("click", function () {
   // Give life to the game animation, to see the generations pass
   reqAnimation = requestAnimationFrame(update);
-  // Once the game has started, we remove the user's ability to interact with the canvas
+  // Once the game has started, we remove the user's ability to interact with the canvas AND the randomize button
   canvas.removeEventListener("click", colorCell);
-  //clear.addEventListener("clear", clearAll);
+  random.removeEventListener("click", renderRandomGrid);
+  console.log("the btn PLAY was pressed");
 });
 
 stop.addEventListener("click", function () {
   //Pause the life animation
   cancelAnimationFrame(reqAnimation);
+  random.removeEventListener("click", renderRandomGrid);
   console.log("the btn STOP was pressed");
 });
 
 clear.addEventListener("click", clearAll);
+
+// Clears the grid fot both game mode cases
 function clearAll() {
-  emptyGrid = emptyGrid.map(function (row) {
-    return row.map(function (cell) {
-      return cell * 0;
-    });
-  });
-  console.log("the btn CLEAR was pressed");
-  reqAnimation = requestAnimationFrame(update);
+    emptyGrid = emptyGrid.map(function (row) {
+        return row.map(function (cell) {
+            return cell * 0;
+        })
+    })
+    randGrid = randGrid.map(function (row) {
+        return row.map(function (cell) {
+          return cell * 0;
+        })
+      })
+    reqAnimation = requestAnimationFrame(update);
+    random.removeEventListener("click", renderRandomGrid);
+    console.log("the btn CLEAR was pressed");
 }
+
+
+// To choose a random initial game configuration by clicking a button
+random.addEventListener("click", renderRandomGrid);
+
+function renderRandomGrid(){
+    randomMode = true; // flag to indicate the games Mode of playing
+    render(buildRandomGrid());
+}
+
 
 /* ==================================  GAME LOGIC  ================================== */
 
