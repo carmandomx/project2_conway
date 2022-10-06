@@ -5,7 +5,7 @@ const start = document.querySelector("#start");
 const randomize = document.querySelector("#randomize");
 
 let stop = true;
-
+let gameId = 0;
 
 const GRID_WIDTH =  500;             
 const GRID_HEIGHT = 500;       
@@ -106,21 +106,32 @@ function game(grid) {
   let gridPopullation = checkAlive();
 
   //Here the rules...
-   for(let i = 0;i<COL;i++){
-     for(let j = 0;j<COL;j++){
+  for(let i = 0;i<COL;i++){
+    for(let j = 0;j<COL;j++){
 
-       let cellPopulation = gridPopullation[i][j];
-       let cellStatus = grid[i][j]; 
-       console.log(cellPopulation)
-       //Rule #1
-       if(cellStatus == 1){
-         newGrid[i][j] = (cellPopulation<=2)?0:1;
-       }else{
-         newGrid[i][j] = 0;
-       }
-     }
-   }
-
+      let cellPopulation = gridPopullation[i][j];
+      let cellStatus = grid[i][j]; 
+      console.log(cellPopulation)
+      if(cellStatus == 1){
+        switch (cellPopulation) {
+          case 1:
+            newGrid[i][j] = 0;
+            break;
+          case 2:
+            newGrid[i][j] = 1;
+            break;
+          case 3:
+            newGrid[i][j] = 1;
+            break;
+          default:
+            newGrid[i][j] = 0;
+        }
+      }else{
+        // Rule 4
+        newGrid[i][j] = 0;
+      }
+    }
+  }
   //console.log("is working", count);
 
 
@@ -142,7 +153,7 @@ start.addEventListener('click', () =>{
   if (stop) {
     stop = false;
     start.innerHTML = "STOP"
-    let gameId = setInterval(game, 1000, grid);
+    let gameId = setInterval(game, 1, grid);
   } else {
     stop = true;
     start.innerHTML = "START"
@@ -172,6 +183,7 @@ canvas.addEventListener('click', function(){
   grid[Pos_X][Pos_Y] = grid[Pos_X][Pos_Y] ? 0 : 1;
   drawGrid(grid);
   
+
 });
 
 
@@ -186,4 +198,5 @@ randomize.addEventListener('click', () =>{
   }
 
 });
+
 
