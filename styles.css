@@ -1,0 +1,35 @@
+html {
+    text-align: center;
+    font-family: Monaco;
+}
+.mainContainer{
+    display: flex;
+}
+  .leftContainer {
+    
+  }
+  
+  .left {
+    display: inline-block;
+  }
+  
+  .dead {
+    background-color: rgb(10, 10, 10);
+  }
+  
+  .alive {
+    background-color: rgb(89, 224, 100);
+    border: 1px solid black;
+  }
+  
+  .gridContainer {
+    margin-top: 25px;
+    margin-right: 40px;
+    display: inline-grid;
+    grid-template-columns: repeat(20, 2fr);
+    grid-template-rows: repeat(20, 2fr);
+    border: 5px solid black;
+    border-radius: 5px;
+    height: 575px;
+    width: 575px;
+  } 
