@@ -107,20 +107,22 @@ play.addEventListener("click", function () {
   reqAnimation = requestAnimationFrame(update);
   // Once the game has started, we remove the user's ability to interact with the canvas
   canvas.removeEventListener("click", colorCell);
+  clear.addEventListener("clear", clearAll);
 });
 
-stop.addEventListener("click", function () {
+stop.addEventListener("click", stopAll);
+function stopAll() {
   //Pause the life animation
   cancelAnimationFrame(reqAnimation);
-  console.log("the btn was pressed");
-});
+  console.log("the btn STOP was pressed");
+}
 
-clickCount = 0;
 clear.addEventListener("click", clearAll);
-function clearAll() {
-  clickCount++;
-  render(buildEmptyGrid());
-  colorCell();
+async function clearAll() {
+  stopAll();
+  await render(buildEmptyGrid());
+  console.log("the btn CLEAR was pressed");
+  //render(colorCell());
 }
 
 /* ==================================  GAME LOGIC  ================================== */
