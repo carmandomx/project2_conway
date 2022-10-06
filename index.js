@@ -2,6 +2,7 @@ const canvas = document.querySelector("#board");
 const ctx = canvas.getContext("2d"); 
 const reset = document.querySelector("#reset");
 const start = document.querySelector("#start");
+const randomize = document.querySelector("#randomize");
 
 let stop = true;
 let gameId = 0;
@@ -182,4 +183,20 @@ canvas.addEventListener('click', function(){
   grid[Pos_X][Pos_Y] = grid[Pos_X][Pos_Y] ? 0 : 1;
   drawGrid(grid);
   
+
 });
+
+
+//adding the interaction with the randomize button
+randomize.addEventListener('click', () =>{
+  if (stop == true) { //confirms that the game is stopped before changing it
+      let grid = seedGen(COL, ROW);
+      drawGrid(grid);
+  }
+  else{ //sends a warning message if the game is running and does not allow the change to push through
+      window.alert("Can only randomize when the game is not playing!");
+  }
+
+});
+
+
