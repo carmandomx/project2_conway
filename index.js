@@ -19,8 +19,8 @@ const ctx = canvas.getContext("2d"); //to acces the drawing context
 
 // Defining the canvas size, we can modify this values if we want to resize the grid
 const resolution = 10;
-const h = (canvas.width = 500);
-const w = (canvas.height = 500);
+const h = (canvas.width = 300);
+const w = (canvas.height = 300);
 
 const cols = w / resolution;
 const rows = h / resolution;
@@ -107,7 +107,7 @@ play.addEventListener("click", function () {
   reqAnimation = requestAnimationFrame(update);
   // Once the game has started, we remove the user's ability to interact with the canvas
   canvas.removeEventListener("click", colorCell);
-  clear.addEventListener("clear", clearAll);
+  //clear.addEventListener("clear", clearAll);
 });
 
 stop.addEventListener("click", function () {
@@ -118,10 +118,13 @@ stop.addEventListener("click", function () {
 
 clear.addEventListener("click", clearAll);
 function clearAll() {
-  cancelAnimationFrame(reqAnimation);
-  render(buildEmptyGrid());
+  emptyGrid = emptyGrid.map(function (row) {
+    return row.map(function (cell) {
+      return cell * 0;
+    });
+  });
   console.log("the btn CLEAR was pressed");
-  //render(colorCell());
+  reqAnimation = requestAnimationFrame(update);
 }
 
 /* ==================================  GAME LOGIC  ================================== */
