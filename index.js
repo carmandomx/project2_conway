@@ -7,7 +7,7 @@ const randomize = document.querySelector("#randomize");
 let stop = true;
 let gameId = 0;
 
-const GRID_WIDTH =  500;             
+const GRID_WIDTH =  1000;             
 const GRID_HEIGHT = 500;       
 const RES = 50;                     
 const COL = GRID_WIDTH / RES;    
@@ -65,17 +65,8 @@ function check(x,y){
   return (grid[x][y]==1)?1:0;
 }
 
-function checkAlive(){
-  let gridAlive=[[0,0,0,0,0,0,0,0,0,0],
-                [0,0,0,0,0,0,0,0,0,0],
-                [0,0,0,0,0,0,0,0,0,0],
-                [0,0,0,0,0,0,0,0,0,0],
-                [0,0,0,0,0,0,0,0,0,0],
-                [0,0,0,0,0,0,0,0,0,0],
-                [0,0,0,0,0,0,0,0,0,0],
-                [0,0,0,0,0,0,0,0,0,0],
-                [0,0,0,0,0,0,0,0,0,0],
-                [0,0,0,0,0,0,0,0,0,0]];
+function checkAlive(grid){
+  let gridAlive = grid;
   for (let x = 0; x < COL; x++) {
       for (let y = 0; y < ROW; y++) {
           // Count ofpopulation
@@ -89,21 +80,13 @@ function checkAlive(){
 
 
 function game(grid) {
-  let newGrid = [[0,0,0,0,0,0,0,0,0,0],
-                [0,0,0,0,0,0,0,0,0,0],
-                [0,0,0,0,0,0,0,0,0,0],
-                [0,0,0,0,0,0,0,0,0,0],
-                [0,0,0,0,0,0,0,0,0,0],
-                [0,0,0,0,0,0,0,0,0,0],
-                [0,0,0,0,0,0,0,0,0,0],
-                [0,0,0,0,0,0,0,0,0,0],
-                [0,0,0,0,0,0,0,0,0,0],
-                [0,0,0,0,0,0,0,0,0,0]];
+  let newGrid = grid;
   if (stop) {
       clearInterval(gameId);
+      console.log("YOU PRESS STOP!")
   }
   // Game Logic
-  let gridPopullation = checkAlive();
+  let gridPopullation = checkAlive(grid);
 
   //Here the rules...
   for(let i = 0;i<COL;i++){
@@ -127,8 +110,13 @@ function game(grid) {
             newGrid[i][j] = 0;
         }
       }else{
-        // Rule 4
-        newGrid[i][j] = 0;
+        switch (cellPopulation) {
+          case 3:
+            newGrid[i][j] = 1;
+            break;
+          default:
+            newGrid[i][j] = 0;
+        }
       }
     }
   }
@@ -153,7 +141,7 @@ start.addEventListener('click', () =>{
   if (stop) {
     stop = false;
     start.innerHTML = "STOP"
-    let gameId = setInterval(game, 1, grid);
+    gameId = setInterval(game, 200, grid);
   } else {
     stop = true;
     start.innerHTML = "START"
