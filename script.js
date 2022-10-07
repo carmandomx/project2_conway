@@ -102,6 +102,8 @@ function randomizer() {
 /*This function will handle the new canvas generation, it will also
 check in which state is the game and stop it if pause is clicked */
 function playCreate() {
+    play.textContent = "Play";
+    play.disabled = true;
     //We set an interval to run the new canvas
     let intervalID = setInterval(create, 1100);
     //This funciont will loop the creations of new generations
@@ -113,6 +115,8 @@ function playCreate() {
     //Here we check if the pause button is clicked and act accordingly
     pause.addEventListener("click", stop)
     function stop(){
+        play.textContent = "resume";
+        play.disabled = false;
         canRandom = true;
         clearInterval(intervalID);
         intervalID = null;
@@ -165,14 +169,11 @@ function tempDraw() {
 }
 
 //Button clicks attached to functions
-// _resume.addEventListener('click', );
 //Button to start the game
 let play = document.querySelector(".play")
 play.addEventListener("click", playCreate);
 //Button that will pause the game
 let pause = document.querySelector(".pause")
-// pause.addEventListener("click", pause);
-// _pause.addEventListener('click', ); 
 // _clear.addEventListener('click', ); 
 //Button that will randomize the array
 let random = document.querySelector(".randomize");
