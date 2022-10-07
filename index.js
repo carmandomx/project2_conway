@@ -77,11 +77,11 @@ const createTable = () => {
 function cellClickHandler() {
   if (playButton.innerText === 'Play') {
     /* Replace the c in the ID with nothing so we are just left with the numbers of the row and the column */
-    let rowcol = this.id.replace('c', '').split('_');
-    let row = rowcol[0];
-    let col = rowcol[1];
+    const rowcol = this.id.replace('c', '').split('_');
+    const row = rowcol[0];
+    const col = rowcol[1];
 
-    let classes = this.getAttribute('class');
+    const classes = this.getAttribute('class');
 
     /* Changing 'state' of cell */
     if (classes.indexOf('live') > -1) {
@@ -135,10 +135,10 @@ const clearButtonHandler = () => {
   clearTimeout(timer);
 
   /* Grab all live cells */
-  let liveCells = document.querySelectorAll('.live');
+  const liveCells = document.querySelectorAll('.live');
 
   /* Make an array to store the live cells */
-  let cells = [];
+  const cells = [];
 
   /* Fill the newly created array with the live cells */
   for (let i = 0; i < liveCells.length; i++) {
@@ -208,7 +208,7 @@ const computeNextGen = () => {
 
 /* function that checks which of Conway's condition is met */
 const applyRules = (row, col) => {
-  let numNeighbors = countNeighbors(row, col);
+  const numNeighbors = countNeighbors(row, col);
 
   if (grid[row][col] === 1) {
     if (numNeighbors < 2) {
