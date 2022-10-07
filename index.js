@@ -251,20 +251,18 @@ class GameOfLife {
 
   // Method to set current generation with a pattern preset
   setPattern(pattern, startsOn) {
-    // Evaluate the matrix  that is the grid
-    for (let row = 0; row < this.canvasRow; row++) {
-      for (let col = 0; col < this.canvasCol; col++) {
-        // Calculate the position in the grid  where the pattern must be printed
-        const x = row + (startsOn && startsOn.row ? startsOn.row : 0);
-        const y = col + (startsOn && startsOn.col ? startsOn.col : 0);
-        // Evaluate if that coordinate exists in the grid
-        const coordinateFound = pattern.find(
-          (coordinate) => coordinate.row == row && coordinate.col == col
-        );
-        if (coordinateFound) {
-          // Assign state to the coordinate that is part of the pattern
-          this.currentGeneration[x][y] = 1;
-        }
+    // Evaluate each coordinate in the pattern
+    for (let index = 0; index < pattern.length; index++) {
+      const coordinate = pattern[index];
+      // Calculate the position in the grid  where the pattern must be printed
+      const x = coordinate.row + (startsOn && startsOn.row ? startsOn.row : 0);
+      const y = coordinate.col + (startsOn && startsOn.col ? startsOn.col : 0);
+      // If the coordinate is part og the grid (not undefined) then change the state of that cell to 1
+      if (
+        this.currentGeneration[x] != undefined &&
+        this.currentGeneration[x][y] != undefined
+      ) {
+        this.currentGeneration[x][y] = 1;
       }
     }
     this.paintCells();
