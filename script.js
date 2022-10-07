@@ -3,6 +3,7 @@ const container = document.querySelector("#container");
 //si ij, si i-1j
 let countgen = 0;
 let cells = new Array(52).fill(0).map(() => new Array(52).fill(0));
+//May have no use for this variable, during final review, check if needed
 let loopFlag = true;
 
 function checkNeighbors() {
@@ -86,13 +87,13 @@ function randomizer() {
         for(let j = 1; j < cells[i].length-1; j++){
             //We just assign true or false at random with this little funtion
             cells[i][j] = Math.random() < 0.5;
-
         }
     }
+    tempRanflag = true;
+    tempDraw();
 }
 
 function pause() {
-    onclick
 }
 
 function play() {
@@ -100,6 +101,7 @@ function play() {
 }
 
 function draw() {
+    loopFlag = false;
     const resolution = 10;
     randomizer();
     createCanvas(500, 500);
@@ -117,14 +119,39 @@ function draw() {
             }
         }
     }
+    //If you need the loop to work all the time, comment this line
     noLoop();
 }
 
+/*Unfortunatly, I wasn´t able to recycle the draw() function due to
+how the library works, so i had to kill the original loop, and create
+a new funciton that does the same but has to be called, this gives 
+control but makes draw() usable only once.*/
+function tempDraw() {
+    const resolution = 10;
+    createCanvas(500, 500);
+    cols = width / resolution;
+    rows = height / resolution;
+    background(0);
+    for (let i = 1; i < cells.length-1; i++){
+        for (let j = 1; j < cells[i].length-1; j++){
+            let x = (i-1) * resolution;
+            let y = (j-1) * resolution;
+            if (cells[i][j] === true){
+                fill(255);
+                stroke(0);
+                rect(y, x, resolution, resolution);
+            }
+        }
+    }
+}
+
 //Button clicks attached to functions
-_resume.addEventListener('click', );
-_play.addEventListener('click', );
-_pause.addEventListener('click', ); 
-_clear.addEventListener('click', ); 
-_randomize.addEventListener("click", );
-_customMode.addEventListener('click', ); 
-_customPttrns.addEventListener('click', );
+// _resume.addEventListener('click', );
+// _play.addEventListener('click', );
+// _pause.addEventListener('click', ); 
+// _clear.addEventListener('click', ); 
+let random = document.querySelector(".randomize");
+random.addEventListener("click", randomizer);
+// _customMode.addEventListener('click', ); 
+// _customPttrns.addEventListener('click', );
