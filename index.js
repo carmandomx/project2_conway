@@ -8,6 +8,7 @@ const clear = document.querySelector("#clear");
 
 const textLevel = document.querySelector('.generationNo');
 
+let initGrid = [];
 let stop = true;
 let gameId = 0;
 let count = 0;
@@ -154,16 +155,18 @@ reset.addEventListener('click', () =>{
     stop = true;        
     start.innerHTML = "START"
   };
-  
-  let grid = seedGen(COL, ROW);
-  drawGrid(grid);
+
+  drawGrid(initGrid);
   
   updateCounter(0);
 
 });
 
 start.addEventListener('click', () =>{
-  if (stop) {    
+  if (stop) {
+    if (count == 0) {
+      grid = initGrid;
+    }   
     stop = false;
     start.innerHTML = "STOP"
     gameId = setInterval(game, 200, grid);
