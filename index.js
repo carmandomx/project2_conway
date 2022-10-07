@@ -98,7 +98,7 @@ function cellClickHandler() {
 const updateView = () => {
   for (let i = 0; i < rows; i++) {
     for (let j = 0; j < cols; j++) {
-      let cell = document.querySelector(`#c${i}_${j}`);
+      const cell = document.querySelector(`#c${i}_${j}`);
 
       if (grid[i][j] === 0) {
         if (playButton.innerText === 'Play') cell.className = 'dead pointer';
@@ -169,7 +169,7 @@ const randomizeButtonHandler = () => {
         const isLive = Math.round(Math.random());
 
         /* if the cell new-random-state is 1(alive), the class is changed to live */
-        let cell = document.querySelector(`#c${i}_${j}`);
+        const cell = document.querySelector(`#c${i}_${j}`);
         if (isLive === 1) {
           cell.className = 'live pointer';
           grid[i][j] = 1;
