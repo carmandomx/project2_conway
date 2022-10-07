@@ -7,6 +7,7 @@ const input =  document.querySelector("#quantity");
 
 let stop = true;
 let gameId = 0;
+let initGrid = [];
 
 const GRID_WIDTH =  600;             
 const GRID_HEIGHT = 600;       
@@ -144,14 +145,14 @@ reset.addEventListener('click', () =>{
     stop = true;
     start.innerHTML = "START"
   };
-
-  let grid = seedGen(COL, ROW);
-  drawGrid(grid);
-
+  drawGrid(initGrid);
+  console.log("initGrid: ", initGrid)
 });
 
 start.addEventListener('click', () =>{
   if (stop) {
+    initGrid = grid;
+    console.log("initGrid: ", initGrid)
     stop = false;
     start.innerHTML = "STOP"
     gameId = setInterval(game, 200, grid);
