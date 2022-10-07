@@ -52,16 +52,16 @@ const initialize = () => {
 
 /* function that creates the board */
 const createTable = () => {
-  let grid = document.querySelector('.grid');
-  let table = document.createElement('table');
+  const grid = document.querySelector('.grid');
+  const table = document.createElement('table');
 
   for (let i = 0; i < rows; i++) {
-    let tr = document.createElement('tr');
+    const tr = document.createElement('tr');
 
     for (let j = 0; j < cols; j++) {
-      let cell = document.createElement('td');
+      const cell = document.createElement('td');
 
-      cell.setAttribute('id', i + '_' + j);
+      cell.setAttribute('id', 'c' + i + '_' + j);
       cell.className = 'dead pointer';
       cell.onclick = cellClickHandler;
       tr.appendChild(cell);
@@ -76,7 +76,8 @@ const createTable = () => {
 /* function to handles when user clicks a cell if game is not started */
 function cellClickHandler() {
   if (playButton.innerText === 'Play') {
-    let rowcol = this.id.split('_');
+    /* Replace the c in the ID with nothing so we are just left with the numbers of the row and the column */
+    let rowcol = this.id.replace('c', '').split('_');
     let row = rowcol[0];
     let col = rowcol[1];
 
@@ -97,7 +98,7 @@ function cellClickHandler() {
 const updateView = () => {
   for (let i = 0; i < rows; i++) {
     for (let j = 0; j < cols; j++) {
-      let cell = document.getElementById(i + '_' + j);
+      const cell = document.querySelector(`#c${i}_${j}`);
 
       if (grid[i][j] === 0) {
         if (playButton.innerText === 'Play') cell.className = 'dead pointer';
@@ -168,7 +169,7 @@ const randomizeButtonHandler = () => {
         const isLive = Math.round(Math.random());
 
         /* if the cell new-random-state is 1(alive), the class is changed to live */
-        const cell = document.getElementById(i + '_' + j);
+        const cell = document.querySelector(`#c${i}_${j}`);
         if (isLive === 1) {
           cell.className = 'live pointer';
           grid[i][j] = 1;
