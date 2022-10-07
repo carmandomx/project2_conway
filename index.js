@@ -3,6 +3,7 @@ const columns = 50;                                                             
 let currentTable = [rows];                                                          //  Sets an array for the current table with the rows set.
 let nextTable = [rows];                                                             //  Sets an array for the next table with the rows set.
 
+let gameStatus = false;                                                             //  Variable that sets the state of the game after activating the Start button.
 let timer;                                                                          //  Variable to adjust the speed of the game between generations.
 let lifespeed = 500;                                                                //  Variable to set the time when life comes to another generation.
 
@@ -29,12 +30,12 @@ function spaceClick() {                                                         
     let row = Number(spaceLocation[0]);                                             //  Creates a row variable with the row provided by the grid space.
     let column = Number(spaceLocation[1]);                                          //  Creates a column variable with the column provided by grid space.
 
-    if (this.className === 'populated') {                                           //  If the space is populated:
-        this.setAttribute('class', 'unpopulated');                                  //  Sets class to unpopulated.
-        currentTable[row][column] = 0;                                              //  Set the current space to (0).
-    } else {                                                                        //  Otherwise: 
-        this.setAttribute('class', 'populated');                                    //  Sets class to populated.
-        currentTable[row][column] = 1;                                              //  Set the current space to (1).
+    if (this.className === 'populated') {                                       //  If the space is populated:
+        this.setAttribute('class', 'unpopulated');                              //  Sets class to unpopulated.
+        currentTable[row][column] = 0;                                          //  Set the current space to (0).
+    } else {                                                                    //  Otherwise: 
+        this.setAttribute('class', 'populated');                                //  Sets class to populated.
+        currentTable[row][column] = 1;                                          //  Set the current space to (1).
     }
 }
 
@@ -54,9 +55,18 @@ function initTableArrays() {                                                    
     }
 }
 
-function startStopGame() {
-    gameStatus = true;                                                              //  Status variable will be set to true.
-    cycle();                                                                        //  Run a Game of Life cycle.
+function startStopGame() {                                                          //  User Story 2: Toogle the game status. Start/Stop.
+    let startlife = document.querySelector('#btnStartStop');                //  Creates a variable that set the value of the Start/Stop button on the website.
+
+    if (gameStatus) {                                                       //  If the game has begun:
+        gameStatus = false;                                                 //  Status variable will be set to false.
+        startlife.value = 'Start';                                          //  Start/Stop button on the webiste will go to Start option.
+        clearTimeout(timer);                                                //  Clear the timeout previosly established.
+    } else {                                                                //  Otherwise:
+        gameStatus = true;                                                  //  Status variable will be set to true.
+        startlife.value = 'Stop';                                           //  Start/Stop button on the website will go to Stop option.
+        cycle();                                                            //  Run a Game of Life cycle.
+    }
 }
 
 function cycle() {                                                                  //  Run a Game of Life cycle.
@@ -70,21 +80,21 @@ function cycle() {                                                              
 }
 
 function createNextTable() {                                                        //  Creates the next generation table.
-    for (row in currentTable) {                                             	    //  For each row in the current table:
-        for (column in currentTable[row]) {                                         //  For each column in the current row of the table:
-            let neighbors = getNeighborsCount(row, column);                 	    //  Creates a varible for the number of current neighbors populated (1).
+    for (row in currentTable) {                                             //  For each row in the current table:
+        for (column in currentTable[row]) {                                 //  For each column in the current row of the table:
+            let neighbors = getNeighborsCount(row, column);                 //  Creates a varible for the number of current neighbors populated (1).
 
-            if (currentTable[row][column] === 1) {                          	    //  If cell is populated (1):
-                if (neighbors < 2) {                                                //  If neighbors are less than 2:
-                    nextTable[row][column] = 0;                                     //  The cell dies in the next generation by underpopulation. 
-                } else if (neighbors === 2 || neighbors === 3) {                    //  Else, if neighbors are equal to 2 or 3:
-                    nextTable[row][column] = 1;                                     //  The cell lives in the next generation. 
-                } else if (neighbors > 3) {                                         //  Else, if neighbors are more than 3: 
-                    nextTable[row][column] = 0;                                     //  The cell dies in the next generation by overpopulation.
+            if (currentTable[row][column] === 1) {                          //  If cell is populated (1):
+                if (neighbors < 2) {                                        //  If neighbors are less than 2:
+                    nextTable[row][column] = 0;                             //  The cell dies in the next generation by underpopulation. 
+                } else if (neighbors === 2 || neighbors === 3) {            //  Else, if neighbors are equal to 2 or 3:
+                    nextTable[row][column] = 1;                             //  The cell lives in the next generation. 
+                } else if (neighbors > 3) {                                 //  Else, if neighbors are more than 3: 
+                    nextTable[row][column] = 0;                             //  The cell dies in the next generation by overpopulation.
                 }
-            } else if (currentTable[row][column] === 0) {                           //  Else, if it is unpopulated (0):
-                if (neighbors === 3) {                                              //  If neighbors are exactly 3:
-                    nextTable[row][column] = 1;                                     //  The cell becomes a live cell by reproduction.
+            } else if (currentTable[row][column] === 0) {                   //  Else, if it is unpopulated (0):
+                if (neighbors === 3) {                                      //  If neighbors are exactly 3:
+                    nextTable[row][column] = 1;                             //  The cell becomes a live cell by reproduction.
                 }
             }
         }
