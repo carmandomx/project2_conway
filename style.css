@@ -1,0 +1,121 @@
+/* GENERALS STYLES */
+
+@font-face {
+    font-family: 'Pixeled';
+    src: url('./font/Pixeled.ttf') format('truetype');
+    font-style: normal;
+    font-weight: normal;
+}
+
+*{
+    font-family: 'Pixeled';
+    overflow: hidden;
+}
+
+body{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-image: url(./img/background.jpg);
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+/* END GENERALS STYLES */
+
+/* HEADER SECTIONS STYLES */
+header{
+    padding-top: 8px;
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    height: 15vh;
+}
+
+.header-logo{
+    width: 15%;
+}
+
+.counter{
+    display: flex;
+    flex-direction: column;
+    color: #fff;
+}
+
+/* END HEADER SECTIONS STYLES */
+
+/* MAIN SECTION STYLES */
+main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 75vh;
+}
+
+.nav-buttons{
+    display: flex;
+    flex-direction: column;
+    width: 8%;
+    height: 490px;
+}
+
+.nav-buttons  button{
+    margin-top: 10px;
+    background-color: #E44445;
+    color: #E6E6E6;
+    border: 0ch;
+    width: 100%;
+    height: 50px;
+    cursor: pointer;
+    box-shadow: 8px 8px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 6pt;
+}
+
+
+
+
+
+/* END MAIN SECTION STYLES */
+
+/* FOOTER SECTION STYLE */
+footer{
+    display: flex;
+    justify-content: center;
+}
+
+.footerButons{
+    display: flex;
+    width: 30%;
+    justify-content: space-around;
+}
+
+footer button{
+    background-color: #202122;
+    color: #E6E6E6;
+    border: 0ch;
+    width: 45%;
+    height: 50px;
+    cursor: pointer;
+    box-shadow: 8px 8px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+button:hover{
+    filter: opacity(70%);
+}
+/* END FOOTER SECTION STYLE */
+
+.icons{
+    width: 30px;
+}
