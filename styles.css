@@ -5,6 +5,10 @@ body {
   align-items: center;
 }
 
+header * {
+  margin: 0.2rem;
+}
+
 header {
   display: flex;
   flex-direction: column;
@@ -31,4 +35,16 @@ button {
   border-radius: 0.5rem;
   padding: 0.5rem 2rem;
   cursor: pointer;
+}
+
+section {
+  font-weight: bold;
+}
+
+.info-general {
+  text-align: center;
+}
+
+.info-grid {
+  font-style: italic;
 }

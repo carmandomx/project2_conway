@@ -1,10 +1,13 @@
 /* ==============================  USER STORIES  ============================== */
-// 1. As a user, whenever I navigate to the website and see an empty grid with the option to let the user set up the initial configuration.
-// 2. If the game is paused I can resume it
-// 3. I can clear the board
-// 4. I can click a 'Randomize' button that will generate an initial configuration for the game to play and this can only be done when the games has not started or is paused.
-// 5. I can see the amount of generation has passed since the start of the game
-// 6. (Optional) Research know patterns that occurs in the Game Of Life and allow the  user to see those patterns.
+/*
+1.- As a user, whenever I navigate to the website and see an empty grid with the option to let the user set up the initial configuration.
+2.- If the game is paused I can resume it
+3.- I can clear the board
+4.- I can click a 'Randomize' button that will generate an initial configuration for the game to play and this can only be done when the games has not yet started
+5.- I can see the amount of generation has passed since the start of the game
+6.- I can click a button that would set the game back to the initial state (how the website initially loads in)
+7.- (Optional) Research know patterns that occurs in the Game Of Life and allow the  user to see those patterns.
+*/
 
 // DOM button selectors
 const play = document.querySelector(".play");
@@ -18,7 +21,11 @@ const ctx = canvas.getContext("2d"); //to acces the drawing context
 
 // To choose random mode of game
 let randomMode = false;
+//For do the animation for each loop
 let reqAnimation;
+//To indicate if cycle is ON or OFF
+let started;
+let stoped = false;
 
 /* ==============================  BUILDING THE CANVAS GRID  ============================== */
 
@@ -36,8 +43,9 @@ function buildEmptyGrid() {
 }
 
 // Creating a NEW random canvas
-function buildRandomGrid(){
-    return new Array(cols).fill(null)
+function buildRandomGrid() {
+  return new Array(cols)
+    .fill(null)
     .map(() => new Array(rows).fill(0).map(() => Math.round(Math.random())));
 }
 
@@ -109,14 +117,14 @@ function colorCell(event) {
 
 // Each frame update, rewrites the grid with the values of the grid's next generation
 function update() {
-    if (randomMode === true) {
-        randGrid = nextGeneration(randGrid);
-        render(randGrid);
-    } else {
-        emptyGrid = nextGeneration(emptyGrid);
-        render(emptyGrid);
-    }
-    reqAnimation = requestAnimationFrame(update);   
+  if (randomMode === true) {
+    randGrid = nextGeneration(randGrid);
+    render(randGrid);
+  } else {
+    emptyGrid = nextGeneration(emptyGrid);
+    render(emptyGrid);
+  }
+  reqAnimation = requestAnimationFrame(update);
 }
 
 play.addEventListener("click", function () {
@@ -136,37 +144,43 @@ stop.addEventListener("click", function () {
 });
 
 clear.addEventListener("click", clearAll);
-
 // Clears the grid fot both game mode cases
+clickCount = 0; //
 function clearAll() {
-    emptyGrid = emptyGrid.map(function (row) {
-        return row.map(function (cell) {
-            return cell * 0;
-        })
-    })
-    randGrid = randGrid.map(function (row) {
-        return row.map(function (cell) {
-          return cell * 0;
-        })
-      })
-    reqAnimation = requestAnimationFrame(update);
-    random.removeEventListener("click", renderRandomGrid);
-    console.log("the btn CLEAR was pressed");
+  emptyGrid = emptyGrid.map(function (row) {
+    return row.map(function (cell) {
+      return cell * 0;
+    });
+  });
+  randGrid = randGrid.map(function (row) {
+    return row.map(function (cell) {
+      return cell * 0;
+    });
+  });
+  reqAnimation = requestAnimationFrame(update);
+  random.removeEventListener("click", renderRandomGrid);
+  console.log(`the btn CLEAR was pressed ${clickCount} times`);
+  clickCount++;
+  if (clickCount >= 1) {
+    document.querySelector(".info-grid").textContent =
+      "You have dropped a nuclear bomb!";
+    document.querySelector(".info-grid").style.color = "red";
+    return (clickCount = 0);
+  }
 }
-
 
 // To choose a random initial game configuration by clicking a button
 random.addEventListener("click", renderRandomGrid);
 
-function renderRandomGrid(){
-    randomMode = true; // flag to indicate the games Mode of playing
-    render(buildRandomGrid());
+function renderRandomGrid() {
+  randomMode = true; // flag to indicate the games Mode of playing
+  render(buildRandomGrid());
 }
-
 
 /* ==================================  GAME LOGIC  ================================== */
 
 // Function that creates the next cells generation
+let acountGen = 0; //generation accumulator
 function nextGeneration(grid) {
   // making a copy of the current grid to edit on the next gen
   const nextGeneration = grid.map((arr) => [...arr]);
@@ -235,5 +249,15 @@ function nextGeneration(grid) {
       }
     }
   }
+  acountGen++;
+  genText();
   return nextGeneration;
+}
+
+/* ===============================   text section   =============================== */
+function genText() {
+  document.querySelector(
+    ".info-gen"
+  ).textContent = `Have passed ${acountGen} generations`;
+  return (clickCount = 0);
 }
