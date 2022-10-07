@@ -4,9 +4,13 @@ const reset = document.querySelector("#reset");
 const start = document.querySelector("#start");
 const randomize = document.querySelector("#randomize");
 const input =  document.querySelector("#quantity");
+const clear = document.querySelector("#clear");
+
+const textLevel = document.querySelector('.generationNo');
 
 let stop = true;
 let gameId = 0;
+let count = 0;
 
 const GRID_WIDTH =  600;             
 const GRID_HEIGHT = 600;       
@@ -88,6 +92,8 @@ function checkAlive(grid){
           // Count ofpopulation
           numAlive = check(x - 1, y - 1) + check(x, y - 1) + check(x + 1, y - 1) + check(x - 1, y) + check(x + 1, y) + check(x - 1, y + 1) + check(x, y + 1) + check(x + 1, y + 1);
           gridAlive[x][y] = numAlive;
+          console.log(numAlive);
+          
       }
   }
   return gridAlive;
@@ -98,9 +104,11 @@ function game(grid) {
   if (stop) {
       clearInterval(gameId);
       console.log("YOU PRESS STOP!")
+      //count = 0;
   }
   // Game Logic
   let gridPopullation = checkAlive(grid);
+  //console.log(gridPopullation);
   //Here the rules...
   for(let i = 0;i<COL;i++){
     for(let j = 0;j<COL;j++){
@@ -133,28 +141,33 @@ function game(grid) {
       }
     }
   }
-  //console.log("is working", count);
-
+  //console.log("is working", count++);
+  
+  //updateCounter(count++);
   grid = newGrid;
   drawGrid(newGrid);
+  updateCounter(count++);
 };
 
 reset.addEventListener('click', () =>{
   if (!stop) {
-    stop = true;
+    stop = true;        
     start.innerHTML = "START"
   };
-
+  
   let grid = seedGen(COL, ROW);
   drawGrid(grid);
+  
+  updateCounter(0);
 
 });
 
 start.addEventListener('click', () =>{
-  if (stop) {
+  if (stop) {    
     stop = false;
     start.innerHTML = "STOP"
     gameId = setInterval(game, 200, grid);
+    
   } else {
     stop = true;
     start.innerHTML = "START"
@@ -194,12 +207,15 @@ randomize.addEventListener('click', () =>{
   if (stop == true) { //confirms that the game is stopped before changing it
       grid = seedGen(COL, ROW);
       drawGrid(grid);
+      count = 0;
+      updateCounter(count);
   }
   else{ //sends a warning message if the game is running and does not allow the change to push through
       window.alert("Can only randomize when the game is not playing!");
   }
 
 });
+
 
 
 input.addEventListener('change', (event) => {
@@ -210,4 +226,9 @@ input.addEventListener('change', (event) => {
   grid = emptyGrid(COL,ROW);
   drawGrid(grid);
 });
+
+function updateCounter(count){
+  textLevel.innerText = `Generation No: ${count}`;
+  console.log(count);
+}
 
