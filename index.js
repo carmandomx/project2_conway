@@ -24,7 +24,6 @@ class GameOfLife {
 
     // Prop that store the current state on the game
     this.currentState = state.hold; // The initial state
-
     this.playBtn = document.querySelector('.play-btn');
     this.randomizerBtn = document.querySelector('.random-generate-btn');
     this.clearBtn = document.querySelector('.clear-btn');
@@ -248,7 +247,6 @@ class GameOfLife {
     ];
     this.patterns = patterns;
   }
-
   // Method to set current generation with a pattern preset
   setPattern(pattern, startsOn) {
     // Evaluate each coordinate in the pattern
@@ -267,7 +265,6 @@ class GameOfLife {
     }
     this.paintCells();
   }
-
   // Method to generate the grid (without colors)
   generateGrid() {
     // Create matrix of cells
@@ -395,12 +392,10 @@ class GameOfLife {
       }
     }
   }
-
   clear() {
     this.clearData();
     this.paintCells();
   }
-
   isCurrentGenerationEmpty() {
     for (let row of this.currentGeneration) {
       const rowContainsCellLives = row.some((col) => col === true || col === 1);
@@ -410,7 +405,6 @@ class GameOfLife {
     }
     return true;
   }
-
   updatePlayBtnState() {
     this.currentState = Number(!this.currentState);
     this.playBtn.textContent = this.currentState > 0 ? 'Play' : 'Stop';
@@ -442,7 +436,6 @@ window.onload = () => {
   setInterval(() => {
     switch (game.currentState) {
       case state.stop:
-        console.log('You are stopping');
         break;
       case state.play:
         //Logic for a game started//
@@ -450,7 +443,6 @@ window.onload = () => {
         //reset button color change to on when the users start playing
         game.resetBtn.className = 'reset-btn-on';
         game.patternSelector.disabled = true;
-        console.log('You are playing');
         break;
       case state.hold:
         // Due to user paint a live cell the buttons change its color
@@ -465,7 +457,6 @@ window.onload = () => {
         }
         //reset button color gets a gray color to mimic not available content
         game.resetBtn.className = 'reset-btn';
-        console.log('Game on hold. it is not started yet');
         break;
     }
   }, game.msVelocity);
