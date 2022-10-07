@@ -33,6 +33,14 @@ button {
   font-family: 'Silkscreen', cursive;
   font-size: 20px;
 }
+.pattern-selector {
+  padding: 10px 20px;
+  border-radius: 10px;
+  border: 2px solid black;
+  font-family: 'Silkscreen', cursive;
+  font-size: 20px;
+  background-color: rgb(199, 245, 199);
+}
 .control-buttons {
   margin-top: 30px;
 }
@@ -52,7 +60,6 @@ button {
   background-color: rgb(187, 50, 50);
   color: white;
 }
-.counter{
+.counter {
   font-size: 50px;
 }
-
