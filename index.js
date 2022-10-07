@@ -14,6 +14,7 @@ const play = document.querySelector(".play");
 const stop = document.querySelector(".stop");
 const random = document.querySelector(".random");
 const clear = document.querySelector(".clr");
+const reset = document.querySelector(".reset");
 
 // To draw and handle the grid canvas
 const canvas = document.querySelector("canvas");
@@ -31,8 +32,8 @@ let stoped = false;
 
 // Defining the canvas size, we can modify this values if we want to resize the grid
 const resolution = 10;
-const h = (canvas.width = 300);
-const w = (canvas.height = 300);
+const h = (canvas.width = 500);
+const w = (canvas.height = 500);
 
 const cols = w / resolution;
 const rows = h / resolution;
@@ -168,6 +169,23 @@ function clearAll() {
     return (clickCount = 0);
   }
 }
+
+
+reset.addEventListener("click", function () {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  cancelAnimationFrame(reqAnimation);
+  render(buildEmptyGrid());
+  document.querySelector(".info-gen").textContent =
+  "how many generations have passed?";
+  document.querySelector(".info-grid").textContent =
+  "Cells Status";
+  document.querySelector(".info-grid").style.color = "black"
+  acountGen = 0;
+  canvas.addEventListener("click", colorCell);
+  
+  console.log("the btn RESET was pressed");
+});
+
 
 // To choose a random initial game configuration by clicking a button
 random.addEventListener("click", renderRandomGrid);
