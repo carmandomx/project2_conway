@@ -165,7 +165,7 @@ reset.addEventListener('click', () =>{
 start.addEventListener('click', () =>{
   if (stop) {
     if (count == 0) {
-      grid = initGrid;
+      initGrid = grid;
     }   
     stop = false;
     start.innerHTML = "STOP"
