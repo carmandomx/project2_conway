@@ -165,6 +165,12 @@ function updateLife() {                                                         
     }
 }
 
+function clearLifeGrid() {                                                          //  User Story 3: Clear the game grid.
+    initTableArrays();                                                              //  Initializes the current and next table as unpopulated or 0.
+    updateLife();                                                                   //  Updates the game grid with the next status of each space.
+}
+
+
 window.onload = () => {                                                             //  When the windows has loaded:
     createLife();                                                                   //  Creates the life of the game with the initial configuration provided by the user.
     createTableArrays();                                                            //  Creates two-dimensional arrays for the current and the next table.
