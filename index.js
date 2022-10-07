@@ -70,12 +70,7 @@ start_stop.addEventListener("click", () => {
         random.disabled = true;
         random.style.cursor = 'no-drop';
     }         
-    else{
-        //If the game is running, this code is executed:
-        stateStartStop = false;
-        start_stop.textContent = "Start"; //Changing the content of the start_Stop button
-        this.GameSound.pause(); //Pausing the music
-    }
+
 
     //To know if the game should be run or paused, the variable "stateStartStop" is used.
     if(stateStartStop){
