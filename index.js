@@ -52,14 +52,14 @@ const initialize = () => {
 
 /* function that creates the board */
 const createTable = () => {
-  let grid = document.querySelector('.grid');
-  let table = document.createElement('table');
+  const grid = document.querySelector('.grid');
+  const table = document.createElement('table');
 
   for (let i = 0; i < rows; i++) {
-    let tr = document.createElement('tr');
+    const tr = document.createElement('tr');
 
     for (let j = 0; j < cols; j++) {
-      let cell = document.createElement('td');
+      const cell = document.createElement('td');
 
       cell.setAttribute('id', 'c' + i + '_' + j);
       cell.className = 'dead pointer';
