@@ -7,6 +7,8 @@ let gameStatus = false;                                                         
 let gameInitiated = false;                                                          //  Variable that sets true if the game was initiated once.
 let timer;                                                                          //  Variable to adjust the speed of the game between generations.
 let lifespeed = 500;                                                                //  Variable to set the time when life comes to another generation.
+let textGeneration = document.querySelector('.gensCompleted')                       //  Variable to set the generations completed on the website.
+let generations = 0;                                                                //  Variable to set the generations counter.
 
 function createLife() {                                                             //  Creates the life of the game with the initial configuration provided by the user.
     let life = document.querySelector('.lifeGrid');                                 //  Creates a variable for the game grid.
@@ -81,6 +83,7 @@ function cycle() {                                                              
     if (gameStatus) {                                                               //  If the game is running: 
         timer = setTimeout(cycle, lifespeed);                                       //  The timer variable will execute the game cycle after the time between generations has passed.
         generations++;                                                              //  Increase the generation counter.
+        textGeneration.innerText = `Generations completed: ${generations}`;         //  User Story 5: Updates the generation counter on the website.
     }
 }
 
