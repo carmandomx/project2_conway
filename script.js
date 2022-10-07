@@ -97,7 +97,6 @@ function randomizer() {
         }
         tempDraw();
     }
-    
 }
 
 /*This function will handle the new canvas generation, it will also
@@ -111,7 +110,6 @@ function playCreate() {
         checkNeighbors();
         tempDraw();
     }
-
     //Here we check if the pause button is clicked and act accordingly
     pause.addEventListener("click", stop)
     function stop(){
@@ -122,6 +120,7 @@ function playCreate() {
 }
 
 function draw() {
+    loopFlag = false;
     const resolution = 10;
     createCanvas(500, 500);
     cols = width / resolution;
