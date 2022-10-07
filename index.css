@@ -11,7 +11,7 @@ html
 /* ELEMENTS */
 
 canvas {
-  align-self: center;
+  align-self: top;
 }
 
 body {
@@ -20,6 +20,10 @@ body {
   justify-content: center;
   align-items: center;
 
+}
+
+div{
+  margin-bottom: 3%;
 }
 
 h1 {
