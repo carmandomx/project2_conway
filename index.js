@@ -255,6 +255,7 @@ function nextGeneration(grid) {
 }
 
 /* ===============================   text section   =============================== */
+//Text indicating the number and generations that have passed.
 function genText() {
   document.querySelector(
     ".info-gen"
