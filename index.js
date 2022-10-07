@@ -29,6 +29,7 @@ class GameOfLife {
     this.randomizerBtn = document.querySelector('.random-generate-btn');
     this.clearBtn = document.querySelector('.clear-btn');
     this.resetBtn = document.querySelector('.reset-btn');
+    this.patternSelector = document.querySelector('.pattern-selector');
     this.canvas = document.querySelector(element);
     this.countGeneration = document.querySelector('.counter');
     this.context = this.canvas.getContext('2d');
@@ -49,9 +50,11 @@ class GameOfLife {
     this.pause = true;
     // Store generation count
     this.count = 0;
+    this.patterns = [];
   }
   // Method to init game sequence
   init() {
+    this.generatePatters();
     this.generateGrid();
     this.initEvents();
   }
@@ -91,13 +94,13 @@ class GameOfLife {
     });
     // Clear board configuration values
     this.resetBtn.addEventListener('click', () => {
-        //Reset Logic only happens when users have already started the game, it will be checked with the iterations.
-        if (this.count>0) {
-          this.clear();
-          this.count = 0;
-          this.countGeneration.innerHTML = "";
-          this.currentState = state.hold;
-        }
+      //Reset Logic only happens when users have already started the game, it will be checked with the iterations.
+      if (this.count > 0) {
+        this.clear();
+        this.count = 0;
+        this.countGeneration.innerHTML = '';
+        this.currentState = state.hold;
+      }
     });
     // Clear board configuration values
     this.clearBtn.addEventListener('click', () => {
@@ -111,6 +114,24 @@ class GameOfLife {
       } else if (this.currentState != state.hold) {
         this.updatePlayBtnState();
       }
+    });
+    this.patternSelector.addEventListener('change', (event) => {
+      this.clear();
+      // Get number of times patters will be repeated
+      // default value: 1 time in the middle
+      const repeats = this.patterns[event.target.value].repeatOn || [
+        {
+          row: this.canvasRow / 2,
+          col: this.canvasCol / 2,
+        },
+      ];
+      // Each object in repeats is evaluated and calls the method setPattern that receives the option value in the selector and the position where the pattern must be printed
+      repeats.forEach((startsOn) => {
+        this.setPattern(
+          this.patterns[event.target.value].coordinates,
+          startsOn
+        );
+      });
     });
   }
   async gameLoop() {
@@ -131,6 +152,122 @@ class GameOfLife {
     this.generateRandomData();
     this.paintCells();
   }
+  // Method to generate preset patterns
+  generatePatters() {
+    const patterns = [
+      {
+        // Array of objects to store the location in the grid
+        // In this case it pattert will be repeated 4 times in for different positions
+        repeatOn: [
+          {
+            row: this.canvasRow / 2,
+            col: this.canvasCol / 2,
+          },
+          {
+            row: 0,
+            col: this.canvasCol / 2,
+          },
+          {
+            row: this.canvasRow / 2,
+            col: -1,
+          },
+          {
+            row: this.canvasRow / 2,
+            col: this.canvasCol - 1,
+          },
+        ],
+        // this array is a "mini matrix" of the pattern. In this case it use only 6 cells so maybe it is not necessary use loops
+        coordinates: [
+          { row: 0, col: 0 },
+          { row: 1, col: 0 },
+          { row: 1, col: 1 },
+          { row: 1, col: 2 },
+          { row: 2, col: 1 },
+          { row: 0, col: 2 },
+        ],
+      },
+      {
+        repeatOn: [
+          {
+            row: this.canvasRow / 2,
+            col: this.canvasCol / 2 + 5,
+          },
+          {
+            row: 5,
+            col: this.canvasCol / 2,
+          },
+        ],
+        // Execute the next function to generate a pattern
+        // Second pattern: it is a "mini matrix"
+        coordinates: (function () {
+          const result = [];
+          for (let row = 0; row < 4; row++) {
+            for (let col = 0; col < 7; col++) {
+              if (
+                (row == 0 && (col == 4 || col == 5)) ||
+                (row == 1 && col != 4) ||
+                (row == 2 && col != 6) ||
+                (row == 3 && col >= 1 && col <= 4)
+              ) {
+                result.push({ row, col });
+              }
+            }
+          }
+          return result;
+        })(),
+      },
+      {
+        // Three different locations for the 3rd pattern
+        repeatOn: [
+          {
+            row: this.canvasRow / 2,
+            col: this.canvasCol / 2 - 3,
+          },
+          {
+            row: this.canvasRow / 2 - 2,
+            col: this.canvasCol / 2 + 3,
+          },
+          {
+            row: this.canvasRow / 2 - 4,
+            col: this.canvasCol / 2 + 9,
+          },
+        ],
+        // Third patter
+        coordinates: (function () {
+          const result = [];
+          for (let row = 0; row < 3; row++) {
+            for (let col = 0; col < 3; col++) {
+              if (!(row == 1 && col == 1)) {
+                result.push({ row, col });
+              }
+            }
+          }
+          return result;
+        })(),
+      },
+    ];
+    this.patterns = patterns;
+  }
+
+  // Method to set current generation with a pattern preset
+  setPattern(pattern, startsOn) {
+    // Evaluate each coordinate in the pattern
+    for (let index = 0; index < pattern.length; index++) {
+      const coordinate = pattern[index];
+      // Calculate the position in the grid  where the pattern must be printed
+      const x = coordinate.row + (startsOn && startsOn.row ? startsOn.row : 0);
+      const y = coordinate.col + (startsOn && startsOn.col ? startsOn.col : 0);
+      // If the coordinate is part og the grid (not undefined) then change the state of that cell to 1
+      if (
+        this.currentGeneration[x] != undefined &&
+        this.currentGeneration[x][y] != undefined
+      ) {
+        this.currentGeneration[x][y] = 1;
+      }
+    }
+    this.paintCells();
+  }
+
   // Method to generate the grid (without colors)
   generateGrid() {
     // Create matrix of cells
@@ -311,21 +448,23 @@ window.onload = () => {
         //Logic for a game started//
         game.gameLoop();
         //reset button color change to on when the users start playing
-        game.resetBtn.className = "reset-btn-on";
+        game.resetBtn.className = 'reset-btn-on';
+        game.patternSelector.disabled = true;
         console.log('You are playing');
         break;
       case state.hold:
         // Due to user paint a live cell the buttons change its color
-        game.playBtn.textContent = "Play";
+        game.playBtn.textContent = 'Play';
         if (!game.isCurrentGenerationEmpty()) {
           game.playBtn.classList.remove('play-btn');
           game.playBtn.classList.add('play-btn-start');
         } else {
           game.playBtn.classList.remove('play-btn-start');
           game.playBtn.classList.add('play-btn');
+          game.patternSelector.disabled = false;
         }
         //reset button color gets a gray color to mimic not available content
-        game.resetBtn.className = "reset-btn";
+        game.resetBtn.className = 'reset-btn';
         console.log('Game on hold. it is not started yet');
         break;
     }
