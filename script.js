@@ -1,9 +1,13 @@
 //We relate the container 
 const container = document.querySelector("#container");
 //si ij, si i-1j
+
 let countgen = 0;
+
+
 let cells = new Array(52).fill(0).map(() => new Array(52).fill(0));
 
+let _countgen = document.querySelector('h2');
 let _resume = document.querySelector('.resume');
 let _play = document.querySelector('.play');
 let _pause = document.querySelector('.pause');
@@ -165,14 +169,14 @@ function draw() {
     noLoop();
 }
 
-randomizer();
 
+document.querySelector('h2').innerHTML = "Generation:  " + countgen;
 
 //Button clicks attached to functions
 _resume.addEventListener('click', );
 _play.addEventListener('click', );
 _pause.addEventListener('click', ); 
 _clear.addEventListener('click', ); 
-_randomize.addEventListener("click", );
+_randomize.onclick = randomizer;   
 _customMode.addEventListener('click', ); 
 _customPttrns.addEventListener('click', );

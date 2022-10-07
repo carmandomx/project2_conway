@@ -25,6 +25,13 @@ body {
 h1 {
   font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   align-self: center;
+  text-shadow: 2px 4px 8px white;
+  text-decoration: underline;
+  box-shadow: inset 2px 2px 3px rgba(255, 255, 255, .6),
+                inset -2px -2px 3px rgba(0, 0, 0, .6);
+  border-radius: 5px;
+  
+  
 }
 
 /* BUTTONS */
