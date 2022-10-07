@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game of Life</title>
+    <link rel="website icon" type="png" href="img/iconHeart-03.png">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="header">
+        
+        <figure class="header-logo">
+            <img src="img/logo.svg" alt="LogoImage">
+        </figure>
+
+        <div class="counter">
+            <span>Population: <label class="population"></label> <!-- Here we call the variable from script.js --></span>
+            <span>Generation: <label class="generation"></label> <!-- Here we call the variable from script.js --> </span>
+        </div>
+    </header>
+        
+    <main class="main">
+        <nav class="nav-buttons">
+            <button id="start-stop" class="start"><img src="img/Icono5.svg" alt="icono" class="startIcon icons"> Start</button>
+            <button id="random" class="randomized"><img src="img/Icono4.svg" alt="icono" class="icons"> Randomized</button>
+        </nav>
+        <canvas id="gamefield" width="1000" height="500"></canvas>
+    </main>
+
+    <footer>
+        <div class="footerButons">
+            <button id="clear" ><img src="img/Icono2.svg" alt="icono" class="icons"> Clear</button>
+            <button id="reset"><img src="img/Icono1.svg" alt="icono" class="icons"> Reset</button>
+        </div>
+    </footer>
+
+    <script src="GameOfLife.js"></script>
+    <script src="index.js"></script>
+</body>
+</html>
