@@ -421,7 +421,7 @@ window.onload = () => {
   const strokeColor = 'rgba(40, 40, 40, 0.2)';
 
   // Creates an instance of the game
-  const game = new GameOfLife('#game-grid', {
+  const game = new GameOfLife('.game-grid', {
     widthCanvas,
     heightCanvas,
     cellSize,
