@@ -1,3 +1,9 @@
+/* Center the header section with flexbox  */
+header {
+    display: flex;
+    justify-content: center;
+}
+
 /* Center the grid on the viewport width, set the game grid to 50% of the viewport width and gives 10 pixels space to the grid area */
 .lifeGrid {
     margin: auto;
