@@ -61,17 +61,17 @@ function initTableArrays() {                                                    
 }
 
 function startStopGame() {                                                          //  User Story 2: Toogle the game status. Start/Stop.
-    let startlife = document.querySelector('#btnStartStop');                //  Creates a variable that set the value of the Start/Stop button on the website.
+    let startlife = document.querySelector('#btnStartStop');                        //  Creates a variable that set the value of the Start/Stop button on the website.
     
-    if (gameStatus) {                                                       //  If the game has begun:
-        gameStatus = false;                                                 //  Status variable will be set to false.
-        startlife.value = 'Start';                                          //  Start/Stop button on the webiste will go to Start option.
-        clearTimeout(timer);                                                //  Clear the timeout previosly established.
-    } else {                                                                //  Otherwise:
-        gameStatus = true;                                                  //  Status variable will be set to true.
-        gameInitiated = true;                                               //  Sets variable to true to confirm the game has begun.
-        startlife.value = 'Stop';                                           //  Start/Stop button on the website will go to Stop option.
-        cycle();                                                            //  Run a Game of Life cycle.
+    if (gameStatus) {                                                               //  If the game has begun:
+        gameStatus = false;                                                         //  Status variable will be set to false.
+        startlife.value = 'Start';                                                  //  Start/Stop button on the webiste will go to Start option.
+        clearTimeout(timer);                                                        //  Clear the timeout previosly established.
+    } else {                                                                        //  Otherwise:
+        gameStatus = true;                                                          //  Status variable will be set to true.
+        gameInitiated = true;                                                       //  Sets variable to true to confirm the game has begun.
+        startlife.value = 'Stop';                                                   //  Start/Stop button on the website will go to Stop option.
+        cycle();                                                                    //  Run a Game of Life cycle.
     }
 }
 
@@ -88,21 +88,21 @@ function cycle() {                                                              
 }
 
 function createNextTable() {                                                        //  Creates the next generation table.
-    for (row in currentTable) {                                             //  For each row in the current table:
-        for (column in currentTable[row]) {                                 //  For each column in the current row of the table:
-            let neighbors = getNeighborsCount(row, column);                 //  Creates a varible for the number of current neighbors populated (1).
+    for (row in currentTable) {                                                     //  For each row in the current table:
+        for (column in currentTable[row]) {                                         //  For each column in the current row of the table:
+            let neighbors = getNeighborsCount(row, column);                         //  Creates a varible for the number of current neighbors populated (1).
                                                        
-            if (currentTable[row][column] === 1) {                          //  If cell is populated (1):
-                if (neighbors < 2) {                                        //  If neighbors are less than 2:
-                    nextTable[row][column] = 0;                             //  The cell dies in the next generation by underpopulation. 
-                } else if (neighbors === 2 || neighbors === 3) {            //  Else, if neighbors are equal to 2 or 3:
-                    nextTable[row][column] = 1;                             //  The cell lives in the next generation. 
-                } else if (neighbors > 3) {                                 //  Else, if neighbors are more than 3: 
-                    nextTable[row][column] = 0;                             //  The cell dies in the next generation by overpopulation.
+            if (currentTable[row][column] === 1) {                                  //  If cell is populated (1):
+                if (neighbors < 2) {                                                //  If neighbors are less than 2:
+                    nextTable[row][column] = 0;                                     //  The cell dies in the next generation by underpopulation. 
+                } else if (neighbors === 2 || neighbors === 3) {                    //  Else, if neighbors are equal to 2 or 3:
+                    nextTable[row][column] = 1;                                     //  The cell lives in the next generation. 
+                } else if (neighbors > 3) {                                         //  Else, if neighbors are more than 3: 
+                    nextTable[row][column] = 0;                                     //  The cell dies in the next generation by overpopulation.
                 }
-            } else if (currentTable[row][column] === 0) {                   //  Else, if it is unpopulated (0):
-                if (neighbors === 3) {                                      //  If neighbors are exactly 3:
-                    nextTable[row][column] = 1;                             //  The cell becomes a live cell by reproduction.
+            } else if (currentTable[row][column] === 0) {                           //  Else, if it is unpopulated (0):
+                if (neighbors === 3) {                                              //  If neighbors are exactly 3:
+                    nextTable[row][column] = 1;                                     //  The cell becomes a live cell by reproduction.
                 }
             }
         }
@@ -176,6 +176,10 @@ function updateLife() {                                                         
 function clearLifeGrid() {                                                          //  User Story 3: Clear the game grid.
     initTableArrays();                                                              //  Initializes the current and next table as unpopulated or 0.
     updateLife();                                                                   //  Updates the game grid with the next status of each space.
+}
+
+function restartInitState() {                                                       //  User Story 6: Set the game back to the initial state.
+    location.reload();                                                              //  Reloads the website to the initial state.
 }
 
 function randomInitState() {                                                        //  User Story 4: Sets a random initialization configuration. 
