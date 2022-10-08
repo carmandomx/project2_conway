@@ -94,6 +94,8 @@ html {
 
 /* Disable the buttons when needed*/
 .start:disabled,
+.pause:disabled,
+.clear:disabled  {
 .pause:disabled {
   background-color: #eee;
 }

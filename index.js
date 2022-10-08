@@ -1,6 +1,7 @@
 /*-------------------------------------------------Buttons from HTML-------------------------------------------------*/
 const startButton = document.querySelector(".start");
 const pauseButton = document.querySelector(".pause");
+const clearButton = document.querySelector(".clear");
 
 
 /*-------------------------------------------------Elements from HTML-------------------------------------------------*/
@@ -190,6 +191,17 @@ pauseButton.addEventListener('click', () => {
         pauseButton.innerText = 'PAUSE';
         title.innerText = 'Game of life';
     }
+});
+
+// Clear button
+clearButton.addEventListener('click', () => {
+    fill2DArray();
+    updateVisualBoard();
+    if (started === true) {
+        clearButton.disabled = true;
+    }
+});
+
 })
 
 
