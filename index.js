@@ -67,6 +67,7 @@ const drawGrid = function() {
   } 
 };
 
+//Functions of the rules    Below...
 const check = function (x,y){
   //outsite the limits =0
   if(x < 0 || x >= COL|| y < 0 || y >= ROW){
@@ -92,6 +93,7 @@ const gridAlive = function(){
   return gridAlive;
 };
 
+//User Story 5
 const updateCounter = function (count){
   textLevel.innerText = `Generation No: ${count}`;
 }
@@ -153,6 +155,8 @@ const game = function() {
   drawGrid();
 };
 
+//USER STORY 6
+//don't work
 reset.addEventListener('click', () =>{
   if (!stop) {
     stop = true;        
@@ -163,6 +167,7 @@ reset.addEventListener('click', () =>{
   updateCounter(0);
 });
 
+//USER STORY 2
 start.addEventListener('click', () =>{
   if (stop) {
     if (count == 0) {
@@ -185,6 +190,7 @@ let mouseGrid = {
 };
 
 window.addEventListener('mousemove', function (e) {
+  //USER STORY 1
   //check the position inside the canva to know the position of my click
   var rect = canvas.getBoundingClientRect();
   //here I get the position of my click
@@ -194,6 +200,8 @@ window.addEventListener('mousemove', function (e) {
 });
 
 canvas.addEventListener('click', function(){
+  //USER STORY 1
+
   //if play, you can't change values
   if(stop){
     //change the state the grid 
@@ -205,6 +213,7 @@ canvas.addEventListener('click', function(){
   } 
 });
 
+//USER STORY 4
 //adding the interaction with the randomize button
 randomize.addEventListener('click', () =>{
   if (stop == true) { //confirms that the game is stopped before changing it
