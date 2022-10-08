@@ -36,32 +36,6 @@ class gameConway {
             this.nextGeneration = this.currentGeneration; //initializing the nextGeneration too
         };
 
-
-        //Random function.
-        this.gameRandomize = () => {
-
-            for (let i = 0; i < this.rowsNumber; i++) {
-                for (let j = 0; j < this.columnsNumber; j++) {
-                    //math.random returns a number from 0 to 1, by modifying the number with which it is 
-                    //compared within the "if" we can appear more or less living cells
-                    this.currentGeneration[i][j] = (Math.random() > 0.8) ? 1 : 0;
-                }
-            }
-        };
-
-        //population count function
-        this.population = () => {
-            let population = 0;
-            for (let i = 0; i < this.rowsNumber; i++) {
-                for (let j = 0; j < this.columnsNumber; j++) {
-                    //Cell by cell is counted to obtain the living population
-                    if(this.currentGeneration[i][j] == 1)population++; 
-                }
-            }
-            return population;
-        };
-
-
         //function to fill with the representative colors of each state of the cells
         this.fillCanvas = () => {
             //The next 3 double "for" are to block sections of the canvas that don't work well
@@ -120,6 +94,19 @@ class gameConway {
             }
 
         };
+
+         //Random function.
+         this.gameRandomize = () => {
+
+            for (let i = 0; i < this.rowsNumber; i++) {
+                for (let j = 0; j < this.columnsNumber; j++) {
+                    //math.random returns a number from 0 to 1, by modifying the number with which it is 
+                    //compared within the "if" we can appear more or less living cells
+                    this.currentGeneration[i][j] = (Math.random() > 0.8) ? 1 : 0;
+                }
+            }
+        };
+
 
 
 
@@ -237,4 +224,5 @@ class gameConway {
 
     }
 }
+
 
