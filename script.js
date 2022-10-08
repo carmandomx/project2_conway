@@ -5,6 +5,7 @@ let countgen = 0;
 let cells = new Array(52).fill(0).map(() => new Array(52).fill(0));
 //May have no use for this variable, during final review, check if needed
 let loopFlag = true;
+
 const resolution = 10;
 //These flags will allow the code to enable or disable changes when the game is running or stopped
 let canRandom = true;
@@ -108,11 +109,14 @@ function playCreate() {
     play.textContent = "Play";
     play.disabled = true;
     //We set an interval to run the new canvas
+
     let intervalID = setInterval(create, 100);
     //This function will loop the creations of new generations
     function create(){
         canRandom = false;      //These variables turn these flags down to avoid changes when the game is running
         canClick = false;
+
+  
         checkNeighbors();
         tempDraw();
     }
@@ -122,15 +126,19 @@ function playCreate() {
         play.textContent = "resume";
         play.disabled = false;
         canRandom = true;
+
         canClick = true;
-        clearInterval(intervalID);
-        intervalID = null;
+
+
     }
 }
 
 function draw() {
     loopFlag = false;
+
     //const resolution = 10;
+
+  
     createCanvas(500, 500);
     cols = width / resolution;
     rows = height / resolution;
@@ -150,6 +158,7 @@ function draw() {
     noLoop();
 }
 
+
 //This function listens for clicks on the grid
 function mousePressed() {
     //Variables x and y contain the coordinates from the mouse, divided by the resolution of the cells
@@ -166,12 +175,16 @@ function mousePressed() {
     }
 }
 
+
 /*Unfortunatly, I wasn´t able to recycle the draw() function due to
 how the library works, so i had to kill the original loop, and create
 a new funciton that does the same but has to be called, this gives 
 control but makes draw() usable only once.*/
 function tempDraw() {
+
     //const resolution = 10;
+
+
     createCanvas(500, 500);
     cols = width / resolution;
     rows = height / resolution;
