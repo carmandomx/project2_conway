@@ -204,7 +204,6 @@ canvas.addEventListener('click', function(){
   
 });
 
-
 //adding the interaction with the randomize button
 randomize.addEventListener('click', () =>{
   if (stop == true) { //confirms that the game is stopped before changing it
@@ -218,8 +217,6 @@ randomize.addEventListener('click', () =>{
   }
 
 });
-
-
 
 input.addEventListener('change', (event) => {
   
@@ -235,3 +232,11 @@ function updateCounter(count){
   console.log(count);
 }
 
+/*
+dejar los valores globales y mas especificas
+shadowing variable glkobal 
+repeticion de cosas->
+
+responsive tema
+expresiones de funcion son mejores
+*/
