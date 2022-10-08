@@ -10,10 +10,15 @@ let nextGrid = new Array(rows);
 let timer;
 const reproductionTime = 100;
 
+let generation = 1;
+
 /* Control buttons */
 const playButton = document.querySelector('.play');
 const clearButton = document.querySelector('.clear');
 const randomizeButton = document.querySelector('.randomize');
+
+/*Generation label*/
+const generationLabel = document.querySelector('.generation-count');
 
 /* function that sets the grids */
 const initializeGrids = () => {
@@ -186,6 +191,8 @@ randomizeButton.onclick = randomizeButtonHandler;
 /* function that runs the game */
 const play = () => {
   computeNextGen();
+  generation++;
+  generationLabel.innerText = `Generation: ${generation}`;
 
   if (playing) {
     timer = setTimeout(play, reproductionTime);
