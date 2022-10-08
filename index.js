@@ -130,6 +130,20 @@ clear.addEventListener("click", () => {
 
 })
 
+//event to enter a random configuration.
+random.addEventListener("click", () => {
+    //This can only happen if the game has never started.
+    if(!isStarted){
+        currentGame.gameRandomize();//random function
+        currentGame.fillCanvas(); //updating the canvas
+        populationNumber.textContent = currentGame.population();////updating the population
+    }
+   //setting the clear button to its enabled version.
+    clear.style.backgroundColor = disableColor;
+    clear.style.cursor = "pointer";
+    clear.disabled = false;
+    
+})
 
 
 
