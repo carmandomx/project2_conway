@@ -85,9 +85,6 @@ start_stop.addEventListener("click", () => {
         intervalId = window.setInterval(() => {
             currentGame.updateGeneration();//updating the generations
             currentGame.fillCanvas();//updating the canvas
-            generationCounter++; //One generation has passed 
-            generationNumber.textContent = generationCounter; //Showing in HTML the generations that have already passed
-            populationNumber.textContent = currentGame.population(); //calculating the population of each generation and displaying it in HTML
             }, 300)
     } //This method stops the "window.setInterval" with its ID
     else window.clearInterval(intervalId);
@@ -110,36 +107,12 @@ canvas.addEventListener('click', function(event) {
         currentGame.clickCell(x,y);
         currentGame.fillCanvas(); //updating the canvas 
         currentGame.population(); //updating the population
-        populationNumber.textContent = currentGame.population();//showing the new population.
-        //If this event causes the population to be greater than 0, the "clear" button is enabled.
-        if(currentGame.population() > 0){
-            clear.style.backgroundColor = disableColor;
-            clear.style.cursor = "pointer";
-            clear.disabled = false;
-        } //Otherwise the clear button is disabled.
-        else {
-            clear.style.backgroundColor = disableColor;
-            clear.style.cursor = "no-drop";
-            clear.disabled = true;
-        }
+    
 
     }
 }, false);
 
 
-//Event to clear the board.
-clear.addEventListener("click", () => {
-    //This can only happen if the population is greater than 0.
-    if(currentGame.population() != 0){
-    currentGame.gameInitialization(); //the Initialization does not restart the game, just restart the arrays.
-    currentGame.fillCanvas(); //updating the canvas.
-    populationNumber.textContent = currentGame.population(); //updating the population.
-    //setting the clear button to its disabled version.
-    clear.style.backgroundColor = disableColor;
-    clear.style.cursor = "no-drop";
-    clear.disabled = true;
-    }
-})
 
 
 
