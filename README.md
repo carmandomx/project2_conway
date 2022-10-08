@@ -29,7 +29,7 @@ Please use this format for your User Stories assignations
 | ---------------- | :---: | :---: |  :---:  |  :---:  |
 | Game Logic       |   X   |       |         |         |
 | Bug fix          |   X   |   X   |         |         |
-| Style            |       |   X   |    X    |         |
+| Style            |       |   X   |         |         |
 
 # Live demo
 
