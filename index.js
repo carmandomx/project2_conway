@@ -28,8 +28,11 @@ let intervalId;
 //between several elements and there are adjacent similar elements, 
 //so selecting them with only elements would be complicated.
 const start_stop = document.querySelector(".start");
-
-
+const reset = document.querySelector(".reset");
+const clear = document.querySelector(".clear");
+const random = document.querySelector(".randomized");
+const generationNumber = document.querySelector(".generation");
+const populationNumber = document.querySelector(".population");
 
 
 //game sound.
@@ -112,7 +115,20 @@ canvas.addEventListener('click', function(event) {
     }
 }, false);
 
+clear.addEventListener("click", () => {
 
+    //This can only happen if the population is greater than 0.
+    if(currentGame.population() != 0){
+    currentGame.gameInitialization(); //the Initialization does not restart the game, just restart the arrays.
+    currentGame.fillCanvas(); //updating the canvas.
+    populationNumber.textContent = currentGame.population(); //updating the population.
+    //setting the clear button to its disabled version.
+    clear.style.backgroundColor = disableColor;
+    clear.style.cursor = "no-drop";
+    clear.disabled = true;
+    }
+
+})
 
 
 
