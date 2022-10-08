@@ -95,7 +95,7 @@ createGrid = () => {
     for (let i = 0; i < size; i++) {
         const div = document.createElement("div");
         div.classList.add("dead");
-        div.classList.add("grayGridgit");
+        div.classList.add("grayGrid");
         div.id = "cell_" + i.toString();
         grid.appendChild(div);
     }
