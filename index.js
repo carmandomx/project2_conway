@@ -202,8 +202,6 @@ clearButton.addEventListener('click', () => {
     }
 });
 
-})
-
 
 /*-------------------------------------Function that create the Next Generation Function-------------------------------*/
 function nextGeneration(cellsArray) {
