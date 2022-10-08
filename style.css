@@ -27,17 +27,18 @@ body{
 
 /* HEADER SECTIONS STYLES */
 header{
-    padding-top: 8px;
+    padding-top: 10px;
     display: flex;
     width: 100%;
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
-    height: 15vh;
+    height: 20vh;
+    
 }
 
 header figure{
-    width: 15%;
+    width: 20%;
 }
 
 header div{
@@ -57,10 +58,13 @@ main{
     height: 70vh;
 }
 
+main nav{
+    margin-top: 10vh;
+}
+
 
 
 main nav{
-    margin-top: 10vh;
     display: flex;
     flex-direction: column;
     width: 8%;
