@@ -8,7 +8,6 @@ Name, career path and email:
 
 1. Argenis Gonzalez - Javascript - argenis.gonzalez@itksquare.edu.mx
 2. Daniel Bacab - Flutter - Daniel.Bacab@itksquare.edu.mx
-3. Jose De la Cruz - Salesforce - jose.delacruz@itksquare.edu.mx
 
 
 ## Assignation 
@@ -16,14 +15,14 @@ Name, career path and email:
 Please use this format for your User Stories assignations
 
 
-| User Stories     | Argenis Gonzalez| Daniel Bacab | Jose de la Cruz | 
-| ---------------- | :--: | ---: |:--: | 
-| 1. As a user, whenever I navigate to the website and see an empty grid with the option to let the user set up the initial configuration. |  x  |      |      |
-| 2. If the game is paused I can resume it |  x  |      |      |
-| 3. I can clear the board. |     |   x   |     |
-| 4. I can click a 'Randomize' button that will generate an initial configuration for the game to play and this can only be done when the games has not yet started.|     |   x   |      | 
-| 5. I can see the amount of generation has passed since the start of the game.|     |     |   x   |
-| 6. I can click a button that would set the game back to the initial state (how the website initially loads in)|     |      |   x   | 
+| User Stories     | Argenis Gonzalez| Daniel Bacab | 
+| ---------------- | :--: | :--: |
+| 1. As a user, whenever I navigate to the website and see an empty grid with the option to let the user set up the initial configuration. |  x  |      |
+| 2. If the game is paused I can resume it |  x  |      |
+| 3. I can clear the board. |     |  x  |
+| 4. I can click a 'Randomize' button that will generate an initial configuration for the game to play and this can only be done when the games has not yet started.|     |  x  |
+| 5. I can see the amount of generation has passed since the start of the game.|     |  x  |
+| 6. I can click a button that would set the game back to the initial state (how the website initially loads in)|  x   |    |
 
 # Live demo
 
