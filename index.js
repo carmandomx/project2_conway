@@ -16,6 +16,7 @@ let generation = 1;
 const playButton = document.querySelector('.play');
 const clearButton = document.querySelector('.clear');
 const randomizeButton = document.querySelector('.randomize');
+const resetButton = document.querySelector('.reset');
 
 /*Generation label*/
 const generationLabel = document.querySelector('.generation-count');
@@ -120,6 +121,8 @@ const updateView = () => {
 const playButtonHandler = () => {
   if (playButton.innerText === 'Play') {
     randomizeButton.className = 'hidden';
+    resetButton.className = 'btn';
+
   }
 
   if (!playing) {
@@ -139,24 +142,9 @@ playButton.onclick = playButtonHandler;
 const clearButtonHandler = () => {
   clearTimeout(timer);
 
-  /* Grab all live cells */
-  const liveCells = document.querySelectorAll('.live');
-
-  /* Make an array to store the live cells */
-  const cells = [];
-
-  /* Fill the newly created array with the live cells */
-  for (let i = 0; i < liveCells.length; i++) {
-    cells.push(liveCells[i]);
-  }
-
-  /* Kill the live cells */
-  for (let i = 0; i < cells.length; i++) {
-    cells[i].className = 'dead';
-  }
-
   /* Reset the grid */
   resetGrids();
+  updateView();
 
   /* If the game was playing, resume it */
   if (playing) {
@@ -187,6 +175,17 @@ const randomizeButtonHandler = () => {
   }
 };
 randomizeButton.onclick = randomizeButtonHandler;
+
+const resetButtonHandler = () => {
+  playing = false;
+  playButton.innerText = 'Play';
+  clearButtonHandler();
+  resetButton.className = 'hidden';
+  randomizeButton.className = 'btn';
+  generation = 1;
+  generationLabel.innerText = `Generation: ${generation}`;
+}
+resetButton.onclick = resetButtonHandler;
 
 /* function that runs the game */
 const play = () => {
