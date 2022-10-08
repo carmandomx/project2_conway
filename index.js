@@ -95,6 +95,7 @@ createGrid = () => {
     for (let i = 0; i < size; i++) {
         const div = document.createElement("div");
         div.classList.add("dead");
+        div.classList.add("grayGridgit");
         div.id = "cell_" + i.toString();
         grid.appendChild(div);
     }
@@ -159,6 +160,9 @@ square.addEventListener("mouseover", function (event) {
 // Start button
 startButton.addEventListener("click", function () {
     startedGame = true;
+    for(let i=0;i<(gridSize*gridSize);i++){   
+        grid.children[i].classList.remove("grayGrid");
+    }
     setInterval(() => {
         refresh();
     }, 1000 / 10);

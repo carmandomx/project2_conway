@@ -17,6 +17,10 @@ html {
   background-color: rgb(10, 10, 10);
 }
 
+.grayGrid{
+  border: 1px solid rgb(100, 100, 100);
+}
+
 .alive {
   animation: rainbow-bg 2.5s linear;
   animation-iteration-count: infinite;
