@@ -1,6 +1,7 @@
 /*-------------------------------------------------Buttons from HTML-------------------------------------------------*/
 const startButton = document.querySelector(".start");
-
+const pauseButton = document.querySelector(".pause");
+const clearButton = document.querySelector(".clear");
 
 
 /*-------------------------------------------------Elements from HTML-------------------------------------------------*/
@@ -10,21 +11,26 @@ const grid = document.querySelector(".gridContainer");
 // a cell (div)
 const square = document.querySelector("div");
 
+// Title
+let title = document.querySelector('h1')
 
 
 /*-------------------------------------------------Global Variables-------------------------------------------------*/
+let started = false;
+let pause = false;
+
 let startedGame = false;
 // Logical array of cells
 let cellsArray;
 // n^2 size
 let gridSize = 40;
 
-let buttonPressed=false;
+let buttonPressed = false;
 
 
 /*-------------------------------------------------Initial state of the buttons-------------------------------------------------*/
-
-
+startButton.disabled = true;
+pauseButton.disabled = true;
 
 /*----------------------------Function that receives a number and create a n*n 2D array-------------------------------*/
 function make2DArray(num) {
@@ -57,7 +63,6 @@ function updateVisualBoard() {
         col = getColByIndex(i);
         grid.children[i].classList.remove("dead");
         grid.children[i].classList.remove("alive");
-        //reseteDiv(grid.children[i]);
         if (cellsArray[row][col] == 0) {
             grid.children[i].classList.add("dead");
         } else {
@@ -120,19 +125,20 @@ square.addEventListener("mousedown", function (event) {
     let actualRow = getRowByIndex(actualCell);
     let actualCol = getColByIndex(actualCell);
     if (startedGame == false) {
-        buttonPressed=true;
+        buttonPressed = true;
         if (event.target.classList.contains("dead")) {
             cellsArray[actualRow][actualCol] = 1;
         } else {
             cellsArray[actualRow][actualCol] = 0;
         }
         updateVisualBoard();
+        startButton.disabled = false;
     }
 });
 
 /*--------------------------------------------Setting cell's click listener (up) --------------------------------------------*/
 square.addEventListener("mouseup", function (event) {
-    buttonPressed=false;
+    buttonPressed = false;
 });
 
 
@@ -142,7 +148,7 @@ square.addEventListener("mouseover", function (event) {
     let actualCell = parseInt(String(event.target.id).replace("cell_", ""));
     let actualRow = getRowByIndex(actualCell);
     let actualCol = getColByIndex(actualCell);
-    if(buttonPressed==true){
+    if (buttonPressed == true) {
         if (startedGame == false) {
             if (event.target.classList.contains("dead")) {
                 cellsArray[actualRow][actualCol] = 1;
@@ -152,7 +158,7 @@ square.addEventListener("mouseover", function (event) {
             updateVisualBoard();
         }
     }
-    
+
 });
 
 
@@ -160,12 +166,40 @@ square.addEventListener("mouseover", function (event) {
 // Start button
 startButton.addEventListener("click", function () {
     startedGame = true;
-    for(let i=0;i<(gridSize*gridSize);i++){   
+    for (let i = 0; i < (gridSize * gridSize); i++) {
         grid.children[i].classList.remove("grayGrid");
+    }
+    started = true;
+    if (started === true) {
+        startButton.disabled = true;
+        pauseButton.disabled = false;
     }
     setInterval(() => {
         refresh();
     }, 1000 / 10);
+});
+
+// Pause button
+pauseButton.addEventListener('click', () => {
+    console.log('estoy pausado')
+    if (pause === false) {
+        pause = true;
+        pauseButton.innerText = 'CONTINUE';
+        title.innerText = 'Paused';
+    } else {
+        pause = false;
+        pauseButton.innerText = 'PAUSE';
+        title.innerText = 'Game of life';
+    }
+});
+
+// Clear button
+clearButton.addEventListener('click', () => {
+    fill2DArray();
+    updateVisualBoard();
+    if (started === true) {
+        clearButton.disabled = true;
+    }
 });
 
 
@@ -219,14 +253,16 @@ function nextGeneration(cellsArray) {
 /*-------------------------------------Function that update the generations-------------------------------*/
 function refresh() {
     // Overwrite the cellsArray matrix with the next gerneration matrix so that we can compare and "refresh".
-    cellsArray = nextGeneration(cellsArray);
-    updateVisualBoard();
+    if (pause === false) {
+        cellsArray = nextGeneration(cellsArray);
+        updateVisualBoard();
+    }
 }
 
 
 /*-------------------------------------Function that synchronize animation-------------------------------*/
 window.addEventListener('animationstart', e =>
-    e.animationName == 'rainbow-bg' && e.target.getAnimations({subtree: true}).forEach(e => e.startTime = 0), true)
+    e.animationName == 'rainbow-bg' && e.target.getAnimations({ subtree: true }).forEach(e => e.startTime = 0), true)
 
 
 /*-------------------------------------Call the MAIN FUNCTION-------------------------------*/
