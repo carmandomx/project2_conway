@@ -96,6 +96,5 @@ html {
 .start:disabled,
 .pause:disabled,
 .clear:disabled  {
-.pause:disabled {
   background-color: #eee;
 }
