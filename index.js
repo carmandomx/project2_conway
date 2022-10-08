@@ -69,7 +69,7 @@ const drawGrid = function() {
 
 //Functions of the rules    Below...
 const check = function (x,y){
-  //outsite the limits =0
+  //outsite the limits = 0
   if(x < 0 || x >= COL|| y < 0 || y >= ROW){
       return 0;
   }
@@ -87,7 +87,6 @@ const gridAlive = function(){
           // Count ofpopulation
           numAlive = check(x - 1, y - 1) + check(x, y - 1) + check(x + 1, y - 1) + check(x - 1, y) + check(x + 1, y) + check(x - 1, y + 1) + check(x, y + 1) + check(x + 1, y + 1);
           gridAlive[x][y] = numAlive;
-          //console.log(numAlive);
       }
   }
   return gridAlive;
@@ -105,14 +104,8 @@ drawGrid();
 const game = function() {
   let newGrid = createGrid(true);
 
-  if (stop) {
-      clearInterval(gameId);
-      console.log("YOU PRESS STOP!")
-      //count = 0;
-  }
   // Game Logic
   let gridPopullation = gridAlive();
-  //console.log(gridPopullation);
   //Here the rules...
   for(let i = 0;i<COL;i++){
     for(let j = 0;j<COL;j++){
@@ -156,14 +149,15 @@ const game = function() {
 };
 
 //USER STORY 6
-//don't work
 reset.addEventListener('click', () =>{
   if (!stop) {
     stop = true;        
     start.innerHTML = "START"
+    clearInterval(gameId);
   };
-
+  gridCurrent = initGrid;
   drawGrid();
+  count = 0;
   updateCounter(0);
 });
 
@@ -175,11 +169,12 @@ start.addEventListener('click', () =>{
     }   
     stop = false;
     start.innerHTML = "STOP";
-    gameId = setInterval(game, 200);
+    gameId = setInterval(game, 50);
     
   } else {
     stop = true;
     start.innerHTML = "START";
+    clearInterval(gameId);
   };
 });
 
