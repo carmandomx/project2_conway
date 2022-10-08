@@ -21,6 +21,9 @@ let stateStartStop = false;
 //this variable is to name and therefore, to be able to stop the "window.setInterval" method.
 let intervalId;
 
+//generation counter.
+let generationCounter = 0;
+
 
 //creating variables for ever single querySelector
 
@@ -28,11 +31,12 @@ let intervalId;
 //between several elements and there are adjacent similar elements, 
 //so selecting them with only elements would be complicated.
 const start_stop = document.querySelector(".start");
+const random = document.querySelector(".randomized");
 const reset = document.querySelector(".reset");
 const clear = document.querySelector(".clear");
-const random = document.querySelector(".randomized");
 const generationNumber = document.querySelector(".generation");
 const populationNumber = document.querySelector(".population");
+
 
 
 //game sound.
@@ -48,6 +52,8 @@ reset.style.cursor = "no-drop";
 clear.style.backgroundColor = disableColor;
 clear.style.cursor = "no-drop";
 clear.disabled = true;
+
+
 
 
 //Click event on "start/stop".
@@ -72,14 +78,13 @@ start_stop.addEventListener("click", () => {
         random.style.backgroundColor = disableColor;
         random.disabled = true;
         random.style.cursor = 'no-drop';
-    }        
+    }         
     else{
         //If the game is running, this code is executed:
         stateStartStop = false;
         start_stop.textContent = "Start"; //Changing the content of the start_Stop button
         this.GameSound.pause(); //Pausing the music
     }
-
 
     //To know if the game should be run or paused, the variable "stateStartStop" is used.
     if(stateStartStop){
@@ -88,6 +93,9 @@ start_stop.addEventListener("click", () => {
         intervalId = window.setInterval(() => {
             currentGame.updateGeneration();//updating the generations
             currentGame.fillCanvas();//updating the canvas
+            generationCounter++; //One generation has passed 
+            generationNumber.textContent = generationCounter; //Showing in HTML the generations that have already passed
+            populationNumber.textContent = currentGame.population(); //calculating the population of each generation and displaying it in HTML
             }, 300)
     } //This method stops the "window.setInterval" with its ID
     else window.clearInterval(intervalId);
@@ -110,11 +118,24 @@ canvas.addEventListener('click', function(event) {
         currentGame.clickCell(x,y);
         currentGame.fillCanvas(); //updating the canvas 
         currentGame.population(); //updating the population
-    
+        populationNumber.textContent = currentGame.population();//showing the new population.
+        //If this event causes the population to be greater than 0, the "clear" button is enabled.
+        if(currentGame.population() > 0){
+            clear.style.backgroundColor = disableColor;
+            clear.style.cursor = "pointer";
+            clear.disabled = false;
+        } //Otherwise the clear button is disabled.
+        else {
+            clear.style.backgroundColor = disableColor;
+            clear.style.cursor = "no-drop";
+            clear.disabled = true;
+        }
 
     }
 }, false);
 
+
+//Event to clear the board.
 clear.addEventListener("click", () => {
 
     //This can only happen if the population is greater than 0.
@@ -129,7 +150,6 @@ clear.addEventListener("click", () => {
     }
 
 })
-
 //event to enter a random configuration.
 random.addEventListener("click", () => {
     //This can only happen if the game has never started.
@@ -145,6 +165,8 @@ random.addEventListener("click", () => {
     
 })
 
-
-
-
+//reset event.
+reset.addEventListener("click", () => {
+    window.clearInterval(intervalId); //Stopping "window.setInterval" method to prevent unexpected errors
+    location.reload(); //reloading the current url
+})
