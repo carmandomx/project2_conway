@@ -13,14 +13,17 @@ const grid = document.querySelector(".gridContainer");
 const square = document.querySelector("div");
 
 // Title
-let title = document.querySelector('h1')
+let title = document.querySelector('h1');
 
+// Generation title
+let generationShow = document.querySelector(".generationTitle");
 
 /*-------------------------------------------------Global Variables-------------------------------------------------*/
 let started = false;
 let pause = false;
 let randomized = false;
 let startedGame = false;
+let generationCounter = 0;
 // Logical array of cells
 let cellsArray;
 // n^2 size
@@ -87,6 +90,7 @@ function startGame() {
     createGrid();
     fill2DArray();
     updateVisualBoard();
+  
 }
 
 
@@ -182,6 +186,7 @@ startButton.addEventListener("click", function () {
     }
     setInterval(() => {
         refresh();
+        generations();
     }, 1000 / 10);
 });
 
@@ -276,6 +281,8 @@ function nextGeneration(cellsArray) {
 
         }
     }
+
+    generationCounter++;
     return nextGen;
 }
 
@@ -293,6 +300,16 @@ function refresh() {
 /*-------------------------------------Function that synchronize animation-------------------------------*/
 window.addEventListener('animationstart', e =>
     e.animationName == 'rainbow-bg' && e.target.getAnimations({ subtree: true }).forEach(e => e.startTime = 0), true)
+
+
+/*-------------------------------------Function to show the generations-------------------------------*/
+
+function generations() {
+    if (started===true) {
+        generationShow.innerText='Generation: '+generationCounter;
+    }
+    
+}
 
 
 /*-------------------------------------Call the MAIN FUNCTION-------------------------------*/
