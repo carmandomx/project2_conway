@@ -1,38 +1,24 @@
 //We relate the container 
 const container = document.querySelector("#container");
 //si ij, si i-1j
-
 let countgen = 0;
-
-
 let cells = new Array(52).fill(0).map(() => new Array(52).fill(0));
-
-let _countgen = document.querySelector('h2');
-let _resume = document.querySelector('.resume');
-let _play = document.querySelector('.play');
-let _pause = document.querySelector('.pause');
-let _clear = document.querySelector('.clear');
-let _randomize = document.querySelector('.randomize');
-let _customMode = document.querySelector('.customMode');
-let _customPttrns = document.querySelector('.customPttrns');
-
-
+//May have no use for this variable, during final review, check if needed
+let loopFlag = true;
+let canRandom = true;
 
 function checkNeighbors() {
-    //Funtion call to fill the array with random booleans
-    randomizer();
-
     //Variable that counts the amount of alive neighbors
     let aliveneigh = 0;
-
-    //This commented area is to visualize the original array, DELETE AFTER FINISHING THE LAST US
-    // let celltemp = new Array(5).fill(0).map(() => new Array(5).fill(0));
-    // for(let i = 0; i < cells.length; i ++){
-    //     for(let j = 0; j < cells[i].length; j++){
-    //         celltemp[i][j] = cells[i][j];
-    //     }
-    // }
-    // console.log(celltemp);
+    
+    /*This code is no longer useless, it´s necesary to change 
+    the states of the new generations without changing during the check*/
+    let celltemp = new Array(52).fill(0).map(() => new Array(52).fill(0));
+    for(let i = 0; i < cells.length; i ++){
+        for(let j = 0; j < cells[i].length; j++){
+            celltemp[i][j] = cells[i][j];
+        }
+    }
 
     /*To prevent complications with out of bound values, the array has one extra row and column
     so we start at index 1 and end at index length-1, this could help scalating the solution.
@@ -49,6 +35,10 @@ function checkNeighbors() {
                 aliveneigh = 0;
             }
         }
+        //This line is just to change the cells global array when done
+        if(i === cells.length-2){
+            cells = celltemp;
+        }
     }
 
     /*With this function we check if there are more than 2 alive neighbors but less than 4,
@@ -57,7 +47,7 @@ function checkNeighbors() {
         //Function call that counts the amount of alive neighbors
         countneighbors(row, column);
         if(aliveneigh < 2 || aliveneigh > 3){
-            cells[row][column] = false;
+            celltemp[row][column] = false;
         }
     }
 
@@ -67,7 +57,7 @@ function checkNeighbors() {
         //Function call that counts the amount of alive neighbors
         countneighbors(row, column);
         if(aliveneigh === 3){
-            cells[row][column] = true;
+            celltemp[row][column] = true;
         }
     }
 
@@ -75,87 +65,72 @@ function checkNeighbors() {
     counter by 1*/
     function countneighbors(i, j){
         if(cells[i][j+1]){
-            console.log("1°")
             aliveneigh++;
         }if(cells[i][j-1]){
-            console.log("2°")
             aliveneigh++;
         }if(cells[i-1][j]){
-            console.log("3°")
             aliveneigh++;
         }if(cells[i+1][j]){
-            console.log("4°")
             aliveneigh++;
         }if(cells[i-1][j+1]){
-            console.log("5°")
             aliveneigh++;
         }if(cells[i-1][j-1]){
-            console.log("6°")
             aliveneigh++;
         }if(cells[i+1][j+1]){
-            console.log("7°")
             aliveneigh++;
         }if(cells[i+1][j-1]){
-            console.log("8°")
             aliveneigh++;
         }
     }
 }
-
-//Function that creates the grid
-function makeRows(rows, cols) {
-  //Connect the rows and cols variables with the CSS variables
-  container.style.setProperty('--grid-rows', rows);
-  container.style.setProperty('--grid-cols', cols);
-  for (i = 0; i < (rows * cols); i++) {
-    //Every div is a cell
-    let cell = document.createElement("div");
-    //Every cell is a grid-item
-    container.appendChild(cell).className = "grid-item";
-  };
-};
 
 function clearBoard() {}
 
 //Function that will initiate the cells values when called
 function randomizer() {
-    for(let i = 1; i < cells.length-1; i ++){
-        for(let j = 1; j < cells[i].length-1; j++){
-            //We just assign true or false at random with this little funtion
-            cells[i][j] = Math.random() < 0.5;
-
+    if(canRandom){
+        for(let i = 1; i < cells.length-1; i ++){
+            for(let j = 1; j < cells[i].length-1; j++){
+                //We just assign true or false at random with this little funtion
+                cells[i][j] = Math.random() < 0.5;
+            }
         }
+        tempDraw();
     }
 }
 
-//generate divs with an array that has cells 50x50
-function generateGrid() {}
-
-function pause() {
-    onclick
+/*This function will handle the new canvas generation, it will also
+check in which state is the game and stop it if pause is clicked */
+function playCreate() {
+    play.textContent = "Play";
+    play.disabled = true;
+    //We set an interval to run the new canvas
+    let intervalID = setInterval(create, 1100);
+    //This funciont will loop the creations of new generations
+    function create(){
+        canRandom = false;
+        checkNeighbors();
+        tempDraw();
+    }
+    //Here we check if the pause button is clicked and act accordingly
+    pause.addEventListener("click", stop)
+    function stop(){
+        play.textContent = "resume";
+        play.disabled = false;
+        canRandom = true;
+        clearInterval(intervalID);
+        intervalID = null;
+    }
 }
 
-function play() {
-    makeRows(50, 50);
-}
-
-//play();
-
-
-let cols;
-let rows;
-let resolution = 10;
-
-//This function draws a canvas for the cells
 function draw() {
+    loopFlag = false;
     const resolution = 10;
-    randomizer();
     createCanvas(500, 500);
     cols = width / resolution;
     rows = height / resolution;
     background(0);
     for (let i = 1; i < cells.length-1; i++){
-        console.log(cells[i]);
         for (let j = 1; j < cells[i].length-1; j++){
             let x = (i-1) * resolution;
             let y = (j-1) * resolution;
@@ -166,17 +141,42 @@ function draw() {
             }
         }
     }
+    //If you need the loop to work all the time, comment this line
     noLoop();
 }
 
-
-document.querySelector('h2').innerHTML = "Generation:  " + countgen;
+/*Unfortunatly, I wasn´t able to recycle the draw() function due to
+how the library works, so i had to kill the original loop, and create
+a new funciton that does the same but has to be called, this gives 
+control but makes draw() usable only once.*/
+function tempDraw() {
+    const resolution = 10;
+    createCanvas(500, 500);
+    cols = width / resolution;
+    rows = height / resolution;
+    background(0);
+    for (let i = 1; i < cells.length-1; i++){
+        for (let j = 1; j < cells[i].length-1; j++){
+            let x = (i-1) * resolution;
+            let y = (j-1) * resolution;
+            if (cells[i][j] === true){
+                fill(255);
+                stroke(0);
+                rect(y, x, resolution, resolution);
+            }
+        }
+    }
+}
 
 //Button clicks attached to functions
-_resume.addEventListener('click', );
-_play.addEventListener('click', );
-_pause.addEventListener('click', ); 
-_clear.addEventListener('click', ); 
-_randomize.onclick = randomizer;   
-_customMode.addEventListener('click', ); 
-_customPttrns.addEventListener('click', );
+//Button to start the game
+let play = document.querySelector(".play")
+play.addEventListener("click", playCreate);
+//Button that will pause the game
+let pause = document.querySelector(".pause")
+// _clear.addEventListener('click', ); 
+//Button that will randomize the array
+let random = document.querySelector(".randomize");
+random.addEventListener("click", randomizer);
+// _customMode.addEventListener('click', ); 
+// _customPttrns.addEventListener('click', );
