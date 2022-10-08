@@ -95,6 +95,19 @@ class gameConway {
 
         };
 
+         //Random function.
+         this.gameRandomize = () => {
+
+            for (let i = 0; i < this.rowsNumber; i++) {
+                for (let j = 0; j < this.columnsNumber; j++) {
+                    //math.random returns a number from 0 to 1, by modifying the number with which it is 
+                    //compared within the "if" we can appear more or less living cells
+                    this.currentGeneration[i][j] = (Math.random() > 0.8) ? 1 : 0;
+                }
+            }
+        };
+
+
 
 
 
