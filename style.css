@@ -36,11 +36,11 @@ header{
     height: 15vh;
 }
 
-.header-logo{
+header figure{
     width: 15%;
 }
 
-.counter{
+header div{
     display: flex;
     flex-direction: column;
     color: #fff;
@@ -54,17 +54,20 @@ main{
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: 75vh;
+    height: 70vh;
 }
 
-.nav-buttons{
+
+
+main nav{
+    margin-top: 10vh;
     display: flex;
     flex-direction: column;
     width: 8%;
     height: 490px;
 }
 
-.nav-buttons  button{
+nav button{
     margin-top: 10px;
     background-color: #E44445;
     color: #E6E6E6;
@@ -91,7 +94,7 @@ footer{
     justify-content: center;
 }
 
-.footerButons{
+footer div{
     display: flex;
     width: 30%;
     justify-content: space-around;
