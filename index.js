@@ -2,6 +2,7 @@
 const startButton = document.querySelector(".start");
 const pauseButton = document.querySelector(".pause");
 const clearButton = document.querySelector(".clear");
+const randomizeButton = document.querySelector(".randomize");
 
 
 /*-------------------------------------------------Elements from HTML-------------------------------------------------*/
@@ -18,7 +19,7 @@ let title = document.querySelector('h1')
 /*-------------------------------------------------Global Variables-------------------------------------------------*/
 let started = false;
 let pause = false;
-
+let randomized = false;
 let startedGame = false;
 // Logical array of cells
 let cellsArray;
@@ -31,6 +32,8 @@ let buttonPressed = false;
 /*-------------------------------------------------Initial state of the buttons-------------------------------------------------*/
 startButton.disabled = true;
 pauseButton.disabled = true;
+clearButton.disabled = true;
+
 
 /*----------------------------Function that receives a number and create a n*n 2D array-------------------------------*/
 function make2DArray(num) {
@@ -136,6 +139,7 @@ square.addEventListener("mousedown", function (event) {
     }
 });
 
+
 /*--------------------------------------------Setting cell's click listener (up) --------------------------------------------*/
 square.addEventListener("mouseup", function (event) {
     buttonPressed = false;
@@ -173,11 +177,24 @@ startButton.addEventListener("click", function () {
     if (started === true) {
         startButton.disabled = true;
         pauseButton.disabled = false;
+        randomizeButton.disabled = true;
+        clearButton.disabled = false;
     }
     setInterval(() => {
         refresh();
     }, 1000 / 10);
 });
+
+// Randomize button
+randomizeButton.addEventListener('click', () => {
+    randomizer();
+    randomizeButton.disabled = true;
+    randomized = true;
+    if (randomized === true) {
+        startButton.disabled = false;
+    }
+
+})
 
 // Pause button
 pauseButton.addEventListener('click', () => {
@@ -201,6 +218,19 @@ clearButton.addEventListener('click', () => {
         clearButton.disabled = true;
     }
 });
+
+
+/*-----------------------------------------Function that create the random generation----------------------------------*/
+function randomizer() {
+    for (let i = 0; i < gridSize; i++) {
+        for (let j = 0; j < gridSize; j++) {
+            if (cellsArray[i][j] === 0) {
+                cellsArray[i][j] = Math.floor(Math.random() * 2);
+            }
+        }
+    }
+    updateVisualBoard();
+}
 
 
 /*-------------------------------------Function that create the Next Generation Function-------------------------------*/
