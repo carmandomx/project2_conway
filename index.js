@@ -8,6 +8,7 @@ const clear = document.querySelector("#clear");
 
 const textLevel = document.querySelector('.generationNo');
 
+let grid = [];
 let initGrid = [];
 let stop = true;
 let gameId = 0;
@@ -23,7 +24,10 @@ canvas.width = GRID_WIDTH;
 canvas.height = GRID_HEIGHT;
 
 
-//Create a simetrical grid, the function will recive 2 parameters who set the Columns and Rows.
+//-------------------------------Gid Functions
+
+//Create a simetrical grid,
+// the function will recive 2 parameters who set the Columns and Rows.
 function seedGen(col, row) {
   let grid = [];
   
@@ -51,9 +55,6 @@ function emptyGrid(col, row) {
 
   return grid;
 };
-
-let grid = emptyGrid(COL, ROW);
-
 function drawGrid(grid) {
 
   let cols = COL;
@@ -75,17 +76,16 @@ function drawGrid(grid) {
     }
   } 
 };
-drawGrid(grid);
 
+//------------------------------Game Functions
 function check(x,y){
   if(x < 0 || x >= COL|| y < 0 || y >= ROW){
       return 0;
   }
   let val = grid[x][y]==1?1:0;
   return val;
-}
-
-function checkAlive(grid){
+};
+function checkAlive(){
   let gridAlive = emptyGrid(COL,ROW);
   let numAlive=0;
   for (let x = 0; x < COL; x++) {
@@ -98,22 +98,16 @@ function checkAlive(grid){
       }
   }
   return gridAlive;
-}
-
+};
 function game(grid) {
   let newGrid = grid;
   if (stop) {
       clearInterval(gameId);
-      console.log("YOU PRESS STOP!")
-      //count = 0;
   }
   // Game Logic
-  let gridPopullation = checkAlive(grid);
-  //console.log(gridPopullation);
-  //Here the rules...
+  let gridPopullation = checkAlive();
   for(let i = 0;i<COL;i++){
     for(let j = 0;j<COL;j++){
-
       let cellPopulation = gridPopullation[i][j];
       let cellStatus = grid[i][j]; 
       if(cellStatus == 1){
@@ -142,14 +136,17 @@ function game(grid) {
       }
     }
   }
-  //console.log("is working", count++);
-  
-  //updateCounter(count++);
+
   grid = newGrid;
   drawGrid(newGrid);
   updateCounter(count++);
 };
+function updateCounter(count){
+  textLevel.innerText = `Generation No: ${count}`;
+  console.log(count);
+}
 
+//-------------------------------Events Listeners
 reset.addEventListener('click', () =>{
   if (!stop) {
     stop = true;        
@@ -161,7 +158,6 @@ reset.addEventListener('click', () =>{
   updateCounter(0);
 
 });
-
 start.addEventListener('click', () =>{
   if (stop) {
     if (count == 0) {
@@ -176,35 +172,6 @@ start.addEventListener('click', () =>{
     start.innerHTML = "START"
   };
 });
-
-let mouseGrid = {
-  x: Number,
-  y: Number
-};
-
-window.addEventListener('mousemove', function (e) {
-  var rect = canvas.getBoundingClientRect();
-  //here I get the position of my click
-  mouseGrid.x = e.x - rect.left;
-  mouseGrid.y = e.y - rect.top;
-
-});
-
-canvas.addEventListener('click', function(){
-
-  if(stop){
-    //change the state the grid 
-  let Pos_X = Math.trunc(Math.trunc(mouseGrid.x)/RES) ;
-  let Pos_Y = Math.trunc(Math.trunc(mouseGrid.y)/RES) ;
-
-
-  grid[Pos_X][Pos_Y] = grid[Pos_X][Pos_Y] ? 0 : 1;
-  drawGrid(grid);
-  }
-  
-});
-
-
 //adding the interaction with the randomize button
 randomize.addEventListener('click', () =>{
   if (stop == true) { //confirms that the game is stopped before changing it
@@ -219,8 +186,31 @@ randomize.addEventListener('click', () =>{
 
 });
 
+//-------------------------------Grid Events Listeners Seccion
+let mouseGrid = {
+  x: Number,
+  y: Number
+};
+window.addEventListener('mousemove', function (e) {
+  var rect = canvas.getBoundingClientRect();
+  //here I get the position of my click
+  mouseGrid.x = e.x - rect.left;
+  mouseGrid.y = e.y - rect.top;
+
+});
+canvas.addEventListener('click', function(){
+
+  if(stop){
+    //change the state the grid 
+  let Pos_X = Math.trunc(Math.trunc(mouseGrid.x)/RES) ;
+  let Pos_Y = Math.trunc(Math.trunc(mouseGrid.y)/RES) ;
 
 
+  grid[Pos_X][Pos_Y] = grid[Pos_X][Pos_Y] ? 0 : 1;
+  drawGrid(grid);
+  }
+  
+});
 input.addEventListener('change', (event) => {
   
   RES = 600/event.target.value;
@@ -230,8 +220,10 @@ input.addEventListener('change', (event) => {
   drawGrid(grid);
 });
 
-function updateCounter(count){
-  textLevel.innerText = `Generation No: ${count}`;
-  console.log(count);
-}
+//-------------------------------Game initialization
+function init() {
+  grid = emptyGrid(COL, ROW);
+  drawGrid(grid);
+};
 
+init();
