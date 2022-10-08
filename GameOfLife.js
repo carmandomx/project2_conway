@@ -107,6 +107,17 @@ class gameConway {
             }
         };
 
+        //population count function
+        this.population = () => {
+            let population = 0;
+            for (let i = 0; i < this.rowsNumber; i++) {
+                for (let j = 0; j < this.columnsNumber; j++) {
+                    //Cell by cell is counted to obtain the living population
+                    if(this.currentGeneration[i][j] == 1)population++; 
+                }
+            }
+            return population;
+        };
 
 
 
