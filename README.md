@@ -16,7 +16,7 @@ https://github.com/FernandoMorejon-Ksquare/project2_conway/blob/master/project2U
 
 # Live demo
 
-Please include here a link to your [live demo](url_here_please)
+Please include here a link to your [live demo](https://fernandomorejon-ksquare.github.io/project2_conway/)
 
 # Requeriments
 You need to use the same version of node that we use in class and no external dependices can be used. This means no frameworks or libraries.
