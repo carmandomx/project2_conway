@@ -96,8 +96,6 @@ function clearBoard() {
         }
     }
     tempDraw();
-    countgen = 0;
-    document.querySelector('h2').innerHTML = "Generations:  " + countgen;
 }
 
 //Function that will initiate the cells values when called
