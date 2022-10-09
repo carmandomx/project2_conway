@@ -6,6 +6,7 @@ Welcome! This repo contains helpful information and starter files for your proje
 
 
 | Name | Path | E-mail |
+| ---------------- | :--: | ---: | 
 | Guzmán Ríos Fredy Omar | Flutter | fredy.guzman@itksquare.edu.mx | 
 | Castillo Velazquez Jonathan Sebastián | JavaScript | jonathan.castillo@itksquare.edu.mx | 
 | Marrufo Alemán Nathaly | SalesForce | nathaly.marrufo@itksquare.edu.mx |
