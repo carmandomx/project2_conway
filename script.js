@@ -1,10 +1,10 @@
 //We relate the container 
 const container = document.querySelector("#container");
 
+//Generation counter, as it will be used in several places, its global
 let countgen = 0;
+//Creation of the cells array... 52x52 for ease of use.
 let cells = new Array(52).fill(0).map(() => new Array(52).fill(0));
-//May have no use for this variable, during final review, check if needed
-let loopFlag = true;
 
 const resolution = 10;
 //These flags will allow the code to enable or disable changes when the game is running or stopped
@@ -111,7 +111,6 @@ function randomizer() {
             }
         }
         tempDraw();
-        countgen = 0;
         document.querySelector('h2').innerHTML = "Generations:  " + countgen;
     }
 }
@@ -121,8 +120,8 @@ check in which state is the game and stop it if pause is clicked */
 function playCreate() {
     play.textContent = "Play";
     play.disabled = true;
-    //We set an interval to run the new canvas
 
+    //We set an interval to run the new canvas
     let intervalID = setInterval(create, 100);
     
     //This function will loop the creations of new generations
@@ -145,42 +144,56 @@ function playCreate() {
         intervalID = null;
 
     }
+    
     //Reset buttons is created to go to initial values
-    let _reset = document.querySelector(".reset");
-    _reset.addEventListener('click', reset); 
-    function reset() {    
-            countgen = 0;
-            document.querySelector('h2').innerHTML = "Generations:  " + countgen;
-            for(let i = 1; i < cells.length-1; i ++){
-                for(let j = 1; j < cells[i].length-1; j++){
-                    //All values to initial state
-                    cells[i][j] = false;
-                    
-                }
-       
-            tempDraw();
-            play.textContent = "Play";
-            play.disabled = false;
-            canRandom = true;
-            canClick = true;
-            clearInterval(intervalID);
-            intervalID = null;
-        }
-        
-    }
+    _reset.addEventListener('click', subReset);
+    function subReset(){
+        //Only this is exclusive of the play state, so we do this and call the reset() function
+        clearInterval(intervalID);
+        intervalID = null;
+        reset();
+    } 
+    
 }
 
-function draw() {
-    loopFlag = false;
+//The function that sets everything to its initial state, a hard reset
+function reset() {    
+    countgen = 0;  //Sets generations to 0
+    document.querySelector('h2').innerHTML = "Generations:  " + countgen; //Visualization of 0 generations
+    //Set every cell to dead
+    for(let i = 1; i < cells.length-1; i ++){
+        for(let j = 1; j < cells[i].length-1; j++){
+            //All values to initial state
+            cells[i][j] = false;
+            
+        }
+        //Logic reset
+        tempDraw();
+        play.textContent = "Play";
+        play.disabled = false;
+        canRandom = true;
+        canClick = true;
+        
+    }
 
+}
+
+
+/*Initial function (created with p5) that will create the canvas when the site loads. 
+For ease of work, it will only work once, the loop will stop, 
+and we will use the seted parameters for our own logic*/
+function draw() {
+    //Canvas creation
     createCanvas(500, 500);
     cols = width / resolution;
     rows = height / resolution;
     background(0);
+    //We fill the canvas dividing it in 50x50 cells
     for (let i = 1; i < cells.length-1; i++){
         for (let j = 1; j < cells[i].length-1; j++){
             let x = (i-1) * resolution;
             let y = (j-1) * resolution;
+            //If the cell in the array is alive, we make that section of the canvas turn on (turn it white)
             if (cells[i][j] === true){
                 fill(255);
                 stroke(0);
@@ -216,7 +229,7 @@ how the library works, so i had to kill the original loop, and create
 a new funciton that does the same but has to be called, this gives 
 control but makes draw() usable only once.*/
 function tempDraw() {
-
+    //This is the exact same logic of draw(), so no point in being redudant
     createCanvas(500, 500);
     cols = width / resolution;
     rows = height / resolution;
@@ -234,18 +247,18 @@ function tempDraw() {
     }
 }
 
-
-
-//Button clicks attached to functions
-
+//We visualy tell the user the current generation (0 at creation state)
 document.querySelector('h2').innerHTML = "Generations:  " + countgen;
 
+//Button clicks attached to functions
 //Button to start the game
-let play = document.querySelector(".play")
+let play = document.querySelector(".play");
 play.addEventListener("click", playCreate);
 
 //Button that will pause the game
-let pause = document.querySelector(".pause")
+let pause = document.querySelector(".pause");
+
+//Button that will clear the board, killing everything
 let clear = document.querySelector(".clear");
 clear.addEventListener('click', clearBoard); 
 
