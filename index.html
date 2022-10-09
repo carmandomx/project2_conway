@@ -11,13 +11,17 @@
 
   <!-- ============================== GAME TITLE AREA ============================== -->
   <header>
-    <h1>The Game of Life</h1>
+    <h1 class="box">The Game of Life</h1>
     <p>Click on the grid to choose the game's initial configuration</p>
     <p>Click play and watch the game evolve</p>
     <div class="info-general">
-      <section class="info-gen">how many generations have passed?</section>
-      <section class="info-grid"> Cells Status </section>
+      <div class="generations">
+        <section class="info-gen">how many generations have passed?</section>
+        <img class="ico-gen" src="./image/egg.png" alt="egg" />
+      </div>
+      <section class="info-grid">Welcome here!</section>
     </div>
+
   </header>
 
   <!-- ============================== GAME CANVAS AREA ============================== -->
@@ -28,7 +32,7 @@
   <!-- ============================== GAME BUTTONS AREA ============================== -->
   <footer>
     <button class="play">Play</button>
-    <button class="stop">Stop</button>
+    <button class="stop hideIt">Stop</button>
     <button class="random">Randomize</button>
     <button class="clr">Clear</button>
     <button class="reset">Reset</button>
