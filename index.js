@@ -99,6 +99,7 @@ const updateCounter = function (count){
 
 //Init the game with a empty grid and drawing the grid
 gridCurrent = createGrid(true);
+initGrid = createGrid(true);
 drawGrid();
 
 const game = function() {
