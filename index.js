@@ -29,8 +29,8 @@ let reqAnimation;
 
 // Defining the canvas size, we can modify this values if we want to resize the grid
 const resolution = 10;
-const w = (canvas.width = 500);
-const h = (canvas.height = 400);
+const w = canvas.width = 500;
+const h = canvas.height = 400;
 
 const cols = w / resolution;
 const rows = h / resolution;
@@ -127,7 +127,6 @@ play.addEventListener("click", function () {
   // Once the game has started, we remove the user's ability to interact with the canvas AND the randomize button
   canvas.removeEventListener("click", colorCell);
   random.removeEventListener("click", renderRandomGrid);
-
   play.classList.add("hideIt");
   stop.classList.remove("hideIt");
 });
@@ -136,7 +135,6 @@ stop.addEventListener("click", function () {
   //Pause the life animation
   cancelAnimationFrame(reqAnimation);
   random.removeEventListener("click", renderRandomGrid);
-
   play.classList.remove("hideIt");
   stop.classList.add("hideIt");
 });
@@ -266,7 +264,7 @@ function genText() {
   ).textContent = `Have passed ${acountGen} generations`;
   return (clickCount = 0);
 }
-
+//Text that you get when you click on clear, it also changes the color of the info-grid to red and adds a picture of a nuclear bomb explosion
 function genTextClear() {
   document.querySelector(".info-grid").textContent =
     "You have dropped a nuclear bomb!";
