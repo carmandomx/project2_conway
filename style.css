@@ -1,13 +1,21 @@
-html {
-  text-align: center;
-  font-family: Monaco;
+.bodyDesing{
+  background-color: black;
+  display: grid;
+  justify-content: center;
 }
 
+.titleDesing{ 
+  font-family: 'Silkscreen', cursive;
+  color: black;
+  background-color: rgba(160, 213, 53, 0.829);
+  text-align: center;
+  padding: 25px;
+  font-size: 30px;
+}
 .mainContainer {
   display: flex;
 }
 
-.leftContainer {}
 
 .left {
   display: inline-block;
@@ -33,7 +41,7 @@ html {
   display: inline-grid;
   grid-template-columns: repeat(20, 2fr);
   grid-template-rows: repeat(20, 2fr);
-  border: 5px solid black;
+  border: 5px solid rgb(82, 3, 55);
   border-radius: 5px;
   height: 575px;
   width: 575px;
@@ -92,10 +100,82 @@ html {
   }
 }
 
+.page{
+  width: 400px;
+}
+
+.statusDes{
+  color: #eee;
+  font-family: 'Silkscreen', cursive;
+  height: 50px;
+}
+
 /* Disable the buttons when needed*/
 .start:disabled,
 .pause:disabled,
 .clear:disabled,
 .randomize:disabled {
   background-color: #eee;
+}
+
+button{
+  padding: 15px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  margin-right: 2px;
+  font-family: 'Silkscreen', cursive;
+  font-size: 15px;
+  border-color: aliceblue;
+}
+
+.start{
+background-color: rgb(67, 155, 67);
+}
+.start:hover{
+  background-color:rgb(10, 101, 10) ;
+  color:aliceblue;
+}
+
+.pause{
+background-color: rgb(214, 80, 80);
+}
+
+.pause:hover{
+  background-color: rgb(168, 20, 20);
+  color:aliceblue;
+  }
+
+.clear{
+background-color: rgb(110, 110, 200);
+}
+
+.clear:hover{
+  background-color: rgb(60, 60, 180);
+  color:aliceblue;
+
+}
+
+.randomize{
+background-color: cadetblue;
+}
+
+.randomize:hover{
+  background-color: rgb(37, 111, 113);
+  color:aliceblue;
+
+}
+
+.reset{
+background-color: wheat;
+}
+
+.reset:hover{
+  background-color: rgb(207, 149, 41);
+  color:aliceblue;
+
+}
+
+.generationTitle{
+  color: aliceblue;
+  font-family: 'Silkscreen', cursive;
 }

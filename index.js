@@ -204,15 +204,14 @@ randomizeButton.addEventListener('click', () => {
 
 // Pause button
 pauseButton.addEventListener('click', () => {
-    console.log('estoy pausado')
     if (pause === false) {
         pause = true;
-        pauseButton.innerText = 'CONTINUE';
+        pauseButton.innerText = 'PLAY';
         title.innerText = 'Paused';
     } else {
         pause = false;
         pauseButton.innerText = 'PAUSE';
-        title.innerText = 'Game of life';
+        title.innerText = '';
     }
 });
 
