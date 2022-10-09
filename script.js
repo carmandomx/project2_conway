@@ -10,6 +10,7 @@ const resolution = 10;
 //These flags will allow the code to enable or disable changes when the game is running or stopped
 let canRandom = true;
 let canClick = true;
+const resetflag = true;
 
 function checkNeighbors() {
     //Variable that counts the amount of alive neighbors
@@ -96,8 +97,7 @@ function clearBoard() {
         }
     }
     tempDraw();
-    countgen = 0;
-    document.querySelector('h2').innerHTML = "Generations:  " + countgen;
+   
 }
 
 //Function that will initiate the cells values when called
@@ -167,6 +167,7 @@ function draw() {
     }
     //If you need the loop to work all the time, comment this line
     noLoop();
+    reset();
 }
 
 
@@ -210,7 +211,34 @@ function tempDraw() {
     }
 }
 
+function reset() {
+    if(resetflag){
+        countgen = 0;
+        document.querySelector('h2').innerHTML = "Generations:  " + countgen;
+        for(let i = 1; i < cells.length-1; i ++){
+            for(let j = 1; j < cells[i].length-1; j++){
+                //We just assign true or false at random with this little funtion
+                
+                if (i > 31 && j >31 ){
+                    cells[i][j] = true;
+                }   
+                else {
+                    cells[i][j] = false;
+                }
+            }
+            
+        }
 
+        tempDraw();
+        play.textContent = "Play";
+        play.disabled = false;
+        canRandom = true;
+        canClick = true;
+        clearInterval(intervalID);
+        intervalID = null;
+    }
+    
+}
 
 //Button clicks attached to functions
 
@@ -230,8 +258,8 @@ let random = document.querySelector(".randomize");
 random.addEventListener("click", randomizer);
 
 //Reset to initial values button
-let _reset = document.querySelector(".randomize");
-_reset.addEventListener('click', ".reset"); 
+let _reset = document.querySelector(".reset");
+_reset.addEventListener('click', reset); 
 
 
 
