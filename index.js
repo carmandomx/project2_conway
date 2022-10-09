@@ -32,8 +32,8 @@ let stoped = false;
 
 // Defining the canvas size, we can modify this values if we want to resize the grid
 const resolution = 10;
-const h = (canvas.width = 500);
-const w = (canvas.height = 500);
+const h = (canvas.width = 200);
+const w = (canvas.height = 200);
 
 const cols = w / resolution;
 const rows = h / resolution;
@@ -134,6 +134,7 @@ play.addEventListener("click", function () {
   // Once the game has started, we remove the user's ability to interact with the canvas AND the randomize button
   canvas.removeEventListener("click", colorCell);
   random.removeEventListener("click", renderRandomGrid);
+  reset.cancelEventListener("click", resetAll);
   console.log("the btn PLAY was pressed");
 });
 
@@ -171,10 +172,11 @@ function clearAll() {
 }
 
 
-reset.addEventListener("click", function () {
+reset.addEventListener("click", resetAll);
+ function resetAll() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
-  cancelAnimationFrame(reqAnimation);
   render(buildEmptyGrid());
+  cancelAnimationFrame(reqAnimation)
   document.querySelector(".info-gen").textContent =
   "how many generations have passed?";
   document.querySelector(".info-grid").textContent =
@@ -182,9 +184,11 @@ reset.addEventListener("click", function () {
   document.querySelector(".info-grid").style.color = "black"
   acountGen = 0;
   canvas.addEventListener("click", colorCell);
+  nextGeneration = 0;
+  random.addEventListener("click", renderRandomGrid);
   
   console.log("the btn RESET was pressed");
-});
+};
 
 
 // To choose a random initial game configuration by clicking a button
