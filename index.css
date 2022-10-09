@@ -1,18 +1,10 @@
 
-/* :root {
-  --grid-cols: 1;
-  --grid-rows: 1;
-} */
 html
 {
   background: linear-gradient(0.25turn, #24975e, #4df32c, #18d641);
 }
 
 /* ELEMENTS */
-
-canvas {
-  align-self: center;
-}
 
 body {
   display: flex;
@@ -26,11 +18,16 @@ h1 {
   font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   align-self: center;
   text-shadow: 2px 4px 8px white;
-  text-decoration: underline;
+  background: linear-gradient(0.25turn, #025a06, #27c507, #069726);
+  padding: 8px;
   box-shadow: inset 2px 2px 3px rgba(255, 255, 255, .6),
                 inset -2px -2px 3px rgba(0, 0, 0, .6);
   border-radius: 5px;
-  
+}
+
+h2 {
+  align-self: center;
+  justify-self: flex-start;
   
 }
 
@@ -71,11 +68,4 @@ button:active {
               inset 2px 2px 3px rgba(0, 0, 0, .6);
 }
 
-/* DEAD CELL */
-.grid-item {
-  padding: 5px 1px 20px 1px;
-  margin: 0px 0px 0px 0px ;
-  border: 1px solid black;
-  text-align: center;
-  background-color: rgba(255, 255, 255, 0.979);
-}
+

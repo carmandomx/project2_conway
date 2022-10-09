@@ -1,6 +1,6 @@
 //We relate the container 
 const container = document.querySelector("#container");
-//si ij, si i-1j
+
 let countgen = 0;
 let cells = new Array(52).fill(0).map(() => new Array(52).fill(0));
 //May have no use for this variable, during final review, check if needed
@@ -88,6 +88,7 @@ function checkNeighbors() {
     }
 }
 
+//This function is to turn false all cells thus clearing the canvas
 function clearBoard() {
     for(let i = 1; i < cells.length-1; i ++){
         for(let j = 1; j < cells[i].length-1; j++){
@@ -95,6 +96,8 @@ function clearBoard() {
         }
     }
     tempDraw();
+    countgen = 0;
+    document.querySelector('h2').innerHTML = "Generations:  " + countgen;
 }
 
 //Function that will initiate the cells values when called
@@ -104,9 +107,12 @@ function randomizer() {
             for(let j = 1; j < cells[i].length-1; j++){
                 //We just assign true or false at random with this little funtion
                 cells[i][j] = Math.random() < 0.5;
+                
             }
         }
         tempDraw();
+        countgen = 0;
+        document.querySelector('h2').innerHTML = "Generations:  " + countgen;
     }
 }
 
@@ -118,17 +124,20 @@ function playCreate() {
     //We set an interval to run the new canvas
 
     let intervalID = setInterval(create, 100);
+    
     //This function will loop the creations of new generations
     function create(){
         canRandom = false;      //These variables turn these flags down to avoid changes when the game is running
         canClick = false;
         checkNeighbors();
         tempDraw();
+        countgen++;
+        document.querySelector('h2').innerHTML = "Generations:  " + countgen;
     }
     //Here we check if the pause button is clicked and act accordingly
     pause.addEventListener("click", stop)
     function stop(){
-        play.textContent = "resume";
+        play.textContent = "Resume";
         play.disabled = false;
         canRandom = true;
         canClick = true;
@@ -141,9 +150,6 @@ function playCreate() {
 function draw() {
     loopFlag = false;
 
-    //const resolution = 10;
-
-  
     createCanvas(500, 500);
     cols = width / resolution;
     rows = height / resolution;
@@ -187,9 +193,6 @@ a new funciton that does the same but has to be called, this gives
 control but makes draw() usable only once.*/
 function tempDraw() {
 
-    //const resolution = 10;
-
-
     createCanvas(500, 500);
     cols = width / resolution;
     rows = height / resolution;
@@ -207,16 +210,29 @@ function tempDraw() {
     }
 }
 
+
+
 //Button clicks attached to functions
+
+document.querySelector('h2').innerHTML = "Generations:  " + countgen;
+
 //Button to start the game
 let play = document.querySelector(".play")
 play.addEventListener("click", playCreate);
+
 //Button that will pause the game
 let pause = document.querySelector(".pause")
 let clear = document.querySelector(".clear");
 clear.addEventListener('click', clearBoard); 
+
 //Button that will randomize the array
 let random = document.querySelector(".randomize");
 random.addEventListener("click", randomizer);
-// _customMode.addEventListener('click', ); 
-// _customPttrns.addEventListener('click', );
+
+//Reset to initial values button
+let _reset = document.querySelector(".randomize");
+_reset.addEventListener('click', ".reset"); 
+
+
+
+_customPttrns.addEventListener('click', );
