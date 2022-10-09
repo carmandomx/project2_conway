@@ -1,6 +1,6 @@
-# Project I
+# Project II
 
-Welcome! This repo contains helpful information and starter files for your project, just fork this repo and go to town!
+Welcome! This repo contains the code of The Game Of Life, also known as The game of Conway. Here you can also find the team member information!
 
 ## Team members
 
