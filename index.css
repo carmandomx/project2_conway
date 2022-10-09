@@ -1,0 +1,47 @@
+body {
+    display: flex;
+    flex-direction: column;
+    height: 97vh;
+    justify-content: center;
+    align-items: center;
+    row-gap: 10px;
+    background-color: black;
+    font-family: 'Courier';
+    color: chartreuse;
+}
+
+header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.btn {
+    border: 1px solid chartreuse;
+    cursor: pointer;
+    font-family: 'Courier';
+    color: chartreuse;
+    background-color: black;
+}
+.btn:hover {
+    background-color: chartreuse;
+    color: black;
+}
+.hidden {
+    display: none;
+}
+
+td {
+    border: 1px solid white;
+    width: 10px;
+    height: 10px;
+}
+td.dead {
+    background-color: transparent;
+}
+td.live {
+    background-color:chartreuse;
+}
+.pointer {
+    cursor: pointer;
+}
