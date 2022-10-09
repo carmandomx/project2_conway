@@ -24,16 +24,13 @@ const ctx = canvas.getContext("2d"); //to acces the drawing context
 let randomMode = false;
 //For do the animation for each loop
 let reqAnimation;
-//To indicate if cycle is ON or OFF
-let started;
-let stoped = false;
 
 /* ==============================  BUILDING THE CANVAS GRID  ============================== */
 
 // Defining the canvas size, we can modify this values if we want to resize the grid
 const resolution = 10;
-const h = (canvas.width = 200);
-const w = (canvas.height = 200);
+const w = (canvas.width = 500);
+const h = (canvas.height = 400);
 
 const cols = w / resolution;
 const rows = h / resolution;
@@ -71,7 +68,6 @@ function render(grid) {
     }
   }
   // With this we can see the output of the matrix or arrays of values in the rendered canvas
-  // console.log(grid);
 }
 
 // To visualize the inital empty grid
@@ -86,18 +82,15 @@ canvas.addEventListener("click", colorCell);
 
 function colorCell(event) {
   // we can log the event of every click and if we look into the offset attributes, we get the coordinates (in pixels) of the click
-  // console.log(event.offsetX, event.offsetY);
 
   // We do some math with the grid resolution to detect the coordinates (in pixels) of the click, relative to the canvas size
   let x_position = Math.floor(event.offsetX / resolution) * resolution;
   let y_position = Math.floor(event.offsetY / resolution) * resolution;
-  // console.log(x_position,y_position);
 
   // to get the exact coordinates of the cell where the click occured
   let cell_x_coord = x_position / resolution; // indicates the col
   let cell_y_coord = y_position / resolution; // indicates the row
   // We can log the coordinates of the clicked cells into the terminal
-  // console.log(cell_y_coord,cell_x_coord);
   let clickedCell = emptyGrid[cell_x_coord][cell_y_coord];
   // The new pattern is updated in the array value that corresponds to the clicked cell coordinates
   // when the clicked cell is dead, we make it alive and viceversa
@@ -134,14 +127,18 @@ play.addEventListener("click", function () {
   // Once the game has started, we remove the user's ability to interact with the canvas AND the randomize button
   canvas.removeEventListener("click", colorCell);
   random.removeEventListener("click", renderRandomGrid);
-  console.log("the btn PLAY was pressed");
+
+  play.classList.add("hideIt");
+  stop.classList.remove("hideIt");
 });
 
 stop.addEventListener("click", function () {
   //Pause the life animation
   cancelAnimationFrame(reqAnimation);
   random.removeEventListener("click", renderRandomGrid);
-  console.log("the btn STOP was pressed");
+
+  play.classList.remove("hideIt");
+  stop.classList.add("hideIt");
 });
 
 clear.addEventListener("click", clearAll);
@@ -160,23 +157,22 @@ function clearAll() {
   });
   reqAnimation = requestAnimationFrame(update);
   random.removeEventListener("click", renderRandomGrid);
-  console.log(`the btn CLEAR was pressed ${clickCount} times`);
+
+  play.classList.add("hideIt");
+  stop.classList.remove("hideIt");
+
   clickCount++;
   if (clickCount >= 1) {
-    document.querySelector(".info-grid").textContent =
-      "You have dropped a nuclear bomb!";
-    document.querySelector(".info-grid").style.color = "red";
+    genTextClear();
     return (clickCount = 0);
   }
 }
 
-
 reset.addEventListener("click", resetAll);
 // Resets the grid fot both game mode cases
- function resetAll() {
-  location.reload()
-};
-
+function resetAll() {
+  location.reload();
+}
 
 // To choose a random initial game configuration by clicking a button
 random.addEventListener("click", renderRandomGrid);
@@ -184,6 +180,7 @@ random.addEventListener("click", renderRandomGrid);
 function renderRandomGrid() {
   randomMode = true; // flag to indicate the games Mode of playing
   render(buildRandomGrid());
+  document.querySelector(".ico-gen").setAttribute("src", "./image/pato.png");
 }
 
 /* ==================================  GAME LOGIC  ================================== */
@@ -207,14 +204,12 @@ function nextGeneration(grid) {
             (-1,-1)  (-1,0) |
             (0,-1)   (0,0)  |
             -----------------
-
             borders = 5 neighbors
             __________________
             | (-1,0)  (-1,1)
             | (0,0)   (0,1)
             | (1,0)   (1,1)
             -----------------
-
             centrals = 8 neighbors
             ___________________________
             | (-1,-1)  (-1,0)  (-1,1) |
@@ -270,4 +265,11 @@ function genText() {
     ".info-gen"
   ).textContent = `Have passed ${acountGen} generations`;
   return (clickCount = 0);
+}
+
+function genTextClear() {
+  document.querySelector(".info-grid").textContent =
+    "You have dropped a nuclear bomb!";
+  document.querySelector(".info-grid").style.color = "red";
+  document.querySelector(".ico-gen").setAttribute("src", "./image/nuclear.png");
 }
