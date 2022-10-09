@@ -13,7 +13,7 @@ Welcome! This repo contains the code for the Game of Life proyect. Here is some 
 ## Assignation 
 
 | User Stories     | Fernando Morrejón | Genaro Arredondo | Luis Vazquez |
-| ---------------- | :---: | :---: | :---: | :---: |
+| ---------------- | :---: | :---: | :---: |
 | As a user, whenever I navigate to the website and see an empty grid with the option to let the user set up the initial configuration. |      |   X   |      |  
 | If the game is paused I can resume it. |      |      |   X  |
 | I can clear the board. |      |   X   |      |
