@@ -12,11 +12,7 @@ Fernando Morejón
 
 Please use this format for your User Stories assignations
 
-| User Stories     | John Doe | Jane Doe |
-| ---------------- | :--: | ---: |
-| Add US text here |  X   |      |
-| Add US text here |      |    X |
-| Add US text here |  X   |      |
+https://github.com/FernandoMorejon-Ksquare/project2_conway/blob/master/project2USassignment.png
 
 # Live demo
 
