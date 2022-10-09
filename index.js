@@ -202,6 +202,8 @@ canvas.addEventListener('click', function(){
     //change the state the grid 
     let Pos_X = Math.trunc(Math.trunc(mouseGrid.x)/RES) ;
     let Pos_Y = Math.trunc(Math.trunc(mouseGrid.y)/RES) ;
+    //if you change something, make a new count
+    count = 0;
     //Invert the value
     gridCurrent[Pos_X][Pos_Y] = gridCurrent[Pos_X][Pos_Y] ? 0 : 1;
     drawGrid();
@@ -238,6 +240,11 @@ input.addEventListener('change', (event) => {
 //USER STORY 3
 //Adding the interaction with the clear button test1
 clear.addEventListener('click', () =>{
+  if (!stop) {
+    stop = true;        
+    start.innerHTML = "START"
+    clearInterval(gameId);
+  };
   gridCurrent = createGrid(true);
   drawGrid();
   count =0;
