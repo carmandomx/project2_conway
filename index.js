@@ -134,7 +134,6 @@ play.addEventListener("click", function () {
   // Once the game has started, we remove the user's ability to interact with the canvas AND the randomize button
   canvas.removeEventListener("click", colorCell);
   random.removeEventListener("click", renderRandomGrid);
-  reset.cancelEventListener("click", resetAll);
   console.log("the btn PLAY was pressed");
 });
 
@@ -173,21 +172,9 @@ function clearAll() {
 
 
 reset.addEventListener("click", resetAll);
+// Resets the grid fot both game mode cases
  function resetAll() {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-  render(buildEmptyGrid());
-  cancelAnimationFrame(reqAnimation)
-  document.querySelector(".info-gen").textContent =
-  "how many generations have passed?";
-  document.querySelector(".info-grid").textContent =
-  "Cells Status";
-  document.querySelector(".info-grid").style.color = "black"
-  acountGen = 0;
-  canvas.addEventListener("click", colorCell);
-  nextGeneration = 0;
-  random.addEventListener("click", renderRandomGrid);
-  
-  console.log("the btn RESET was pressed");
+  location.reload()
 };
 
 
