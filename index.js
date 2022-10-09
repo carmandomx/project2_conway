@@ -3,6 +3,7 @@ const startButton = document.querySelector(".start");
 const pauseButton = document.querySelector(".pause");
 const clearButton = document.querySelector(".clear");
 const randomizeButton = document.querySelector(".randomize");
+const resetButton = document.querySelector(".reset");
 
 
 /*-------------------------------------------------Elements from HTML-------------------------------------------------*/
@@ -224,6 +225,11 @@ clearButton.addEventListener('click', () => {
     }
 });
 
+
+// Reset button
+resetButton.addEventListener('click', () =>{
+    window.location.reload();
+});
 
 /*-----------------------------------------Function that create the random generation----------------------------------*/
 function randomizer() {
