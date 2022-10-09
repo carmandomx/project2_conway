@@ -31,3 +31,6 @@ Please use this format for your User Stories assignations
 # Requeriments
 You need to use the same version of node that we use in class and no external dependices can be used. This means no frameworks or libraries.
 
+
+<img width="1280" alt="image" src="https://user-images.githubusercontent.com/113387032/194731980-a2f5d6cf-905b-40fe-aa59-63180b8c6fff.png">
+
