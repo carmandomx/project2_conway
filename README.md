@@ -33,5 +33,5 @@ Please use this format for your User Stories assignations
 
 # Live demo
 
-### Link to Game of Life [live demo](url_here_please)
+### Link to Game of Life [live demo]('https://yumilruedaflores-ksquare.github.io/project2_conway/')
 
