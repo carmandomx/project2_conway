@@ -19,7 +19,7 @@ const randomizeButton = document.querySelector('.randomize');
 const resetButton = document.querySelector('.reset');
 
 /*Generation label*/
-const generationLabel = document.querySelector('.generation-count');
+const generationLabel = document.querySelector('.generation-label');
 
 /* function that sets the grids */
 const initializeGrids = () => {
@@ -119,10 +119,10 @@ const updateView = () => {
 
 /* function that handles when Play button is pressed */
 const playButtonHandler = () => {
+  /* Handling which buttons must be shown when the game has been started/reseted */
   if (playButton.innerText === 'Play') {
     randomizeButton.className = 'hidden';
     resetButton.className = 'btn';
-
   }
 
   if (!playing) {
@@ -140,20 +140,21 @@ playButton.onclick = playButtonHandler;
 
 /* function that handles when Clear button is pressed */
 const clearButtonHandler = () => {
+  /* Stopping the execution of next Generation calculation and view update */
   clearTimeout(timer);
 
-  /* Reset the grid */
+  /* Resets the grid and view */
   resetGrids();
   updateView();
 
-  /* If the game was playing, resume it */
+  /* If the game was playing, resumes it */
   if (playing) {
     play();
   }
 };
 clearButton.onclick = clearButtonHandler;
 
-/* function that first clear the current board and make each cell dead or alive state randomly */
+/* function that first clears the current board and makes each cell dead or alive state randomly when Randomize button is pressed */
 const randomizeButtonHandler = () => {
   if (!playing) {
     for (let i = 0; i < rows; i++) {
@@ -176,23 +177,33 @@ const randomizeButtonHandler = () => {
 };
 randomizeButton.onclick = randomizeButtonHandler;
 
+/* function that handles when Reset button is clicked */
 const resetButtonHandler = () => {
+  /* Stopping the game */
   playing = false;
   playButton.innerText = 'Play';
   clearButtonHandler();
+
+  /* Reseting the buttons */
   resetButton.className = 'hidden';
   randomizeButton.className = 'btn';
+
+  /* Reseting Generation count and label */
   generation = 1;
   generationLabel.innerText = `Generation: ${generation}`;
-}
+};
 resetButton.onclick = resetButtonHandler;
 
 /* function that runs the game */
 const play = () => {
+  /* Getting the next Generation of cells */
   computeNextGen();
+
+  /* Updating Generation count and label */
   generation++;
   generationLabel.innerText = `Generation: ${generation}`;
 
+  /* If the game was playing, keeps running */
   if (playing) {
     timer = setTimeout(play, reproductionTime);
   }
@@ -212,7 +223,7 @@ const computeNextGen = () => {
   updateView();
 };
 
-/* function that checks which of Conway's condition is met */
+/* function that checks which of Conway's conditions is met */
 const applyRules = (row, col) => {
   const numNeighbors = countNeighbors(row, col);
 
