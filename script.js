@@ -87,7 +87,14 @@ function checkNeighbors() {
     }
 }
 
-function clearBoard() {}
+function clearBoard() {
+    for(let i = 1; i < cells.length-1; i ++){
+        for(let j = 1; j < cells[i].length-1; j++){
+            cells[i][j] = false;
+        }
+    }
+    tempDraw();
+}
 
 //Function that will initiate the cells values when called
 function randomizer() {
@@ -195,7 +202,8 @@ let play = document.querySelector(".play")
 play.addEventListener("click", playCreate);
 //Button that will pause the game
 let pause = document.querySelector(".pause")
-// _clear.addEventListener('click', ); 
+let clear = document.querySelector(".clear");
+clear.addEventListener('click', clearBoard); 
 //Button that will randomize the array
 let random = document.querySelector(".randomize");
 random.addEventListener("click", randomizer);
