@@ -1,6 +1,3 @@
-//We relate the container 
-const container = document.querySelector("#container");
-
 //Generation counter, as it will be used in several places, its global
 let countgen = 0;
 //Creation of the cells array... 52x52 for ease of use.
@@ -10,7 +7,6 @@ const resolution = 10;
 //These flags will allow the code to enable or disable changes when the game is running or stopped
 let canRandom = true;
 let canClick = true;
-const resetflag = true;
 
 function checkNeighbors() {
     //Variable that counts the amount of alive neighbors
