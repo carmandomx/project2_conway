@@ -80,25 +80,24 @@ const createTable = () => {
 };
 
 /* function to handles when user clicks a cell if game is not started */
-function cellClickHandler() {
+const cellClickHandler = (e) => {
   if (playButton.innerText === 'Play') {
     /* Replace the c in the ID with nothing so we are just left with the numbers of the row and the column */
-    const rowcol = this.id.replace('c', '').split('_');
+    const rowcol = e.target.id.replace('c', '').split('_');
     const row = rowcol[0];
     const col = rowcol[1];
 
-    const classes = this.getAttribute('class');
-
     /* Changing 'state' of cell */
+    const classes = e.target.getAttribute('class');
     if (classes.indexOf('live') > -1) {
-      this.className = 'dead pointer';
+      e.target.className = 'dead pointer';
       grid[row][col] = 0;
     } else {
-      this.className = 'live pointer';
+      e.target.className = 'live pointer';
       grid[row][col] = 1;
     }
   }
-}
+};
 
 /* function that updates the grid */
 const updateView = () => {
@@ -106,13 +105,9 @@ const updateView = () => {
     for (let j = 0; j < cols; j++) {
       const cell = document.querySelector(`#c${i}_${j}`);
 
-      if (grid[i][j] === 0) {
-        if (playButton.innerText === 'Play') cell.className = 'dead pointer';
-        else cell.className = 'dead';
-      } else {
-        if (playButton.innerText === 'Play') cell.className = 'dead pointer';
-        else cell.className = 'live';
-      }
+      if (playButton.innerText === 'Play') cell.className = 'dead pointer';
+      else if (grid[i][j] === 0) cell.className = 'dead';
+      else cell.className = 'live';
     }
   }
 };
