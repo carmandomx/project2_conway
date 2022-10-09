@@ -163,6 +163,9 @@ random.addEventListener("click", () => {
     
 })
 
-
-
+//reset event.
+reset.addEventListener("click", () => {
+    window.clearInterval(intervalId); //Stopping "window.setInterval" method to prevent unexpected errors
+    location.reload(); //reloading the current url
+})
 

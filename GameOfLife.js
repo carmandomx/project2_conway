@@ -38,7 +38,9 @@ class gameConway {
 
         //function to fill with the representative colors of each state of the cells
         this.fillCanvas = () => {
-            //The next 3 double "for" are to block sections of the canvas that don't work well
+            //The next 3 double "for" are to block sections of the canvas that don't work well base on the closed topology,
+            //it means that the border are treaters as dead cells
+            //What we are doing here is block and hide this columns and rows, they will no be visible for the user.
             for (let i = 0; i < 2; i++) {
                 for (let j = 0; j < this.columnsNumber; j++) {
                     context.fillStyle = this.blocked;
