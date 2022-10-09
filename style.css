@@ -1,0 +1,39 @@
+/* Center the header section with flexbox  */
+header {
+    display: flex;
+    justify-content: center;
+}
+
+/* Center the grid on the viewport width, set the game grid to 50% of the viewport width and gives 10 pixels space to the grid area */
+.lifeGrid {
+    margin: auto;
+    width: 50%;
+    padding: 10px;
+}
+
+/* Center the buttons area on the viewport width  */
+.buttonsArea {
+    text-align: center;
+}
+
+/* Background color of the game grid.*/
+table {
+    background-color: black;
+}
+
+/* Set the style of each space of the game grid */
+td {
+    border: 1px solid gray;
+    width: 10px;
+    height: 10px;
+}
+
+/* Set the style of unpopulated cells */
+td.unpopulated {
+    background-color: transparent;
+}
+
+/* Set the style of populated cell */
+td.populated {
+    background-color: whitesmoke;
+}
