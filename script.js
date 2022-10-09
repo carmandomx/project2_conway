@@ -115,8 +115,6 @@ function playCreate() {
     function create(){
         canRandom = false;      //These variables turn these flags down to avoid changes when the game is running
         canClick = false;
-
-  
         checkNeighbors();
         tempDraw();
     }
@@ -126,9 +124,9 @@ function playCreate() {
         play.textContent = "resume";
         play.disabled = false;
         canRandom = true;
-
         canClick = true;
-
+        clearInterval(intervalID);
+        intervalID = null;
 
     }
 }
