@@ -1,10 +1,12 @@
-# Project I
+# Project II - Game of Life
 
 Welcome! This repo contains helpful information and starter files for your project, just fork this repo and go to town!
 
 ## Team members
 
-Write here the names, career path and email of the members of the team
+Luis Vazquez,
+Genaro Arredondo
+Fernando Morejón
 
 ## Assignation 
 
