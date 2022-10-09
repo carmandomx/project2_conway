@@ -97,7 +97,7 @@ function clearBoard() {
         }
     }
     tempDraw();
-   
+
 }
 
 //Function that will initiate the cells values when called
@@ -148,8 +148,7 @@ function playCreate() {
     //Reset buttons is created to go to initial values
     let _reset = document.querySelector(".reset");
     _reset.addEventListener('click', reset); 
-    function reset() {
-        if(resetflag){
+    function reset() {    
             countgen = 0;
             document.querySelector('h2').innerHTML = "Generations:  " + countgen;
             for(let i = 1; i < cells.length-1; i ++){
@@ -158,9 +157,7 @@ function playCreate() {
                     cells[i][j] = false;
                     
                 }
-                
-            }
-            
+       
             tempDraw();
             play.textContent = "Play";
             play.disabled = false;
