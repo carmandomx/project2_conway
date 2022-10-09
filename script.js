@@ -145,6 +145,32 @@ function playCreate() {
         intervalID = null;
 
     }
+    //Reset buttons is created to go to initial values
+    let _reset = document.querySelector(".reset");
+    _reset.addEventListener('click', reset); 
+    function reset() {
+        if(resetflag){
+            countgen = 0;
+            document.querySelector('h2').innerHTML = "Generations:  " + countgen;
+            for(let i = 1; i < cells.length-1; i ++){
+                for(let j = 1; j < cells[i].length-1; j++){
+                    //All values to initial state
+                    cells[i][j] = false;
+                    
+                }
+                
+            }
+            
+            tempDraw();
+            play.textContent = "Play";
+            play.disabled = false;
+            canRandom = true;
+            canClick = true;
+            clearInterval(intervalID);
+            intervalID = null;
+        }
+        
+    }
 }
 
 function draw() {
@@ -167,7 +193,7 @@ function draw() {
     }
     //If you need the loop to work all the time, comment this line
     noLoop();
-    reset();
+    
 }
 
 
@@ -211,34 +237,7 @@ function tempDraw() {
     }
 }
 
-function reset() {
-    if(resetflag){
-        countgen = 0;
-        document.querySelector('h2').innerHTML = "Generations:  " + countgen;
-        for(let i = 1; i < cells.length-1; i ++){
-            for(let j = 1; j < cells[i].length-1; j++){
-                //We just assign true or false at random with this little funtion
-                
-                if (i > 31 && j >31 ){
-                    cells[i][j] = true;
-                }   
-                else {
-                    cells[i][j] = false;
-                }
-            }
-            
-        }
 
-        tempDraw();
-        play.textContent = "Play";
-        play.disabled = false;
-        canRandom = true;
-        canClick = true;
-        clearInterval(intervalID);
-        intervalID = null;
-    }
-    
-}
 
 //Button clicks attached to functions
 
@@ -263,4 +262,4 @@ _reset.addEventListener('click', reset);
 
 
 
-_customPttrns.addEventListener('click', );
+
