@@ -16,7 +16,7 @@ Welcome! This repo contains the code of The Game Of Life, also known as The game
 
 Please use this format for your User Stories assignations
 
-| User Stories     | Fredy Guzmán | Jonathan Ríos | Nathaly Marrufo
+| User Stories     | Fredy Guzmán | Jonathan Castillo | Nathaly Marrufo
 | ---------------- | :--: | ---: | ---: |
 | US1: As a user, whenever I navigate to the website and see an empty grid with the option to let the user set up the initial configuration. |  X   |      |      |
 | US2: If the game is paused I can resume it. |      |    X |      |
