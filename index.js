@@ -19,6 +19,13 @@ let title = document.querySelector('h1');
 // Generation title
 let generationShow = document.querySelector(".generationTitle");
 
+const pattern = document.querySelector('#pattern');
+
+// Pattern select input
+pattern.addEventListener('click', () => {
+    selectPattern();
+})
+
 /*-------------------------------------------------Global Variables-------------------------------------------------*/
 let started = false;
 let pause = false;
@@ -61,6 +68,149 @@ function fill2DArray() {
 }
 
 
+/*------------------------------------Function that sets the patterns------------------------------------------*/
+function selectPattern() {
+    if (pattern.value === 'avr') {
+        startButton.disabled = false;
+        for (let i = 0; i < gridSize; i++) {
+            for (let j = 0; j < gridSize; j++) {
+                cellsArray[i][j] = 0;
+            }
+        }
+        cellsArray[5][0] = 1;
+        cellsArray[3][1] = 1;
+        cellsArray[4][1] = 1;
+        cellsArray[5][1] = 1;
+        cellsArray[6][1] = 1;
+        cellsArray[7][1] = 1;
+        cellsArray[2][2] = 1;
+        cellsArray[8][2] = 1;
+        cellsArray[0][3] = 1;
+        cellsArray[3][3] = 1;
+        cellsArray[4][3] = 1;
+        cellsArray[5][3] = 1;
+        cellsArray[6][3] = 1;
+        cellsArray[7][3] = 1;
+        cellsArray[10][3] = 1;
+        cellsArray[0][4] = 1;
+        cellsArray[1][4] = 1;
+        cellsArray[3][4] = 1;
+        cellsArray[5][4] = 1;
+        cellsArray[7][4] = 1;
+        cellsArray[9][4] = 1;
+        cellsArray[10][4] = 1;
+        cellsArray[1][5] = 1;
+        cellsArray[3][5] = 1;
+        cellsArray[5][5] = 1;
+        cellsArray[7][5] = 1;
+        cellsArray[9][5] = 1;
+        cellsArray[1][6] = 1;
+        cellsArray[3][6] = 1;
+        cellsArray[7][6] = 1;
+        cellsArray[9][6] = 1;
+        cellsArray[2][7] = 1;
+        cellsArray[8][7] = 1;
+        cellsArray[3][8] = 1;
+        cellsArray[4][8] = 1;
+        cellsArray[5][8] = 1;
+        cellsArray[6][8] = 1;
+        cellsArray[7][8] = 1;
+        cellsArray[5][10] = 1;
+        cellsArray[4][11] = 1;
+        cellsArray[6][11] = 1;
+        cellsArray[5][12] = 1;
+        updateVisualBoard();
+    }
+    else if (pattern.value === 'antiphase') {
+        startButton.disabled = false;
+        for (let i = 0; i < gridSize; i++) {
+            for (let j = 0; j < gridSize; j++) {
+                cellsArray[i][j] = 0;
+            }
+        }
+        cellsArray[15][15] = 1;
+        cellsArray[14][16] = 1;
+        cellsArray[16][16] = 1;
+        cellsArray[13][17] = 1;
+        cellsArray[15][17] = 1;
+        cellsArray[15][18] = 1;
+        cellsArray[17][18] = 1;
+        cellsArray[18][18] = 1;
+        cellsArray[18][18] = 1;
+        cellsArray[15][19] = 1;
+        cellsArray[13][19] = 1;
+        cellsArray[12][19] = 1;
+        cellsArray[15][20] = 1;
+        cellsArray[17][20] = 1;
+        cellsArray[14][21] = 1;
+        cellsArray[16][21] = 1;
+        cellsArray[15][22] = 1;
+
+        updateVisualBoard();
+    }
+    else if (pattern.value === 'achimsp4') {
+        startButton.disabled = false;
+        for (let i = 0; i < gridSize; i++) {
+            for (let j = 0; j < gridSize; j++) {
+                cellsArray[i][j] = 0;
+            }
+        }
+        cellsArray[15][15] = 1;
+        cellsArray[17][15] = 1;
+        cellsArray[15][16] = 1;
+        cellsArray[14][16] = 1;
+        cellsArray[13][16] = 1;
+        cellsArray[17][16] = 1;
+        cellsArray[18][16] = 1;
+        cellsArray[19][16] = 1;
+        cellsArray[12][17] = 1;
+        cellsArray[16][17] = 1;
+        cellsArray[20][17] = 1;
+        cellsArray[12][18] = 1;
+        cellsArray[14][18] = 1;
+        cellsArray[18][18] = 1;
+        cellsArray[20][18] = 1;
+        cellsArray[13][19] = 1;
+        cellsArray[14][19] = 1;
+        cellsArray[16][19] = 1;
+        cellsArray[18][19] = 1;
+        cellsArray[19][19] = 1;
+        cellsArray[13][21] = 1;
+        cellsArray[14][21] = 1;
+        cellsArray[16][21] = 1;
+        cellsArray[18][21] = 1;
+        cellsArray[19][21] = 1;
+        cellsArray[12][22] = 1;
+        cellsArray[14][22] = 1;
+        cellsArray[18][22] = 1;
+        cellsArray[20][22] = 1;
+        cellsArray[12][23] = 1;
+        cellsArray[16][23] = 1;
+        cellsArray[20][23] = 1;
+        cellsArray[15][24] = 1;
+        cellsArray[14][24] = 1;
+        cellsArray[13][24] = 1;
+        cellsArray[17][24] = 1;
+        cellsArray[18][24] = 1;
+        cellsArray[19][24] = 1;
+        cellsArray[15][25] = 1;
+        cellsArray[17][25] = 1;
+
+        updateVisualBoard();
+    }
+    else if (pattern.value === 'none') {
+        startButton.disabled = true;
+        for (let i = 0; i < gridSize; i++) {
+            for (let j = 0; j < gridSize; j++) {
+                cellsArray[i][j] = 0;
+            }
+        }
+        updateVisualBoard();
+    }
+
+}
+
+
 /*---------------------Function that update every div of the grid based on each cell state ---------------------------*/
 function updateVisualBoard() {
     let totalCells = gridSize * gridSize;
@@ -91,7 +241,8 @@ function startGame() {
     createGrid();
     fill2DArray();
     updateVisualBoard();
-  
+    selectPattern();
+
 }
 
 
@@ -174,6 +325,7 @@ square.addEventListener("mouseover", function (event) {
 /*----------------------------------------------------Buttons Actions-------------------------------------------------*/
 // Start button
 startButton.addEventListener("click", function () {
+    pattern.disabled = true;
     startedGame = true;
     for (let i = 0; i < (gridSize * gridSize); i++) {
         grid.children[i].classList.remove("grayGrid");
@@ -226,7 +378,7 @@ clearButton.addEventListener('click', () => {
 
 
 // Reset button
-resetButton.addEventListener('click', () =>{
+resetButton.addEventListener('click', () => {
     window.location.reload();
 });
 
@@ -310,10 +462,10 @@ window.addEventListener('animationstart', e =>
 /*-------------------------------------Function to show the generations-------------------------------*/
 
 function generations() {
-    if (started===true) {
-        generationShow.innerText='Generation: '+generationCounter;
+    if (started === true) {
+        generationShow.innerText = 'Generation: ' + generationCounter;
     }
-    
+
 }
 
 
