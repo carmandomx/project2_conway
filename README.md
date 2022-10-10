@@ -4,7 +4,9 @@ Welcome! This repo is used to deliver a P.R., the actual workflow repo is [here]
 
 ## Team members
 
-Write here the names, career path and email of the members of the team
+| Career | Name | eMail |
+| --- | --- | --- |
+| SalesForce | José Alonso De La Cruz Arias | jose.delacruz@itksquare.edu.mx |
 
 ## Assignation 
 
@@ -21,7 +23,7 @@ Please use this format for your User Stories assignations
 
 # Live demo
 
-Please include here a link to your [live demo](https://tabex94.github.io/LIFEfromzero) This demo is deployed from the same P.R. repo.
+Please include here a link to your [live demo](https://tabex94.github.io/LIFEfromzero) (This demo is deployed from the same P.R. repo)
 
 # Requeriments
 You need to use the same version of node that we use in class and no external dependices can be used. This means no frameworks or libraries.
