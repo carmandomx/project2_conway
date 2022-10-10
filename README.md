@@ -1,6 +1,7 @@
 # Project II
 
-Welcome! This repo is used to deliver a P.R., the actual workflow repo is [here](https://tabex94.github.io/LIFEfromzero)
+Welcome! This repo is used to deliver a P.R., the actual workflow repo is [here](https://github.com/Tabex94/LIFEfromzero)
+Or copy https://github.com/Tabex94/LIFEfromzero
 
 ## Team members
 
