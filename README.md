@@ -1,6 +1,6 @@
 # Project I
 
-Welcome! This repo is used to deliver a P.R., the [Work repo](https://tabex94.github.io/LIFEfromzero)
+Welcome! This repo is used to deliver a P.R., the actual workflow repo is [here](https://tabex94.github.io/LIFEfromzero)
 
 ## Team members
 
