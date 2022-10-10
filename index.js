@@ -221,7 +221,13 @@ randomize.addEventListener('click', () =>{
       updateCounter(count);
   }
   else{ //sends a warning message if the game is running and does not allow the change to push through
-      swal("Can only randomize when the game is not playing!");
+      swal({
+
+        title: 'Warning!',
+        text: 'Can only randomize when the game is not playing!',
+        icon: 'error'
+
+      });
   }
 
 });
