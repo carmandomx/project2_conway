@@ -8,7 +8,7 @@ Welcome! This repo contains the code of The Game Of Life, also known as The game
 | Name | Path | E-mail |
 | ---------------- | :--: | ---: | 
 | Guzmán Ríos Fredy Omar | Flutter | fredy.guzman@itksquare.edu.mx | 
-| Castillo Jonathan| JavaScript | jonathan.castillo@itksquare.edu.mx | 
+| Castillo Velazquez Jonathan Sebas| JavaScript | jonathan.castillo@itksquare.edu.mx | 
 | Marrufo Alemán Nathaly | SalesForce | nathaly.marrufo@itksquare.edu.mx |
 
 
