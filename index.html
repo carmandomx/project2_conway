@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <link rel="stylesheet" type="text/css" href="style.css" />
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+<link rel="stylesheet" type="text/css" href="style.css" />
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Silkscreen&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Silkscreen&display=swap" rel="stylesheet">
 
-    <title>Game of Life</title>
+<title>Game of Life</title>
 
 
 <body class="bodyDesing">
@@ -20,16 +20,26 @@
             <div class="gridContainer"></div>
         </div>
         <div class="page">
-            <div><h1 class="statusDes"></h1>
-            <button class="start">START</button>
-            <button class="pause">PAUSE</button><br>
-            <button class="clear">CLEAR</button>
-            <button class="randomize">RANDOMIZE</button>
-            <button class="reset">RESET</button>
-        </div>
-        <div class="generationContainer">
-            <h2 class="generationTitle"></h2>
-        </div>
+            <div>
+                <h1 class="statusDes"></h1>
+                <button class="start">START</button>
+                <button class="pause">PAUSE</button><br>
+                <button class="clear">CLEAR</button>
+                <button class="randomize">RANDOMIZE</button>
+                <button class="reset">RESET</button>
+                <div>
+                    <label for="pattern">Select a pattern</label>
+                    <select name="pattern" id="pattern">
+                        <option value="none" selected>--None--</option>
+                        <option value="avr">Average</option>
+                        <option value="antiphase">Antiphase</option>
+                        <option value="achimsp4">Achimsp4</option>
+                    </select>
+                </div>
+            </div>
+            <div class="generationContainer">
+                <h2 class="generationTitle"></h2>
+            </div>
         </div>
 
     </div>
