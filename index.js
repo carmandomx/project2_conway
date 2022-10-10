@@ -124,7 +124,7 @@ play.addEventListener("click", function () {
   // Show stop button and hide play button
   play.classList.add("hideIt");
   stop.classList.remove("hideIt");
-  //new image for "start" action.
+
   document.querySelector(".ico-gen").setAttribute("src", "./image/duck.png");
 });
 
