@@ -1,7 +1,6 @@
 # Project II
 
 Welcome! This repo is used to deliver a P.R., the actual workflow repo is [here](https://github.com/Tabex94/LIFEfromzero)
-Or copy https://github.com/Tabex94/LIFEfromzero
 
 ## Team members
 
@@ -51,7 +50,7 @@ In spanish for sharing purposes
 
 ![LOGICCHECK](https://user-images.githubusercontent.com/113391047/194477110-aeb8b1e3-77ae-4094-be30-b4bb32cbbc58.png)
 
-To calc color, we need to desing our non-linear functions
+To calc the speed indicator color, we needed to desing our non-linear functions
 
 ![color settings](https://user-images.githubusercontent.com/113391047/194753863-ff457a42-a4e7-4cdb-968f-41c543dbad8a.png)
 
