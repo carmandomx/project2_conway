@@ -19,9 +19,9 @@ let title = document.querySelector('h1');
 // Generation title
 let generationShow = document.querySelector(".generationTitle");
 
+// Pattern select input
 const pattern = document.querySelector('#pattern');
 
-// Pattern select input
 pattern.addEventListener('click', () => {
     selectPattern();
 })
@@ -387,7 +387,10 @@ function randomizer() {
     for (let i = 0; i < gridSize; i++) {
         for (let j = 0; j < gridSize; j++) {
             if (cellsArray[i][j] === 0) {
-                cellsArray[i][j] = Math.floor(Math.random() * 2);
+                let rand = Math.floor(Math.random() * 15)
+                if (rand <= 1) {
+                    cellsArray[i][j] = 1;
+                }
             }
         }
     }
