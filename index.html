@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
+  <title>Game of life</title>
+</head>
+<body>
+
+  <!-- ============================== GAME TITLE AREA ============================== -->
+  <header>
+    <h1 class="box">The Game of Life</h1>
+    <p>Click on the grid to choose the game's initial configuration OR click on the randomize button</p>
+    <p>Click play and watch the game evolve</p>
+    <div class="info-general">
+      <div class="generations">
+        <section class="info-gen">How many generations have passed?</section>
+        <img class="ico-gen" src="./image/egg.png" alt="egg" />
+      </div>
+      <section class="info-grid">Welcome here!</section>
+    </div>
+
+  </header>
+
+  <!-- ============================== GAME CANVAS AREA ============================== -->
+  <main>
+    <canvas></canvas>
+  </main>
+
+  <!-- ============================== GAME BUTTONS AREA ============================== -->
+  <footer>
+    <button class="play">Play</button>
+    <button class="stop hideIt">Stop</button>
+    <button class="random">Randomize</button>
+    <button class="clr">Clear</button>
+    <button class="reset">Reset</button>
+  </footer>
+
+  <script src="index.js"></script>
+</body>
+</html>
