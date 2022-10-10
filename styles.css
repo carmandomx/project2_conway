@@ -21,7 +21,7 @@ html {
 
 body {
   display: grid;
-  grid-template-rows: 22vh 68vh 10vh;
+  grid-template-rows: 30vh 55vh 15vh;
   align-items: center;
 }
 
@@ -30,6 +30,10 @@ header {
   flex-direction: column;
   justify-content: center;
   cursor: none;
+}
+
+header *{
+  padding: 0.5rem 0;
 }
 
 h1 {

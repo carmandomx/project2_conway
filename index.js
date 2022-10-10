@@ -1,3 +1,5 @@
+// Game of life javascript file 
+
 // DOM button selectors
 const play = document.querySelector(".play");
 const stop = document.querySelector(".stop");
@@ -13,6 +15,8 @@ const ctx = canvas.getContext("2d"); //to acces the drawing context
 let randomMode = false;
 //For do the animation for each loop
 let reqAnimation;
+// This is a variable to store the amounts of clicks.
+let clickCount = 0;
 
 /* ==============================  BUILDING THE CANVAS GRID  ============================== */
 
@@ -62,8 +66,7 @@ function render(grid) {
 // To visualize the inital empty grid
 let emptyGrid = buildEmptyGrid();
 let randGrid = buildRandomGrid();
-// This is a variable to store the amounts of clicks.
-let clickCount = 0;
+
 render(emptyGrid);
 
 /* ==============================  DRAWING INITIAL CONFIGURATION  ============================== */
@@ -94,8 +97,8 @@ function colorCell(event) {
   }
 
   // Now we choose which "rectangle" or cell to fill
-  ctx.fillRect(x_position + 1, y_position + 1, resolution - 2, resolution - 2);
-  // the +1 and -2 are to adjust the filling positioning, so we don't "erase" the cell borders
+  ctx.fillRect(x_position + 0.5, y_position + 0.5, resolution - 1, resolution - 1);
+  // the +0.5 and -1 are to adjust the filling positioning, so we don't "erase" the cell borders
 }
 
 /* ==============================  BUTTONS FUNCTIONALITY  ============================== */
@@ -121,12 +124,12 @@ play.addEventListener("click", function () {
   // Show stop button and hide play button
   play.classList.add("hideIt");
   stop.classList.remove("hideIt");
-  //new image for "start" action.
-  document.querySelector(".ico-gen").setAttribute("src", "./image/pato.png");
+
+  document.querySelector(".ico-gen").setAttribute("src", "./image/duck.png");
 });
 
 stop.addEventListener("click", function () {
-  //Pause the life animation
+  //Pause the live animation
   cancelAnimationFrame(reqAnimation);
   random.removeEventListener("click", renderRandomGrid);
   // Show play button and hide stop button
@@ -134,10 +137,11 @@ stop.addEventListener("click", function () {
   stop.classList.add("hideIt");
 });
 
-clear.addEventListener("click", clearAll);
 // Clears the grid fot both game mode cases
+clear.addEventListener("click", clearAll);
 
 function clearAll() {
+  // Sets the grids back to a 0's matrix
   emptyGrid = emptyGrid.map(function (row) {
     return row.map(function (cell) {
       return cell * 0;
@@ -150,7 +154,7 @@ function clearAll() {
   });
   reqAnimation = requestAnimationFrame(update);
   random.removeEventListener("click", renderRandomGrid);
-
+  // change play/stop buttons
   play.classList.add("hideIt");
   stop.classList.remove("hideIt");
   addEventListener("click", genTextClear);
@@ -173,7 +177,7 @@ random.addEventListener("click", renderRandomGrid);
 function renderRandomGrid() {
   randomMode = true; // flag to indicate the games Mode of playing
   render(buildRandomGrid());
-  document.querySelector(".ico-gen").setAttribute("src", "./image/pato.png");
+  document.querySelector(".ico-gen").setAttribute("src", "./image/duck.png");
 }
 
 /* ==================================  GAME LOGIC  ================================== */
@@ -256,13 +260,12 @@ function nextGeneration(grid) {
 function genText() {
   document.querySelector(
     ".info-gen"
-  ).textContent = ` ${acountGen} generations passed`;
+  ).textContent = ` ${acountGen} generations have passed`;
   return (clickCount = 0);
 }
 //Text that you get when you click on clear, it also changes the color of the info-grid to red and adds a picture of a nuclear bomb explosion
 function genTextClear() {
-  document.querySelector(".info-grid").textContent =
-    "You have dropped a nuclear bomb!";
+  document.querySelector(".info-grid").textContent = "You have dropped a nuclear bomb!";
   document.querySelector(".info-grid").style.color = "red";
   document.querySelector(".ico-gen").setAttribute("src", "./image/nuclear.png");
 }
