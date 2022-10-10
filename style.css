@@ -1,5 +1,7 @@
 .bodyDesing{
   background-color: black;
+  background-image: url("imgs/background_black2.jpg");
+  background-repeat: repeat;
   display: grid;
   justify-content: center;
 }
@@ -116,7 +118,15 @@
 .clear:disabled,
 .randomize:disabled {
   background-color: #eee;
+  cursor: not-allowed;
 }
+.start:disabled:hover,
+.pause:disabled:hover,
+.clear:disabled:hover,
+.randomize:disabled:hover {
+  background-color: rgb(65, 63, 63);
+}
+
 
 button{
   padding: 15px;
@@ -126,6 +136,7 @@ button{
   font-family: 'Silkscreen', cursive;
   font-size: 15px;
   border-color: aliceblue;
+  cursor: pointer;
 }
 
 .start{
@@ -196,4 +207,13 @@ background-color: wheat;
   margin: 25px;
   border-radius: 10px;
   text-align: center;
+  cursor: pointer;
+}
+.selectorPattern:disabled{
+  background-color: #eee;
+  color:rgb(45, 46, 48);
+  cursor: not-allowed;
+}
+.selectorPattern:disabled:hover{
+  background-color: rgb(65, 63, 63);
 }
