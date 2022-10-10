@@ -1,0 +1,65 @@
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  box-sizing: border-box;
+}
+body {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  font-family: 'Silkscreen', cursive;
+}
+header {
+  width: 100%;
+}
+main {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+h1 {
+  text-align: center;
+}
+button {
+  padding: 10px 20px;
+  border-radius: 10px;
+  border: 2px solid black;
+  font-family: 'Silkscreen', cursive;
+  font-size: 20px;
+}
+.pattern-selector {
+  padding: 10px 20px;
+  border-radius: 10px;
+  border: 2px solid black;
+  font-family: 'Silkscreen', cursive;
+  font-size: 20px;
+  background-color: rgb(199, 245, 199);
+}
+.control-buttons {
+  margin-top: 30px;
+}
+.play-btn {
+  background-color: rgb(162, 155, 145);
+  color: white;
+}
+.play-btn-start {
+  background-color: rgb(67, 67, 173);
+  color: white;
+}
+.reset-btn {
+  background-color: rgb(162, 155, 145);
+  color: white;
+}
+.reset-btn-on {
+  background-color: rgb(187, 50, 50);
+  color: white;
+}
+.counter {
+  font-size: 50px;
+}
