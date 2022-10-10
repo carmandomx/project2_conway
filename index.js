@@ -254,7 +254,7 @@ function nextGeneration(grid) {
 function genText() {
   document.querySelector(
     ".info-gen"
-  ).textContent = ` ${acountGen} number of generations passed`;
+  ).textContent = ` ${acountGen} generations passed`;
   return (clickCount = 0);
 }
 //Text that you get when you click on clear, it also changes the color of the info-grid to red and adds a picture of a nuclear bomb explosion
