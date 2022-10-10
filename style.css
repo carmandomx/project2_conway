@@ -179,3 +179,21 @@ background-color: wheat;
   color: aliceblue;
   font-family: 'Silkscreen', cursive;
 }
+
+
+.labelPattern{
+  font-family: 'Silkscreen', cursive;
+  font-size: 18px;
+  color: rgb(255, 240, 255);
+}
+
+.selectorPattern{
+  font-family: 'Silkscreen', cursive;
+  font-size: 15px;
+  background-color: rgb(202, 33, 182);
+  color: aliceblue;
+  padding: 10px;
+  margin: 25px;
+  border-radius: 10px;
+  text-align: center;
+}
