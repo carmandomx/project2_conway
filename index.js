@@ -1,14 +1,3 @@
-/* ==============================  USER STORIES  ============================== */
-/*
-1.- As a user, whenever I navigate to the website and see an empty grid with the option to let the user set up the initial configuration.
-2.- If the game is paused I can resume it
-3.- I can clear the board
-4.- I can click a 'Randomize' button that will generate an initial configuration for the game to play and this can only be done when the games has not yet started
-5.- I can see the amount of generation has passed since the start of the game
-6.- I can click a button that would set the game back to the initial state (how the website initially loads in)
-7.- (Optional) Research know patterns that occurs in the Game Of Life and allow the  user to see those patterns.
-*/
-
 // DOM button selectors
 const play = document.querySelector(".play");
 const stop = document.querySelector(".stop");
@@ -29,8 +18,8 @@ let reqAnimation;
 
 // Defining the canvas size, we can modify this values if we want to resize the grid
 const resolution = 10;
-const w = (canvas.width = 500);
-const h = (canvas.height = 400);
+const w = canvas.width = 500;
+const h = canvas.height = 400;
 
 const cols = w / resolution;
 const rows = h / resolution;
@@ -73,6 +62,8 @@ function render(grid) {
 // To visualize the inital empty grid
 let emptyGrid = buildEmptyGrid();
 let randGrid = buildRandomGrid();
+// This is a variable to store the amounts of clicks.
+let clickCount = 0; 
 render(emptyGrid);
 
 /* ==============================  DRAWING INITIAL CONFIGURATION  ============================== */
@@ -127,7 +118,7 @@ play.addEventListener("click", function () {
   // Once the game has started, we remove the user's ability to interact with the canvas AND the randomize button
   canvas.removeEventListener("click", colorCell);
   random.removeEventListener("click", renderRandomGrid);
-
+  // Show stop button and hide play button
   play.classList.add("hideIt");
   stop.classList.remove("hideIt");
 });
@@ -136,14 +127,14 @@ stop.addEventListener("click", function () {
   //Pause the life animation
   cancelAnimationFrame(reqAnimation);
   random.removeEventListener("click", renderRandomGrid);
-
+  // Show play button and hide stop button
   play.classList.remove("hideIt");
   stop.classList.add("hideIt");
 });
 
 clear.addEventListener("click", clearAll);
 // Clears the grid fot both game mode cases
-clickCount = 0; //
+
 function clearAll() {
   emptyGrid = emptyGrid.map(function (row) {
     return row.map(function (cell) {
@@ -160,7 +151,7 @@ function clearAll() {
 
   play.classList.add("hideIt");
   stop.classList.remove("hideIt");
-
+  addEventListener("click", genTextClear);
   clickCount++;
   if (clickCount >= 1) {
     genTextClear();
@@ -263,10 +254,10 @@ function nextGeneration(grid) {
 function genText() {
   document.querySelector(
     ".info-gen"
-  ).textContent = `Have passed ${acountGen} generations`;
+  ).textContent = ` ${acountGen} generations passed`;
   return (clickCount = 0);
 }
-
+//Text that you get when you click on clear, it also changes the color of the info-grid to red and adds a picture of a nuclear bomb explosion
 function genTextClear() {
   document.querySelector(".info-grid").textContent =
     "You have dropped a nuclear bomb!";
