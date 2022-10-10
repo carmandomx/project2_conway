@@ -24,6 +24,7 @@ Please use this format for your User Stories assignations
 | US4: I can click a 'Randomize' button that will generate an initial configuration for the game to play and this can only be done when the games has not yet started.|      |  X   |      |
 | US5: I can see the amount of generation has passed since the start of the game. |      |      |  X   |
 | US6: I can click a button that would set the game back to the initial state (how the website initially loads in).|      |      |  X   |
+| US7: (Optional) Research know patterns that occurs in the Game Of Life and allow the  user to see those patterns.|  X   |  X   |  X   |
 
 # Live demo
 
