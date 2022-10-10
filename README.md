@@ -1,4 +1,4 @@
-# Project I
+# Project II
 
 Welcome! This repo is used to deliver a P.R., the actual workflow repo is [here](https://tabex94.github.io/LIFEfromzero)
 
@@ -33,8 +33,6 @@ I made a slighly modification to the behavior of the random button. You can set 
 
 #About the making of this game!
 
-# LIFEfromzero
-My project of game of life
 
 First I'm going to count the neightboorhood of a single cell using this draft as support
 
