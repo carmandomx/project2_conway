@@ -31,7 +31,7 @@ You need to use the same version of node that we use in class and no external de
 # Note
 I made a slighly modification to the behavior of the random button. You can set a new random array even in execution-time! I made it in order to improve user experience by leting the user put new cells when the game is running. You'll find this feature is funnier when you use it in combination with the dinamic speed! Also you have 25% of probabilities that the random button show's you a different way to randomize the array, try adding even more cells! 
 
-#About the making of this game!
+# About the making of this game!
 
 
 First I'm going to count the neightboorhood of a single cell using this draft as support
