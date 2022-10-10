@@ -1,0 +1,152 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body{
+    height: 100%;
+}
+
+body{
+    background-color: #D6E6F2;
+    display: inline;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.navbar
+{
+    background-color: black;
+    width: 860px;
+    border-radius: 3px;
+} 
+
+
+
+.navbar{
+    padding: 1em;
+    margin-bottom: 6px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn, input{
+    height: 35px;
+    padding: 0 1em;
+}
+
+.btnRndm{
+    height: 35px;
+    padding: 0 1em;
+}
+
+.btnStp{
+    height: 35px;
+    padding: 0 1em;
+}
+
+.btnStart{
+    height: 35px;
+    padding: 0 1em;
+}
+
+.btnReload{
+    height: 35px;
+    padding: 0 1em;
+    background-color: rgb(237, 230, 15);
+    border-color: #008805;
+}
+
+.btnReload:hover{
+    height: 35px;
+    padding: 0 1em;
+    background-color: rgb(237, 15, 15);
+    border-color: #c6c90d;
+}
+
+
+
+.container{
+    background-color: black;
+    width: 800px;
+    border-radius: 3px;
+    --size:4; /*a variable in css! to set rows and columns (or is a pointer?)*/
+    height: 800px;
+    display: grid;
+    grid-template-columns: repeat(var(--size), 1fr);
+    grid-template-rows: repeat(var(--size), 1fr);
+    gap: 3px;
+    padding: 3px;
+}
+
+.pixel{
+    background-color: rgb(52, 42, 42);
+    border-radius: 2px;
+}
+
+.stepcount{
+    background-color: rgb(205, 255, 218);
+    color: rgb(18, 18, 19);
+    height: 33px;
+    width: 70px;
+    display: flex;
+    border-radius: 2px;
+}
+
+steps{
+    margin: auto;
+}
+
+.sizecount{
+    background-color: #7DCE94;
+    color: rgb(18, 18, 19);
+    height: 33px;
+    width: 70px;
+    display: flex;
+    border-radius: 2px;
+}
+
+sizes{
+    margin: auto;
+}
+
+input{
+    width: 200px;
+}
+
+header{
+    padding-top: 1em;
+    padding-bottom: 2em;
+    font-size: xx-large;
+}
+
+section{
+    width: 75%;
+    padding-bottom: 15PX;
+}
+
+footer{
+    width: 75%;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    }
+
+h3{
+    padding-top: 2em;
+}
+
+ol, ul{
+    padding-top: 1em;
+
+}
+
+ul{
+    padding-bottom: 10px;
+}
+
+li{
+    text-align: left;
+}
