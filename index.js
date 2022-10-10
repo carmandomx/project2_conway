@@ -18,8 +18,8 @@ let reqAnimation;
 
 // Defining the canvas size, we can modify this values if we want to resize the grid
 const resolution = 10;
-const w = canvas.width = 500;
-const h = canvas.height = 400;
+const w = (canvas.width = 500);
+const h = (canvas.height = 400);
 
 const cols = w / resolution;
 const rows = h / resolution;
@@ -63,7 +63,7 @@ function render(grid) {
 let emptyGrid = buildEmptyGrid();
 let randGrid = buildRandomGrid();
 // This is a variable to store the amounts of clicks.
-let clickCount = 0; 
+let clickCount = 0;
 render(emptyGrid);
 
 /* ==============================  DRAWING INITIAL CONFIGURATION  ============================== */
@@ -121,6 +121,8 @@ play.addEventListener("click", function () {
   // Show stop button and hide play button
   play.classList.add("hideIt");
   stop.classList.remove("hideIt");
+
+  document.querySelector(".ico-gen").setAttribute("src", "./image/pato.png");
 });
 
 stop.addEventListener("click", function () {
