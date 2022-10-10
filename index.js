@@ -211,8 +211,14 @@ function populate(size){
 
         div.addEventListener('mouseover', function(){
             if(!draw){return;}
-            div.style.backgroundColor="rgb(255, 255, 255)";
+            if(checkalive(i)==true){
+                div.style.backgroundColor="rgb(52, 42, 42)";
+            kill(i);
+            }
+            else{
+                div.style.backgroundColor="rgb(255, 255, 255)";
             setState(i);
+            }
 
         });
 
@@ -251,8 +257,14 @@ function drawNext(texture){
 
         div.addEventListener('mouseover', function(){
             if(!draw){return;}
-            div.style.backgroundColor="rgb(255, 255, 255)";
+            if(checkalive(i)==true){
+                div.style.backgroundColor="rgb(52, 42, 42)";
+            kill(i);
+            }
+            else{
+                div.style.backgroundColor="rgb(255, 255, 255)";
             setState(i);
+            }
 
         });
 
@@ -492,4 +504,3 @@ speedEl.addEventListener('change', function(){
 populate(size);
 clearInterval(myInterval);
 displaySpeed();
-
