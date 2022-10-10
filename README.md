@@ -28,7 +28,7 @@ Please use this format for your User Stories assignations
 
 # Live demo
 
-https://fredyguzman-ksquare.github.io/project2_conway/
+[Live demo](https://fredyguzman-ksquare.github.io/project2_conway/)
 
 # Requeriments
 You need to use the same version of node that we use in class and no external dependices can be used. This means no frameworks or libraries.
