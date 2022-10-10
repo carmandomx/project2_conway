@@ -16,7 +16,6 @@ const statecount = document.querySelector('.sizecount');
 let size = sizeEl.value;
 let speed=speedEl.value;
 let draw = false;
-let clicked="";
 let GenCount=0;
 let running=false;
 let myInterval=0;
@@ -192,6 +191,16 @@ function resetLife(){
 function setState(cell){
     initialSetUp[cell]=1;
 }
+function kill(cell){
+    initialSetUp[cell]=0;
+}
+function checkalive(cell){
+    if(initialSetUp[cell]==1){
+        return true;
+    }
+    else
+        return false;
+}
 //Setting Initial space
 function populate(size){
     container.style.setProperty('--size', size)
@@ -208,16 +217,18 @@ function populate(size){
         });
 
         div.addEventListener('mousedown', function(){
-            div.style.backgroundColor="rgb(255, 255, 255)";
+            if(checkalive(i)==true){
+                div.style.backgroundColor="rgb(52, 42, 42)";
+            kill(i);
+            }
+            else{
+                div.style.backgroundColor="rgb(255, 255, 255)";
             setState(i);
+            }
+            
         });
         
-        /*
-        div.addEventListener('click', function(){
-            div.style.backgroundColor="rgb(255, 255, 255)";
-            displaydatalog(i);
-            setState(i);
-        })*/
+        
 
 
         container.appendChild(div);
@@ -246,8 +257,15 @@ function drawNext(texture){
         });
 
         div.addEventListener('mousedown', function(){
-            div.style.backgroundColor="rgb(255, 255, 255)";
+            if(checkalive(i)==true){
+                div.style.backgroundColor="rgb(52, 42, 42)";
+            kill(i);
+            }
+            else{
+                div.style.backgroundColor="rgb(255, 255, 255)";
             setState(i);
+            }
+            
         });
         
         container.appendChild(div);
