@@ -1,7 +1,6 @@
 # Project II
 
 Welcome! This repo is used to deliver a P.R., the actual workflow repo is [here](https://github.com/Tabex94/LIFEfromzero)
-Or copy https://github.com/Tabex94/LIFEfromzero
 
 ## Team members
 
@@ -29,6 +28,10 @@ Please include here a link to your [live demo](https://tabex94.github.io/LIFEfro
 # Requeriments
 You need to use the same version of node that we use in class and no external dependices can be used. This means no frameworks or libraries.
 
+# Preview
+
+![image](https://user-images.githubusercontent.com/113466701/194793442-2a227d61-4b6c-45e3-9cc6-2a78a75c0275.png)
+
 # Note
 I made a slighly modification to the behavior of the random button. You can set a new random array even in execution-time! I made it in order to improve user experience by leting the user put new cells when the game is running. You'll find this feature is funnier when you use it in combination with the dinamic speed! Also you have 25% of probabilities that the random button show's you a different way to randomize the array, try adding even more cells! 
 
@@ -51,7 +54,7 @@ In spanish for sharing purposes
 
 ![LOGICCHECK](https://user-images.githubusercontent.com/113391047/194477110-aeb8b1e3-77ae-4094-be30-b4bb32cbbc58.png)
 
-To calc color, we need to desing our non-linear functions
+To calc the speed indicator color, we needed to desing our non-linear functions
 
 ![color settings](https://user-images.githubusercontent.com/113391047/194753863-ff457a42-a4e7-4cdb-968f-41c543dbad8a.png)
 
