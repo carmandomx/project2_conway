@@ -1,11 +1,11 @@
 //queriesSelectors
 const canvas = document.querySelector("#board");
 const ctx = canvas.getContext("2d"); 
-const reset = document.querySelector("#reset");
-const start = document.querySelector("#start");
-const randomize = document.querySelector("#randomize");
+const reset = document.querySelector(".reset");
+const start = document.querySelector(".start");
+const randomize = document.querySelector(".randomize");
 const input =  document.querySelector("#quantity");
-const clear = document.querySelector("#clear");
+const clear = document.querySelector(".clear");
 const textLevel = document.querySelector('.generationNo');
 
 //Global Variables
@@ -221,7 +221,13 @@ randomize.addEventListener('click', () =>{
       updateCounter(count);
   }
   else{ //sends a warning message if the game is running and does not allow the change to push through
-      window.alert("Can only randomize when the game is not playing!");
+      swal({
+
+        title: 'Warning!',
+        text: 'Can only randomize when the game is not playing!',
+        icon: 'error'
+
+      });
   }
 
 });
