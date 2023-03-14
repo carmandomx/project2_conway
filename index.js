@@ -3,6 +3,7 @@ const startButton = document.querySelector(".start");
 const pauseButton = document.querySelector(".pause");
 const clearButton = document.querySelector(".clearBoard");
 const randomizeButton = document.querySelector(".random");
+const generations=document.querySelector('.generation')
 
 // Get canvas element and its context
 const canvas = document.getElementById("canvas");
@@ -11,6 +12,7 @@ const ctx = canvas.getContext("2d");
 // Number of rows and columns, and size of each cell
 let pause = false;
 let gameStarted = false;
+let iteration = 0; //counter of generations
 const rows = 40;
 const columns = 40;
 const cellSize = canvas.width / rows;
@@ -114,6 +116,8 @@ startButton.addEventListener("click", () => {
     if (!pause) {
       updateGrid();
       drawGrid();
+      iteration+=1
+      generations.textContent = ` ${iteration} generations have passed`
     }
   }, 100);
 });
@@ -121,6 +125,7 @@ startButton.addEventListener("click", () => {
 // Clear the board
 clearButton.addEventListener("click", () => {
   initGrid();
+  drawGrid();
 });
 
 randomizeButton.addEventListener("click", () => {
