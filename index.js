@@ -106,6 +106,7 @@ drawGrid();
 pauseButton.addEventListener("click", () => {
   pause = !pause;
 });
+
 startButton.addEventListener("click", () => {
   gameStarted = true;
   if (!pause) {
