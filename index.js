@@ -43,6 +43,7 @@ const drawGrid = () => {
   }
 };
 
+// Update the grid by applying the rules of the game of life
 const updateGrid = () => {
   let newGrid = new Array(columns);
   for (let i = 0; i < columns; i++) {
@@ -51,27 +52,35 @@ const updateGrid = () => {
   for (let i = 0; i < columns; i++) {
     for (let j = 0; j < rows; j++) {
       let neighbors = countNeighbors(i, j);
+      // If a dead cell has 3 neighbours, it revives
       if (grid[i][j] == 0 && neighbors == 3) {
         newGrid[i][j] = 1;
-      } else if (grid[i][j] == 1 && (neighbors < 2 || neighbors > 3)) {
+      } // If the cell is alive and has les than 2 or more than 3 neighbours, it dies
+      else if (grid[i][j] == 1 && (neighbors < 2 || neighbors > 3)) {
         newGrid[i][j] = 0;
-      } else {
+      } // Else, the cell remains in the same state
+      else {
         newGrid[i][j] = grid[i][j];
       }
     }
   }
+  // Set the current grid to the new grid
   grid = newGrid;
 };
 
+// This function counts the amounts of neighbours of the given cell
 const countNeighbors = (x, y) => {
   let sum = 0;
+  // Loop through the neighbours of the cell
   for (let i = -1; i < 2; i++) {
     for (let j = -1; j < 2; j++) {
+      // Go to the other side of the grid if the cell is on an edge
       let col = (x + i + columns) % columns;
       let row = (y + j + rows) % rows;
       sum += grid[col][row];
     }
   }
+  // Substract the value of the current cell, so it does not get counted as a neighbour of itself
   sum -= grid[x][y];
   return sum;
 };
