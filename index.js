@@ -2,6 +2,7 @@
 const startButton = document.querySelector(".start");
 const pauseButton = document.querySelector(".pause");
 const clearButton = document.querySelector(".clearBoard");
+const randomize = document.querySelector(".random");
 
 // Get canvas element and its context
 const canvas = document.getElementById("canvas");
@@ -109,12 +110,12 @@ pauseButton.addEventListener("click", () => {
 
 startButton.addEventListener("click", () => {
   gameStarted = true;
-  if (!pause) {
-    setInterval(() => {
+  setInterval(() => {
+    if (!pause) {
       updateGrid();
       drawGrid();
-    }, 100);
-  }
+    }
+  }, 100);
 });
 
 // Clear the board
