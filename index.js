@@ -91,6 +91,7 @@ canvas.addEventListener("click", (event) => {
 }});
 
 initGrid();
+drawGrid();
 
 pauseButton.addEventListener('click', ()=>{pause=!pause});
 startButton.addEventListener('click', ()=>{
