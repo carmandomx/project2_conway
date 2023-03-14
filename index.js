@@ -2,7 +2,7 @@
 const startButton = document.querySelector(".start");
 const pauseButton = document.querySelector(".pause");
 const clearButton = document.querySelector(".clearBoard");
-const randomize = document.querySelector(".random");
+const randomizeButton = document.querySelector(".random");
 
 // Get canvas element and its context
 const canvas = document.getElementById("canvas");
@@ -121,4 +121,15 @@ startButton.addEventListener("click", () => {
 // Clear the board
 clearButton.addEventListener("click", () => {
   initGrid();
+});
+
+randomizeButton.addEventListener("click", () => {
+  if (!gameStarted && !pause) {
+    for (let i = 0; i < columns; i++) {
+      for (let j = 0; j < rows; j++) {
+        grid[i][j] = Math.floor(Math.random() * 2);
+      }
+    }
+    drawGrid();
+  }
 });
