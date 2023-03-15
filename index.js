@@ -14,8 +14,8 @@ const ctx = canvas.getContext("2d");
 let pause = false;
 let gameStarted = false;
 let iteration = 0; //counter of generations
-const rows = 60;
-const columns = 60;
+const rows = 80;
+const columns = 80;
 const cellSize = canvas.width / rows;
 
 let grid = new Array(columns);
@@ -107,34 +107,41 @@ canvas.addEventListener("click", (event) => {
 initGrid();
 drawGrid();
 
-pauseButton.addEventListener("click", () => {
-  if (gameStarted) {
-    pause = !pause;
-  }
-});
-
+// Button to start the game
 startButton.addEventListener("click", () => {
   gameStarted = true;
   setInterval(() => {
     if (gameStarted && !pause) {
       updateGrid();
       drawGrid();
+      // increase the generation by 1
       iteration += 1;
       generations.textContent = ` ${iteration} generations have passed`;
     }
   }, 100);
 });
 
-// Clear the board
+// Button to pause the game
+pauseButton.addEventListener("click", () => {
+  if (gameStarted) {
+    pause = !pause;
+  }
+});
+
+// Clear the board (nuclear bomb)
 clearButton.addEventListener("click", () => {
   initGrid();
   drawGrid();
 });
 
+// Button to randomize the layout
 randomizeButton.addEventListener("click", () => {
   if (!gameStarted && !pause) {
+    // Iterate through each column
     for (let i = 0; i < columns; i++) {
+      // Iterate through each row
       for (let j = 0; j < rows; j++) {
+        // Put a random number between 0 and 1 (dead or alive)
         grid[i][j] = Math.floor(Math.random() * 2);
       }
     }
@@ -142,7 +149,9 @@ randomizeButton.addEventListener("click", () => {
   }
 });
 
+// Button to reset the game
 resetButton.addEventListener("click", () => {
+  // Reset all need variables
   initGrid();
   drawGrid();
   iteration = 0;
