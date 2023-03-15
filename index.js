@@ -4,6 +4,7 @@ const pauseButton = document.querySelector(".pause");
 const clearButton = document.querySelector(".clearBoard");
 const randomizeButton = document.querySelector(".random");
 const generations=document.querySelector('.generation')
+const resetButton=document.querySelector('.reset')
 
 // Get canvas element and its context
 const canvas = document.getElementById("canvas");
@@ -107,13 +108,14 @@ initGrid();
 drawGrid();
 
 pauseButton.addEventListener("click", () => {
-  pause = !pause;
+  if (gameStarted){
+  pause = !pause}
 });
 
 startButton.addEventListener("click", () => {
   gameStarted = true;
   setInterval(() => {
-    if (!pause) {
+    if (gameStarted && !pause) {
       updateGrid();
       drawGrid();
       iteration+=1
@@ -138,3 +140,10 @@ randomizeButton.addEventListener("click", () => {
     drawGrid();
   }
 });
+
+resetButton.addEventListener('click', ()=>{    initGrid();
+  drawGrid();
+  iteration=0
+  generations.textContent = ` ${iteration} generations have passed`
+  pause=false
+  gameStarted=false})
