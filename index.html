@@ -19,13 +19,27 @@
   </head>
   <body>
     <main>
-      <canvas id="canvas" width="400" height="400"></canvas>
+      <canvas id="canvas" width="800" height="400"></canvas>
       <section class="buttons">
-        <button class="start">Start</button>
+        <section>
+          <button class="start">Start</button>
+          <form>
+            <label for="figure">Select a color palette:</label>
+            <select id="figure">
+              <option value="1">Figure 1</option>
+              <option value="2">Figure 2</option>
+              <option value="3">Figure 3</option>
+              <option value="4">Figure 4</option>
+            </select>
+          </form>
+        </section>
         <button class="pause">Pause</button>
-        <button class="random">Random layout</button>
-        <button class="clearBoard">Clear the board</button>
-        <button class="reset">Reset</button>
+        <section>
+          <button class="random">Random layout</button>
+          <button class="clearBoard">Clear the board</button>
+          <button class="reset">Reset</button>
+        </section>
+
         <p class="generation">0 generations have passed</p>
       </section>
     </main>

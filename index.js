@@ -3,8 +3,8 @@ const startButton = document.querySelector(".start");
 const pauseButton = document.querySelector(".pause");
 const clearButton = document.querySelector(".clearBoard");
 const randomizeButton = document.querySelector(".random");
-const generations=document.querySelector('.generation')
-const resetButton=document.querySelector('.reset')
+const generations = document.querySelector(".generation");
+const resetButton = document.querySelector(".reset");
 
 // Get canvas element and its context
 const canvas = document.getElementById("canvas");
@@ -14,8 +14,8 @@ const ctx = canvas.getContext("2d");
 let pause = false;
 let gameStarted = false;
 let iteration = 0; //counter of generations
-const rows = 40;
-const columns = 40;
+const rows = 60;
+const columns = 60;
 const cellSize = canvas.width / rows;
 
 let grid = new Array(columns);
@@ -40,7 +40,7 @@ const drawGrid = () => {
     for (let j = 0; j < rows; j++) {
       ctx.beginPath();
       ctx.rect(j * cellSize, i * cellSize, cellSize, cellSize);
-      ctx.fillStyle = grid[i][j] ? "black" : "white"; // Set the color based on state (alive/dead)
+      ctx.fillStyle = grid[i][j] ? "yellow" : "black"; // Set the color based on state (alive/dead)
       ctx.fill();
       ctx.stroke();
     }
@@ -108,8 +108,9 @@ initGrid();
 drawGrid();
 
 pauseButton.addEventListener("click", () => {
-  if (gameStarted){
-  pause = !pause}
+  if (gameStarted) {
+    pause = !pause;
+  }
 });
 
 startButton.addEventListener("click", () => {
@@ -118,8 +119,8 @@ startButton.addEventListener("click", () => {
     if (gameStarted && !pause) {
       updateGrid();
       drawGrid();
-      iteration+=1
-      generations.textContent = ` ${iteration} generations have passed`
+      iteration += 1;
+      generations.textContent = ` ${iteration} generations have passed`;
     }
   }, 100);
 });
@@ -141,9 +142,11 @@ randomizeButton.addEventListener("click", () => {
   }
 });
 
-resetButton.addEventListener('click', ()=>{    initGrid();
+resetButton.addEventListener("click", () => {
+  initGrid();
   drawGrid();
-  iteration=0
-  generations.textContent = ` ${iteration} generations have passed`
-  pause=false
-  gameStarted=false})
+  iteration = 0;
+  generations.textContent = ` ${iteration} generations have passed`;
+  pause = false;
+  gameStarted = false;
+});
