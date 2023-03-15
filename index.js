@@ -15,7 +15,7 @@ let pause = false;
 let gameStarted = false;
 let iteration = 0; //counter of generations
 const rows = 80;
-const columns = 80;
+const columns = 30;
 const cellSize = canvas.width / rows;
 
 let grid = new Array(columns);
