@@ -1,14 +1,4 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="UTF-8" />
-    <title>Game of Life</title>
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body></body>
-</html>
-
-<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -26,12 +16,14 @@
         <section>
           <button class="start">Start</button>
           <form>
-            <label for="figure">Select a color palette:</label>
-            <select id="figure">
-              <option value="1">Figure 1</option>
-              <option value="2">Figure 2</option>
-              <option value="3">Figure 3</option>
-              <option value="4">Figure 4</option>
+            <label for="figure">Select a pattern:</label>
+            <select name="Patterns" class="pattern" id="figure">
+              <option value="none">None</option>
+              <option value="blinker">Blinker</option>
+              <option value="glider">Glider</option>
+              <option value="beacon">Beacon</option>
+              <option value="pentadecathlon">Pentadecathlon</option>
+              <option value="pulsar">Pulsar</option>
             </select>
           </form>
         </section>
