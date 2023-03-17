@@ -4,6 +4,8 @@ canvas {
 body {
   margin: 0;
   background-color: #9a8ebf;
+  background-image: url(https://th.bing.com/th/id/R.d6c5810b43c9589d11126a4893eb3bb9?rik=WqAIR4jQGy79ag&pid=ImgRaw&r=0);
+  background-size: cover;
 }
 main {
   display: flex;
@@ -68,6 +70,10 @@ button:hover {
   font-size: 1.3rem;
   color: white;
   margin-bottom: 0;
+}
+
+label {
+  color: white;
 }
 
 @media (max-width: 40em) {

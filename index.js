@@ -5,7 +5,7 @@ const clearButton = document.querySelector(".clearBoard");
 const randomizeButton = document.querySelector(".random");
 const generations = document.querySelector(".generation");
 const resetButton = document.querySelector(".reset");
-const choosePattern = document.querySelector('.pattern');
+const choosePattern = document.querySelector(".pattern");
 
 // Get canvas element and its context
 const canvas = document.getElementById("canvas");
@@ -17,10 +17,12 @@ const columns = 30;
 const cellSize = canvas.width / rows;
 
 // Relevant variables
+const sound = new Audio("/fsm-team-escp-space-floating.mp3");
+sound.volume = 0.2;
 let pause = false;
 let gameStarted = false;
 let iteration = 0; //Counter of generations
-let intervalID
+let intervalID;
 
 //Creating grid object column x rows
 let grid = new Array(columns);
@@ -46,7 +48,7 @@ const drawGrid = () => {
     for (let j = 0; j < rows; j++) {
       ctx.beginPath();
       ctx.rect(j * cellSize, i * cellSize, cellSize, cellSize);
-      ctx.fillStyle = grid[i][j] ? "yellow" : "black"; // Set the color based on state (alive/dead)
+      ctx.fillStyle = grid[i][j] ? "#893b86" : "black"; // Set the color based on state (alive/dead)
       ctx.fill();
       ctx.stroke();
     }
@@ -96,15 +98,18 @@ const countNeighbors = (x, y) => {
   return sum; //Return amount of neighbours
 };
 
-const resetFunc = ()=>{  
+const resetFunc = () => {
   // Reset all variables needed
+  // Reset audio file
+  sound.pause();
+  sound.currentTime = 0;
   initGrid();
   drawGrid();
-  iteration=0
-  generations.textContent = ` ${iteration} generations have passed` //Updating generation number
-  pause=false
-  gameStarted=false}
-
+  iteration = 0;
+  generations.textContent = ` ${iteration} generations have passed`; //Updating generation number
+  pause = false;
+  gameStarted = false;
+};
 
 //Drawing initial grid
 initGrid();
@@ -122,17 +127,17 @@ canvas.addEventListener("click", (event) => {
     grid[y][x] = grid[y][x] ? 0 : 1;
     // Redraw the cells
     drawGrid();
-    choosePattern.value='none' // Reseting dropdown menu
+    choosePattern.value = "none"; // Reseting dropdown menu
   }
 });
-
 
 // Button to start the game
 startButton.addEventListener("click", () => {
   //Checking if existing interval
-  if (intervalID){
-    clearInterval(intervalID)
+  if (intervalID) {
+    clearInterval(intervalID);
   }
+  sound.play();
   gameStarted = true;
   // Start the game
   intervalID = setInterval(() => {
@@ -149,13 +154,20 @@ startButton.addEventListener("click", () => {
 // Button to pause the game
 pauseButton.addEventListener("click", () => {
   if (gameStarted) {
-    pause = !pause;
+    if (!pause) {
+      //Checking the state of the pause to pause or continue music
+      sound.pause();
+      pause = !pause;
+    } else {
+      sound.play();
+      pause = !pause;
+    }
   }
 });
 
 // Clear the board (nuclear bomb)
 clearButton.addEventListener("click", () => {
-  choosePattern.value='none' // Reseting dropdown menu
+  choosePattern.value = "none"; // Reseting dropdown menu
   //Clearing grid (generation count continues)
   initGrid();
   drawGrid();
@@ -164,7 +176,7 @@ clearButton.addEventListener("click", () => {
 // Button to randomize the layout
 randomizeButton.addEventListener("click", () => {
   if (!gameStarted && !pause) {
-    choosePattern.value='none' // Reseting dropdown menu
+    choosePattern.value = "none"; // Reseting dropdown menu
     // Loop through each cell and randomize values
     for (let i = 0; i < columns; i++) {
       for (let j = 0; j < rows; j++) {
@@ -177,123 +189,121 @@ randomizeButton.addEventListener("click", () => {
 });
 
 //Button to reset de game
-resetButton.addEventListener('click',()=>{
-  choosePattern.value='none' //Reset dropdown menu
-  resetFunc()
-  })
-
+resetButton.addEventListener("click", () => {
+  choosePattern.value = "none"; //Reset dropdown menu
+  resetFunc();
+});
 
 //Dropdown menu
-choosePattern.addEventListener('change',()=>{
-  switch (choosePattern.value){
-    case 'none': //Empty grid
-      resetFunc()
-      initGrid()
-      drawGrid()
-      break
-    case 'blinker': //blinker
-      resetFunc()
+choosePattern.addEventListener("change", () => {
+  switch (choosePattern.value) {
+    case "none": //Empty grid
+      resetFunc();
       initGrid();
-      grid[14][39]=1
-      grid[15][39]=1
-      grid[16][39]=1
-      drawGrid()
-      break
-    case 'glider': //glider
-      resetFunc()
+      drawGrid();
+      break;
+    case "blinker": //Blinker
+      resetFunc();
       initGrid();
-      grid[14][39]=1
-      grid[15][40]=1
-      grid[16][38]=1
-      grid[16][39]=1
-      grid[16][40]=1
-      drawGrid()
-      break
+      grid[14][39] = 1;
+      grid[15][39] = 1;
+      grid[16][39] = 1;
+      drawGrid();
+      break;
+    case "glider": //Glider
+      resetFunc();
+      initGrid();
+      grid[14][39] = 1;
+      grid[15][40] = 1;
+      grid[16][38] = 1;
+      grid[16][39] = 1;
+      grid[16][40] = 1;
+      drawGrid();
+      break;
 
-    case 'beacon': //beacon
-      resetFunc()
+    case "beacon": //Beacon
+      resetFunc();
       initGrid();
-      grid[13][38]=1
-      grid[13][39]=1
-      grid[14][38]=1
-      grid[14][39]=1
-      grid[15][40]=1
-      grid[15][41]=1
-      grid[16][40]=1
-      grid[16][41]=1
-      drawGrid()
-      break
-    case 'pentadecathlon': //pentadecatholon
-      resetFunc()
+      grid[13][38] = 1;
+      grid[13][39] = 1;
+      grid[14][38] = 1;
+      grid[14][39] = 1;
+      grid[15][40] = 1;
+      grid[15][41] = 1;
+      grid[16][40] = 1;
+      grid[16][41] = 1;
+      drawGrid();
+      break;
+    case "pentadecathlon": //Pentadecatholon
+      resetFunc();
       initGrid();
-      grid[14][38]=1
-      grid[15][38]=1
-      grid[16][38]=1
-      grid[14][39]=1
-      grid[16][39]=1
-      grid[14][40]=1
-      grid[15][40]=1
-      grid[16][40]=1
-      grid[14][41]=1
-      grid[16][41]=1
-      grid[14][42]=1
-      grid[15][42]=1
-      grid[16][42]=1
-      drawGrid()
-      break
-    case 'pulsar': //pulsar
-      resetFunc()
+      grid[14][38] = 1;
+      grid[15][38] = 1;
+      grid[16][38] = 1;
+      grid[14][39] = 1;
+      grid[16][39] = 1;
+      grid[14][40] = 1;
+      grid[15][40] = 1;
+      grid[16][40] = 1;
+      grid[14][41] = 1;
+      grid[16][41] = 1;
+      grid[14][42] = 1;
+      grid[15][42] = 1;
+      grid[16][42] = 1;
+      drawGrid();
+      break;
+    case "pulsar": //Pulsar
+      resetFunc();
       initGrid();
-      grid[11][34]=1
-      grid[11][35]=1
-      grid[11][36]=1
-      grid[11][40]=1
-      grid[11][41]=1
-      grid[11][42]=1
-      grid[13][32]=1
-      grid[13][37]=1
-      grid[13][39]=1
-      grid[13][44]=1
-      grid[14][32]=1
-      grid[14][37]=1
-      grid[14][39]=1
-      grid[14][44]=1
-      grid[15][32]=1
-      grid[15][37]=1
-      grid[15][39]=1
-      grid[15][44]=1
-      grid[16][34]=1
-      grid[16][35]=1
-      grid[16][36]=1
-      grid[16][40]=1
-      grid[16][41]=1
-      grid[16][42]=1
-      grid[18][34]=1
-      grid[18][35]=1
-      grid[18][36]=1
-      grid[18][40]=1
-      grid[18][41]=1
-      grid[18][42]=1
-      grid[19][32]=1
-      grid[19][37]=1
-      grid[19][39]=1
-      grid[19][44]=1
-      grid[20][32]=1
-      grid[20][37]=1
-      grid[20][39]=1
-      grid[20][44]=1
-      grid[21][32]=1
-      grid[21][37]=1
-      grid[21][39]=1
-      grid[21][44]=1
-      grid[23][34]=1
-      grid[23][35]=1
-      grid[23][36]=1
-      grid[23][40]=1
-      grid[23][41]=1
-      grid[23][42]=1
-      drawGrid()
-      break
+      grid[11][34] = 1;
+      grid[11][35] = 1;
+      grid[11][36] = 1;
+      grid[11][40] = 1;
+      grid[11][41] = 1;
+      grid[11][42] = 1;
+      grid[13][32] = 1;
+      grid[13][37] = 1;
+      grid[13][39] = 1;
+      grid[13][44] = 1;
+      grid[14][32] = 1;
+      grid[14][37] = 1;
+      grid[14][39] = 1;
+      grid[14][44] = 1;
+      grid[15][32] = 1;
+      grid[15][37] = 1;
+      grid[15][39] = 1;
+      grid[15][44] = 1;
+      grid[16][34] = 1;
+      grid[16][35] = 1;
+      grid[16][36] = 1;
+      grid[16][40] = 1;
+      grid[16][41] = 1;
+      grid[16][42] = 1;
+      grid[18][34] = 1;
+      grid[18][35] = 1;
+      grid[18][36] = 1;
+      grid[18][40] = 1;
+      grid[18][41] = 1;
+      grid[18][42] = 1;
+      grid[19][32] = 1;
+      grid[19][37] = 1;
+      grid[19][39] = 1;
+      grid[19][44] = 1;
+      grid[20][32] = 1;
+      grid[20][37] = 1;
+      grid[20][39] = 1;
+      grid[20][44] = 1;
+      grid[21][32] = 1;
+      grid[21][37] = 1;
+      grid[21][39] = 1;
+      grid[21][44] = 1;
+      grid[23][34] = 1;
+      grid[23][35] = 1;
+      grid[23][36] = 1;
+      grid[23][40] = 1;
+      grid[23][41] = 1;
+      grid[23][42] = 1;
+      drawGrid();
+      break;
   }
-
-})
+});

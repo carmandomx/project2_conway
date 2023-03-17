@@ -4,8 +4,8 @@ Welcome! This repo contains helpful information and starter files for your proje
 
 ## Team members
 
-Alan Villanueva - Javascript - alan.villanueva@itksquare.edu.mx
-Andy Hernández - Javascript - andy.hernandez@itksquare.edu.mx
+1. Alan Villanueva - Javascript - alan.villanueva@itksquare.edu.mx
+2. Andy Hernández - Javascript - andy.hernandez@itksquare.edu.mx
 
 ## Assignation
 
