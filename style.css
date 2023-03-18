@@ -1,0 +1,89 @@
+canvas {
+  border: 1px solid black;
+}
+body {
+  margin: 0;
+  background-color: #9a8ebf;
+  background-image: url(https://th.bing.com/th/id/R.d6c5810b43c9589d11126a4893eb3bb9?rik=WqAIR4jQGy79ag&pid=ImgRaw&r=0);
+  background-size: cover;
+}
+main {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  height: 100%;
+}
+h1 {
+  font-size: 2.5rem;
+  color: white;
+  margin-bottom: 0;
+}
+.buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.buttons section:first-child {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+#figure {
+  background-color: #146c94;
+  color: white;
+  padding: 0.6rem 1rem;
+}
+
+button {
+  padding: 0.8rem 2rem;
+  border-radius: 5%;
+  background-color: #f6f1f1;
+  color: black;
+  border: none;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+button:hover {
+  background-color: #146c94;
+  color: white;
+  cursor: pointer;
+}
+
+.start {
+  color: white;
+  background-color: #146c94;
+  padding: 0.8rem 4rem;
+}
+
+.start:hover {
+  background-color: #18122b;
+}
+
+.generation {
+  font-size: 1.3rem;
+  color: white;
+  margin-bottom: 0;
+}
+
+label {
+  color: white;
+}
+
+@media (max-width: 40em) {
+  .buttons section:first-child {
+    flex-direction: column;
+  }
+
+  .rest-of-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+}
